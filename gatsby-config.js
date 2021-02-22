@@ -1,6 +1,4 @@
+// gatsby-config.js
 module.exports = {
-  siteMetadata: {
-    title: "pie2",
-  },
-  plugins: ["gatsby-plugin-emotion", "gatsby-plugin-react-helmet"],
+  plugins: [`gatsby-plugin-pnpm`]
 };
