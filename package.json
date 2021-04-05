@@ -9,9 +9,27 @@
   "author": "Juliette Lamarche <juliette.lamarche@princesse.xyz> (https://github.com/prncss-xyz/)",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "@fontsource/arimo": "^4.2.2",
+    "@fontsource/spectral": "^4.2.2",
+    "@types/react-helmet": "^6.1.0",
+    "@types/styled-system": "^5.1.10",
     "gatsby": "^2.32.4",
+    "gatsby-plugin-emotion": "^5.4.0",
     "gatsby-plugin-pnpm": "^1.2.5",
+    "gatsby-plugin-react-helmet": "^3.10.0",
+    "gatsby-source-airtable": "^2.1.1",
+    "modern-css-reset": "^1.4.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "remove-accents": "^0.4.2",
+    "styled-system": "^5.1.5"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-react": "^7.23.1",
+    "gatsby-source-filesystem": "^3.2.0"
   }
 }

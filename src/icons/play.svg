@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="43px" viewBox="0 0 44 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Button/Play/White</title>
+    <g id="Styles" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Typography" transform="translate(-788.000000, -1355.000000)">
+            <g id="play-button" transform="translate(789.000000, 1355.500000)">
+                <circle id="Oval" stroke="#ED1F24" fill="#ED1F24" cx="21" cy="21" r="21"></circle>
+                <polygon id="Triangle" fill="#D8CECC" points="29 21 17 29 17 13"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
