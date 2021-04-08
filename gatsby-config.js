@@ -10,6 +10,16 @@ module.exports = {
       options: {},
       resolve: `gatsby-plugin-pnpm`,
     },
+    {
+      resolve: `gatsby-plugin-paypal`,
+      options: {
+        //clientId: process.env.PAYPAL_CLIENT_ID,
+        clienId: 'sb',
+        // buyerCountry: 'CA',
+        //currency: `EUR`, // Optional
+        //vault: true, // Optional
+      },
+    },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-airtable`,

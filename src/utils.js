@@ -2,10 +2,8 @@ import slugify from '@sindresorhus/slugify';
 import fromMarkdown from 'mdast-util-from-markdown';
 import toHast from 'mdast-util-to-hast';
 import toHtml from 'hast-util-to-html';
-import MarkdownIt from 'markdown-it';
-import marked from 'marked';
-
-const markdownIt = MarkdownIt({});
+// import MarkdownIt from 'markdown-it';
+// import marked from 'marked';
 
 export const cleanBook = (node) => {
   const auteur = rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']);
@@ -49,10 +47,8 @@ const rectAuteur = (name) => {
 };
 
 export const MD = ({ raw }) => {
-  // const __html = toHtml(toHast(fromMarkdown(raw, {})));
+  const __html = toHtml(toHast(fromMarkdown(raw, {})));
   // const __html = markdownIt.render(raw);
-  const __html = marked(raw);
-  console.log(raw);
-  console.log(__html);
+  // const __html = marked(raw);
   return <div dangerouslySetInnerHTML={{ __html }} />;
 };

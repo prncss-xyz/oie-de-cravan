@@ -14,6 +14,7 @@ import {
   NavigationFooter,
   SubtitleFooter,
   HSpacerMedium,
+  Navigation,
 } from './elements';
 import panier from '../icons/panier.svg';
 import 'modern-css-reset/dist/reset.min.css';
@@ -29,6 +30,7 @@ const Page = ({ title, children }) => {
     <>
       <Helmet>
         <meta charSet='utf-8' />
+        <meta name='robots' content='noindex,nofollow' />
         <title>{title ?? name}</title>
       </Helmet>
       <Global
@@ -57,6 +59,9 @@ const Page = ({ title, children }) => {
             <Nav to='/'>Nouvelles de l'oie</Nav>
             <Nav to='/'>Les Ami.e.s</Nav>
             */}
+            <Navigation>
+              <a href='https://oiedecravan.blogspot.com/'>Blogue</a>
+            </Navigation>
             <Nav to='/nous-rejoindre'>Nous rejoindre</Nav>
           </Flex>
           <Flex color='accent' {...theme.styles.button} pl='20px'>
@@ -114,6 +119,9 @@ const Page = ({ title, children }) => {
               <Link to='/'>Les ami.e.s</Link>
             </Box>
             */}
+            <Box textAlign='left'>
+              <a href='https://oiedecravan.blogspot.com/'>Blogue</a>
+            </Box>
             <Box textAlign='left'>
               <Link to='/nous-rejoindre'>Nous rejoindre</Link>
             </Box>

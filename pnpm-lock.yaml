@@ -13,8 +13,6 @@ dependencies:
   gatsby-plugin-react-helmet: 3.10.0_gatsby@2.32.4+react-helmet@6.1.0
   gatsby-source-airtable: 2.1.1_gatsby-source-filesystem@3.2.0
   hast-util-to-html: 7.1.2
-  markdown-it: 12.0.4
-  marked: 2.0.1
   masonic: 3.4.1_react@17.0.1
   mdast-util-from-markdown: 0.8.5
   mdast-util-to-hast: 10.2.0
@@ -2451,10 +2449,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
-  /argparse/2.0.1:
-    dev: false
-    resolution:
-      integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
   /aria-query/4.2.2:
     dependencies:
       '@babel/runtime': 7.12.18
@@ -4697,10 +4691,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
-  /entities/2.1.0:
-    dev: false
-    resolution:
-      integrity: sha512-hCx1oky9PFrJ611mf0ifBLBRW8lUUVRlFolb5gWRfIELabBlbp9xZvrqZLZAs+NxFnbfQoeGd8wDkygjg7U85w==
   /envinfo/7.7.4:
     dev: false
     engines:
@@ -8136,12 +8126,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
-  /linkify-it/3.0.2:
-    dependencies:
-      uc.micro: 1.0.6
-    dev: false
-    resolution:
-      integrity: sha512-gDBO4aHNZS6coiZCKVhSNh43F9ioIL4JwRjLZPkoLIY4yZFwg264Y5lu2x6rb1Js42Gh6Yqm2f6L2AJcnkzinQ==
   /load-json-file/2.0.0:
     dependencies:
       graceful-fs: 4.2.6
@@ -8376,30 +8360,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==
-  /markdown-it/12.0.4:
-    dependencies:
-      argparse: 2.0.1
-      entities: 2.1.0
-      linkify-it: 3.0.2
-      mdurl: 1.0.1
-      uc.micro: 1.0.6
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-34RwOXZT8kyuOJy25oJNJoulO8L0bTHYWXcdZBYZqFnjIy3NgjeoM3FmPXIOFQ26/lSHYMr8oc62B6adxXcb3Q==
   /markdown-table/2.0.0:
     dependencies:
       repeat-string: 1.6.1
     dev: false
     resolution:
       integrity: sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==
-  /marked/2.0.1:
-    dev: false
-    engines:
-      node: '>= 8.16.2'
-    hasBin: true
-    resolution:
-      integrity: sha512-5+/fKgMv2hARmMW7DOpykr2iLhl0NgjyELk5yn92iE7z8Se1IS9n3UsFm86hFXIkvMBmVxki8+ckcpjBeyo/hw==
   /masonic/3.4.1_react@17.0.1:
     dependencies:
       '@essentials/memoize-one': 1.1.0
@@ -12383,10 +12349,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-  /uc.micro/1.0.6:
-    dev: false
-    resolution:
-      integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
   /unbox-primitive/1.0.1:
     dependencies:
       function-bind: 1.1.1
@@ -13298,8 +13260,6 @@ specifiers:
   gatsby-source-airtable: ^2.1.1
   gatsby-source-filesystem: ^3.2.0
   hast-util-to-html: ^7.1.2
-  markdown-it: ^12.0.4
-  marked: ^2.0.1
   masonic: ^3.4.1
   mdast-util-from-markdown: ^0.8.5
   mdast-util-to-hast: ^10.2.0

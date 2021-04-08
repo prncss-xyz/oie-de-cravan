@@ -77,6 +77,10 @@ export const Nav = ({ to, children }) => {
   );
 };
 
+export const Navigation = ({ to, children }) => {
+  const theme = useTheme();
+  return <Box {...theme.styles.navigation}>{children}</Box>;
+};
 export const Tilde = () => {
   const theme = useTheme();
   return <Box {...theme.styles.h1}>{'~'}</Box>;

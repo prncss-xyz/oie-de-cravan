@@ -63,10 +63,6 @@ export default function Catalogue({
 const bc = (...args) => {
   const book = args[0].data;
   if (!book) {
-    // console.log('!!');
-    // console.log(args);
-    // console.log(args[0]);
-    // console.log(args[0].book);
     return <div></div>;
   }
   return <BookCard book={book} />;

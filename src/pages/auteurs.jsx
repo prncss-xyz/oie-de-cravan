@@ -60,6 +60,7 @@ export default function Home({ data }) {
   auteurs.sort(cmp);
   return (
     <Layout>
+      <HSpacerMedium />
       <H1Tilde>Nos Auteur.e.s</H1Tilde>
       <HSpacerMedium />
       <Box color='accent' textAlign='center'>

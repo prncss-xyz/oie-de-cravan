@@ -139,7 +139,7 @@ export default function Livre({ data: { airtable } }) {
             {dataOut.auteur}
           </H3>
           {dataOut.createursSecondaires && (
-            <Subtitle>Couverture de Mireille Bouchard</Subtitle>
+            <Subtitle>{dataOut.createursSecondaires}</Subtitle>
           )}
           <HSpacerXSmall />
           <Flex color='accent' alignItems='baseline'>
