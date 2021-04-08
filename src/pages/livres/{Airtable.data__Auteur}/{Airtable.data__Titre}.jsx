@@ -13,16 +13,25 @@ import {
   Flex,
   Card,
   QuoteSmall,
+  Grid,
   Tilde,
   Image,
   Arrows,
   Caption,
   Subtitle,
   SubtitleFooter,
+  HSpacerMedium,
+  HSpacerLarge,
+  HSpacerSmall,
+  HSpacerXSmall,
+  ButtonSmall,
+  TextCard,
 } from '../../../components/elements';
 import { useTheme } from '@emotion/react';
 import bookSample from '../../../images/book-sample.jpg';
 import nuage from '../../../icons/nuage.svg';
+import arrowLeft from '../../../icons/arrow_left.svg';
+import { cleanBook, MD } from '../../../utils';
 
 const Nuage = () => {
   return (
@@ -35,10 +44,14 @@ const Nuage = () => {
 function BackLink() {
   const theme = useTheme();
   return (
-    <Link to='catalogue'>
-      <Flex color='accent' {...theme.styles.button}>
-        <Icons.ArrowLeft />
-        <Box>Retour au catalogue général de la compagnie</Box>
+    <Link to='/catalogue'>
+      <Flex color='accent' alignItems='baseline'>
+        <Box pr='8px'>
+          <img width='8px' src={arrowLeft} alt='catalogue' />
+        </Box>
+        <ButtonSmall pt='20px'>
+          Retour au catalogue général de la compagnie
+        </ButtonSmall>
       </Flex>
     </Link>
   );
@@ -52,11 +65,14 @@ function Buy({ data, epuise, noticeRetour }) {
       <Flex color={color} {...theme.styles.button}>
         {data.prixCAD && data.prixEuro && (
           <Box p='10px' borderWidth='1px' borderStyle='solid'>
-            {data.prixCAD}&nbsp;$&nbsp;/&nbsp;{data.prixEuro}&nbsp;€
+            {data.prixCAD}&nbsp;$
+            <span css={{ paddingLeft: '10px', paddingRight: '10px' }}>/</span>
+            {data.prixEuro}&nbsp;€
           </Box>
         )}
         <Box
-          p='10px'
+          px='18px'
+          py='12px'
           borderWidth='1px'
           borderStyle='solid'
           borderColor={color}
@@ -84,16 +100,17 @@ const BookCol = ({ data }) => {
   const theme = useTheme();
   return (
     <Box color='accent' {...theme.styles.button} textTransform='uppercase'>
-      <Image
+      <img
         width='1000px'
         src={data.couvertures[0]}
         alt="L'amour et autres choses plates"
+        css={{ paddingBottom: '20px' }}
       />
       {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
       {data.annee && <Box>{data.annee}</Box>}
       {data.hauteur && data.largeur && (
         <Box>
-          {data.hauteur} x {data.largeur} cm.
+          {data.hauteur} x {data.largeur} cm
         </Box>
       )}
       {data.pages && <Box>{data.pages} pages</Box>}
@@ -101,37 +118,19 @@ const BookCol = ({ data }) => {
   );
 };
 
-export default function Livre({
-  data: {
-    airtable: { data: dataIn },
-  },
-}) {
-  console.log(dataIn);
-  const dataOut = {
-    titre: dataIn['Titre'],
-    annee: dataIn['Publication__date_']?.slice(0, 4),
-    auteur: dataIn['Auteur'],
-    collection: dataIn['Collection'],
-    genre: dataIn['Genre'],
-    hauteur: dataIn['Hauteur__cm_'],
-    largeur: dataIn['Largeur__cm_'],
-    isbn: dataIn['ISBN'],
-    prixCAD: dataIn['Prix_site_Web__CAD_'],
-    prixEuro: dataIn['Prix_site_Web__EU_'],
-    pages: dataIn['Pages__nombre_'],
-    presentation: dataIn['Pr_sentation'],
-    autourDuLivre: dataIn['Autour_du_livre'],
-    epuise: dataIn['_puis_'],
-    couvertures: dataIn['Couverture']?.map(({ url }) => url),
-  };
-  console.log(dataOut);
+export default function Livre({ data: { airtable } }) {
+  const dataOut = cleanBook(airtable);
 
   return (
     <Layout title={dataOut.titre}>
+      <HSpacerSmall />
       <BackLink />
-      <Flex>
-        <BookCol data={dataOut} />
-        <Box>
+      <HSpacerSmall />
+      <Grid>
+        <Box gcs='1' gce='4'>
+          <BookCol data={dataOut} />
+        </Box>
+        <Box gcs='5' gce='13'>
           <H2 color='accent'>{dataOut.titre}</H2>
           <Box color='accent'>
             <Tilde />
@@ -139,46 +138,58 @@ export default function Livre({
           <H3 color='accent' textTransform='uppercase'>
             {dataOut.auteur}
           </H3>
-          <SubtitleFooter>Couverture de Mireille Bouchard</SubtitleFooter>
+          {dataOut.createursSecondaires && (
+            <Subtitle>Couverture de Mireille Bouchard</Subtitle>
+          )}
+          <HSpacerXSmall />
           <Flex color='accent' alignItems='baseline'>
             {dataOut.genre && <Subtitle>{dataOut.genre}</Subtitle>}
             {dataOut.genre && dataOut.collection && <Nuage />}
             {dataOut.collection && <Subtitle>{dataOut.collection}</Subtitle>}
           </Flex>
+          <HSpacerXSmall />
           <Body1>
-            Voici un premier recueil écorché, les premiers pas de quelqu'un qui
-            croyait que les mots, ce n'état pas pour lui, mais qui s'est
-            découvert une voix, encore proche de celle de ses modèles mais
-            unique aussi, avec un sens de l'image qui ne trompe pas.
+            {dataOut.presentation.length > 0 && (
+              <MD raw={dataOut.presentation} />
+            )}
           </Body1>
+          <HSpacerXSmall />
           <Buy data={dataOut} />
+          <HSpacerXSmall />
           <Share />
         </Box>
-      </Flex>
-      <H2Icon Icon={Icons.Ecrire}>Autour du livre</H2Icon>
-      <Flex>
-        <Icons.ArrowLeft />
-        <Card>
-          <Box color='accent'>
-            <QuoteSmall>
-              C'est certes lyrique et un peu naïf, mais l'assurance
-              désintéressée qui parcourt le texte a quelque chose d'inattendu.
-              Il fait parfois bon lire des poètes qui ne se soucient pas de
-              dépasser une quelconque ère ou de répondre à quelque ascendant
-              exercé par un milieu. J'ai toujours trouvé qu'il fallait avoir du
-              culot pour écrire dans un poèeme "je t'aime". Jonathan Doré le
-              fait et il décrit avec aplomb le corps de l'aimée, sa peau douce
-              comme des oreillers de plume", les lèvre "en forme de ciel" ou sa
-              "tignasse blonde [qui] rayonne comme Dubaï la nuit".
-            </QuoteSmall>
-            <SubtitleFooter>
-              <br />
-              <Box>Anne-Renée Caillée, Liberté.</Box>
-            </SubtitleFooter>
-          </Box>
-        </Card>
-        <Icons.ArrowRight />
-      </Flex>
+      </Grid>
+      <HSpacerLarge />
+      {dataOut.autourDuLivre.length > 0 && (
+        <>
+          <H2Icon Icon={Icons.Ecrire}>Autour du livre</H2Icon>
+          <HSpacerSmall />
+          <Grid>
+            <Box gcs='3' gce='11'>
+              <Flex>
+                {/*arrow left*/}
+                <TextCard>
+                  <Box color='accent'>
+                    <QuoteSmall>
+                      {dataOut.autourDuLivre && (
+                        <MD raw={dataOut.autourDuLivre} />
+                      )}
+                    </QuoteSmall>
+                    {
+                      // <SubtitleFooter>
+                      //   <br />
+                      //   <Box>Anne-Renée Caillée, Liberté.</Box>
+                      // </SubtitleFooter>
+                    }
+                  </Box>
+                </TextCard>
+                {/*arrow left*/}
+              </Flex>
+            </Box>
+          </Grid>
+        </>
+      )}
+      <HSpacerLarge />
     </Layout>
   );
 }
@@ -202,6 +213,7 @@ export const query = graphql`
         Prix_site_Web__EU_
         Publication__date_
         Titre
+        Pr_sentation
         Autour_du_livre
         Cr_ateurs_secondaires
         _puis_

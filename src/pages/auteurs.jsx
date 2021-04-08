@@ -11,6 +11,9 @@ import {
   Image,
   Arrows,
   Caption,
+  HSpacerMedium,
+  ButtonSmall,
+  HSpacerLarge,
 } from '../components/elements';
 import oiseauHome from '../images/Oiseau_Home.svg';
 import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
@@ -58,6 +61,7 @@ export default function Home({ data }) {
   return (
     <Layout>
       <H1Tilde>Nos Auteur.e.s</H1Tilde>
+      <HSpacerMedium />
       <Box color='accent' textAlign='center'>
         <ul css={{ listStyle: 'none' }}>
           {auteurs.map((auteur) => (
@@ -65,6 +69,7 @@ export default function Home({ data }) {
           ))}
         </ul>
       </Box>
+      <HSpacerMedium />
     </Layout>
   );
 }

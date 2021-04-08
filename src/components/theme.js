@@ -90,14 +90,15 @@ const theme = {
     buttonSmall: {
       color: 'accent',
       fontFamily: 'Arimo',
-      fontWeight: 'bold',
+      fontWeight: 'bol',
       fontSize: '14px',
       letterSpacing: 0.75,
       lineHeight: '16px',
+      textTransform: 'uppercase',
     },
     navigation: {
       fontFamily: 'Arimo',
-      fontWeight: 'bold',
+      fontWeight: 'bol',
       fontSize: '16px',
       letterSpacing: 1,
       lineHeight: '20px',

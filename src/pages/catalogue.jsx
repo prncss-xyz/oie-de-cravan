@@ -1,4 +1,5 @@
 import React from 'react';
+import { Masonry } from 'masonic';
 import { Helmet } from 'react-helmet';
 import Layout from '../components/layout';
 import * as Icons from '../components/icons';
@@ -16,8 +17,13 @@ import {
   Arrows,
   Body1,
   Body2,
+  ButtonSmall,
   Caption,
   Subtitle,
+  BookCard,
+  HSpacerSmall,
+  HSpacerMedium,
+  HSpacerLarge,
 } from '../components/elements';
 import nousRejoindre from '../images/NousRejoindre.png';
 import cartePostaleDuBureauOie from '../images/CartePostaleBureauOie.png';
@@ -29,34 +35,42 @@ export default function Catalogue({
   },
 }) {
   const books = edges.map(({ node }) => cleanBook(node));
-  console.log(books);
 
   return (
     <Layout title='Catalogue'>
+      <HSpacerLarge />
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
+      <HSpacerLarge />
       <Link to='/auteurs'>
-        <Box
+        <ButtonSmall
           color='accent'
           textAlign='right'
           css={{ textDecoration: 'underline' }}
         >
           Voir nos auteur.e.s
-        </Box>
+        </ButtonSmall>
       </Link>
-      {books.map((book) => {
-        const couverture = book.couvertures?.[0];
-        return (
-          <Card>
-            <H3 color='accent'>{book.titre}</H3>
-            <Subtitle>{book.auteur}</Subtitle>
-            {couverture ? <Image src={couverture} alt={book.titre} /> : '💩'}
-          </Card>
-        );
-      })}
-      <Arrows>Afficher plus</Arrows>
+      <HSpacerSmall />
+      <Masonry items={books} render={bc} columnCount={4} columnGutter={36} />
+      {books.map((book) => (
+        <bc book={book} />
+      ))}
+      <HSpacerLarge />
     </Layout>
   );
 }
+
+const bc = (...args) => {
+  const book = args[0].data;
+  if (!book) {
+    // console.log('!!');
+    // console.log(args);
+    // console.log(args[0]);
+    // console.log(args[0].book);
+    return <div></div>;
+  }
+  return <BookCard book={book} />;
+};
 
 export const query = graphql`
   query CatalogueQuery {

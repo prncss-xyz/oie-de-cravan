@@ -16,6 +16,25 @@ import * as Icons from './icons';
 import search from '../icons/search.svg';
 import avion from '../icons/avion.svg';
 
+export const BookCard = ({ book }) => {
+  const couverture = book.couvertures?.[0];
+  return (
+    <Link to={book.page}>
+      <Card pix='20px' piy='20px'>
+        <H3 color='accent' pb='5px'>
+          {book.titre}
+        </H3>
+        <Subtitle pb='20px'>{book.auteur}</Subtitle>
+        {couverture ? (
+          <Image src={couverture} alt={book.titre} width='275px' />
+        ) : (
+          '💩'
+        )}
+      </Card>
+    </Link>
+  );
+};
+
 const gcs = system({
   gcs: { property: 'gridColumnStart' },
   gridColumnStart: { property: 'gridColumnStart' },
@@ -46,6 +65,7 @@ export const Flex = styled(Box)({ display: 'flex' });
 export const Grid = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
+  gap: '36px',
 });
 
 export const Nav = ({ to, children }) => {
@@ -62,27 +82,23 @@ export const Tilde = () => {
   return <Box {...theme.styles.h1}>{'~'}</Box>;
 };
 
-export const H1Tilde = ({ children, ...props }) => {
+export const H1Tilde = ({ children }) => {
   const theme = useTheme();
-  // maxWidth
   return (
-    <Box color='accent' textAlign='center'>
-      <Flex justifyContent='center' alignItems='center'>
-        <Tilde />
-        <Box pr='10px' />
-        <Box as='h1' {...theme.styles.h1}>
+    <Flex justifyContent='center' color='accent'>
+      <Flex maxWidth='800px' {...theme.styles.h1} alignItems='center'>
+        <Box>~</Box>
+        <Box px='18px' textAlign='center' {...theme.styles.h1}>
           {children}
         </Box>
-        <Box pr='10px' />
-        <Tilde />
+        <Box>~</Box>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 
 export const H2 = ({ children, ...props }) => {
   const theme = useTheme();
-  // maxwidth
   return (
     <Box {...props} as='h2' {...theme.styles.h2}>
       {children}
@@ -92,7 +108,6 @@ export const H2 = ({ children, ...props }) => {
 
 export const H3 = ({ children, ...props }) => {
   const theme = useTheme();
-  // maxwidth
   return (
     <Box {...props} as='h3' {...theme.styles.h3}>
       {children}
@@ -100,17 +115,22 @@ export const H3 = ({ children, ...props }) => {
   );
 };
 
+export const HSpacerLarge = () => <Box pb='180px' />;
+export const HSpacerMedium = () => <Box pb='100px' />;
+export const HSpacerSmall = () => <Box pb='60px' />;
+export const HSpacerXSmall = () => <Box pb='40px' />;
+
 export const H2Icon = ({ Icon, children, ...props }) => {
   return (
-    <Box color='accent' textAlign='center'>
+    <Flex justifyContent='center' color='accent'>
       <Flex justifyContent='center' alignItems='center'>
         {<Icon />}
-        <H2 px='16px' {...props}>
+        <H2 testAlign='center' textAlign='center' px='16px' {...props}>
           {children}
         </H2>
         {<Icon />}
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 
@@ -139,7 +159,7 @@ export function Arrows({ children }) {
       <Icons.ArrowBottom />
       <Flex alignItems='center'>
         <Icons.ArrowRight />
-        <Box px='16px' py='18px' {...theme.styles.button}>
+        <Box px='18px' py='16px' {...theme.styles.button}>
           {children}{' '}
         </Box>
         <Icons.ArrowLeft />
@@ -185,22 +205,35 @@ export function Search({ label }) {
   );
 }
 
-export function Card({ children }) {
+export function Card({ children, pix, piy }) {
   return (
-    <Box borderStyle='solid' borderColor='primary' borderWidth='1px' p='8px'>
+    <Box
+      backgroundColor='background'
+      borderStyle='solid'
+      borderColor='primary'
+      borderWidth='1px'
+      p='8px'
+    >
       <Box
         width='100%'
         height='100%'
         borderStyle='solid'
         borderColor='primary'
         borderWidth='1px'
-        p='20px'
+        px={pix}
+        py={piy}
       >
         {children}
       </Box>
     </Box>
   );
 }
+
+export const TextCard = ({ children }) => (
+  <Card pix='30px' piy='25px'>
+    {children}
+  </Card>
+);
 
 export const Quote = ({ children, ...props }) => {
   const theme = useTheme();
@@ -214,7 +247,22 @@ export const Quote = ({ children, ...props }) => {
 export const QuoteSmall = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Box color='accent' {...theme.styles.quoteSmall} {...props}>
+    <Box
+      color='accent'
+      {...theme.styles.quoteSmall}
+      css={{
+        '& p': {
+          marginBottom: theme.styles.quoteSmall.lineHeight,
+        },
+        '& p:last-child': {
+          marginBottom: 0,
+        },
+        '& em': {
+          fontStyle: 'normal',
+        },
+      }}
+      {...props}
+    >
       {children}
     </Box>
   );
@@ -224,6 +272,15 @@ export const QuoteXSmall = ({ children, ...props }) => {
   const theme = useTheme();
   return (
     <Box color='accent' {...theme.styles.quoteXSmall} {...props}>
+      {children}
+    </Box>
+  );
+};
+
+export const ButtonSmall = ({ children, ...props }) => {
+  const theme = useTheme();
+  return (
+    <Box color='accent' {...theme.styles.buttonSmall} {...props}>
       {children}
     </Box>
   );
@@ -245,6 +302,7 @@ export function Subtitle({ children, ...props }) {
     </Box>
   );
 }
+
 export function Body1({ children }) {
   const theme = useTheme();
   return (
@@ -266,7 +324,21 @@ export function Body1({ children }) {
 
 export function Body2({ children }) {
   const theme = useTheme();
-  return <Box {...theme.styles.body2}>{children}</Box>;
+  return (
+    <Box
+      {...theme.styles.body2}
+      css={{
+        '& p': {
+          marginBottom: theme.styles.body2.lineHeight,
+        },
+        '& p:last-child': {
+          marginBottom: 0,
+        },
+      }}
+    >
+      {children}
+    </Box>
+  );
 }
 
 export function Caption({ children, ...props }) {
