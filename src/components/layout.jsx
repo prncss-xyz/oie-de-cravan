@@ -48,8 +48,8 @@ const Page = ({ title, children }) => {
       />
       <Box margin='auto' pt='80px' maxWidth='1560px' px='40px'>
         <Flex alignItems='baseline' css={{ '&>*>*': { paddingRight: '20px' } }}>
-          <Flex color='accent' alignItems='baseline' {...theme.styles.body1}>
-            <Link href='/'>L’Oie de Cravan</Link>
+          <Flex color='accent' alignItems='baseline' {...theme.styles.oie}>
+            <Link to='/'>L’Oie de Cravan</Link>
           </Flex>
           <Flex flexGrow='1' />
           <Flex alignItems='baseline'>

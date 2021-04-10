@@ -15,6 +15,13 @@ const theme = {
       textTransform: 'uppercase',
       fontWeight: 'normal',
     },
+    authors: {
+      fontFamily: 'Spectral',
+      fontSize: '38px',
+      letterSpacing: 1.18,
+      lineHeight: '44px',
+      fontWeight: 'normal',
+    },
     h2: {
       fontFamily: 'Spectral',
       fontSize: '38px',
@@ -28,6 +35,12 @@ const theme = {
       fontSize: '19px',
       letterSpacing: 1.18,
       lineHeight: '22px',
+    },
+    oie: {
+      fontFamily: 'Spectral',
+      fontSize: '33px',
+      lineHeight: '32px',
+      fontWeight: 'normal',
     },
     h3: {
       fontFamily: 'Spectral',

@@ -44,21 +44,26 @@ const Nuage = () => {
 function BackLink() {
   const theme = useTheme();
   return (
-    <Link to='/catalogue'>
-      <Flex color='accent' alignItems='baseline'>
-        <Box pr='8px'>
+    <Flex justifyContent='space-between' alignItems='flex-end'>
+      <Link to='/catalogue'>
+        <Box pr='8px' pb='4px'>
           <img width='8px' src={arrowLeft} alt='catalogue' />
         </Box>
+      </Link>
+      <Link to='/catalogue'>
         <ButtonSmall pt='20px'>
           Retour au catalogue général de la compagnie
         </ButtonSmall>
-      </Flex>
-    </Link>
+      </Link>
+      <Box flexGrow='1' />
+    </Flex>
   );
 }
 
 function Buy({ data, epuise, noticeRetour }) {
   const theme = useTheme();
+  if (!data.prixCAD) epuise = true;
+  if (!data.prixEuro) epuise = true;
   const color = epuise ? 'muted' : 'accent';
   return (
     <>
@@ -100,12 +105,14 @@ const BookCol = ({ data }) => {
   const theme = useTheme();
   return (
     <Box color='accent' {...theme.styles.button} textTransform='uppercase'>
-      <img
-        width='1000px'
-        src={data.couvertures[0]}
-        alt="L'amour et autres choses plates"
-        css={{ paddingBottom: '20px' }}
-      />
+      {data.couvertures[0] && (
+        <img
+          width='1000px'
+          src={data.couvertures[0]}
+          alt='couverture'
+          css={{ paddingBottom: '20px' }}
+        />
+      )}
       {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
       {data.annee && <Box>{data.annee}</Box>}
       {data.hauteur && data.largeur && (
@@ -135,9 +142,11 @@ export default function Livre({ data: { airtable } }) {
           <Box color='accent'>
             <Tilde />
           </Box>
-          <H3 color='accent' textTransform='uppercase'>
-            {dataOut.auteur}
-          </H3>
+          <Link to={dataOut.pageAuteur}>
+            <H3 color='accent' textTransform='uppercase'>
+              {dataOut.auteur}
+            </H3>
+          </Link>
           {dataOut.createursSecondaires && (
             <Subtitle>{dataOut.createursSecondaires}</Subtitle>
           )}
@@ -156,7 +165,7 @@ export default function Livre({ data: { airtable } }) {
           <HSpacerXSmall />
           <Buy data={dataOut} />
           <HSpacerXSmall />
-          <Share />
+          {/*<Share />*/}
         </Box>
       </Grid>
       <HSpacerLarge />

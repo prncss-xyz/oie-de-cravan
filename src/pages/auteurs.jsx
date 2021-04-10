@@ -1,6 +1,8 @@
 import React from 'react';
+import slugify from '@sindresorhus/slugify';
 import Layout from '../components/layout';
 import * as Icons from '../components/icons';
+import { useTheme } from '@emotion/react';
 import {
   H1Tilde,
   H3,
@@ -18,8 +20,7 @@ import {
 import oiseauHome from '../images/Oiseau_Home.svg';
 import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
 import bookSample from '../images/book-sample.jpg';
-import theme from '../components/theme';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import removeAccents from 'remove-accents';
 
 const rectAuteur = (name) => {
@@ -37,14 +38,29 @@ const rectAuteur = (name) => {
   return name.trim();
 };
 
-const normalize = (a) => removeAccents(a).toLowerCase();
+const normalize = (a) => removeAccents(rectAuteur(a)).toLowerCase();
 
 const cmp = (a, b) => {
   const an = normalize(a);
   const bn = normalize(b);
   if (an < bn) return -1;
-  if (bn > an) return 1;
+  if (bn < an) return 1;
   return 0;
+};
+
+const Authors = ({ auteurs }) => {
+  const theme = useTheme();
+  return (
+    <Box color='accent' textAlign='center' {...theme.styles.authors}>
+      <ul css={{ listStyle: 'none' }}>
+        {auteurs.map((auteur) => (
+          <Link key={auteur} to={`/auteurs/${slugify(auteur)}`}>
+            <li>{rectAuteur(auteur)}</li>
+          </Link>
+        ))}
+      </ul>
+    </Box>
+  );
 };
 
 export default function Home({ data }) {
@@ -52,24 +68,17 @@ export default function Home({ data }) {
   for (const node of data.allAirtable.nodes) {
     const auteur = node.data.Auteur;
     if (auteur) {
-      auteurs.add(rectAuteur(node.data.Auteur));
+      auteurs.add(node.data.Auteur);
     }
   }
   auteurs = [...auteurs];
-
   auteurs.sort(cmp);
   return (
     <Layout>
       <HSpacerMedium />
       <H1Tilde>Nos Auteur.e.s</H1Tilde>
       <HSpacerMedium />
-      <Box color='accent' textAlign='center'>
-        <ul css={{ listStyle: 'none' }}>
-          {auteurs.map((auteur) => (
-            <li key={auteur}>{auteur}</li>
-          ))}
-        </ul>
-      </Box>
+      <Authors auteurs={auteurs} />
       <HSpacerMedium />
     </Layout>
   );

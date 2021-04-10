@@ -110,6 +110,7 @@ export default function Home({
       </Link>
       <HSpacerLarge />
       <H2Icon Icon={Icons.Avion}>Ce qui s'en vient</H2Icon>
+      <HSpacerSmall />
       <Box textAlign='center'>
         <Body1>
           <div>

@@ -28,10 +28,11 @@ export const cleanBook = (node) => {
     epuise: !!node.data['_puis_'],
     couvertures: node.data['Couverture']?.map(({ url }) => url) || [],
     page: `/livres/${slugify(node.data['Auteur'])}/${slugify(titre)}`,
+    pageAuteur: `/auteurs/${slugify(node.data['Auteur'])}`,
   };
 };
 
-const rectAuteur = (name) => {
+export const rectAuteur = (name) => {
   let m;
   m = name.match(/(.*),(.*)\((.*)\)/);
   if (m) {

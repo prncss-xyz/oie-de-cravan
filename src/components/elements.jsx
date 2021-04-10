@@ -25,10 +25,8 @@ export const BookCard = ({ book }) => {
           {book.titre}
         </H3>
         <Subtitle pb='20px'>{book.auteur}</Subtitle>
-        {couverture ? (
+        {couverture && (
           <Image src={couverture} alt={book.titre} width='275px' />
-        ) : (
-          '💩'
         )}
       </Card>
     </Link>

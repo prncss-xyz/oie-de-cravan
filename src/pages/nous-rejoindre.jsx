@@ -44,7 +44,7 @@ export default function NousRejoindre() {
               <p>
                 Nos gigantesques bureaux sont situés au bucolique 6264 De la
                 Roche. Comme le facteur craint de déranger notre concentration,
-                le courrier est plutôt livré à l'adresse du dessous- à laquelle
+                le courrier est plutôt livré à l'adresse du dessous, à laquelle
                 on peut nous écrire:
               </p>
               <p>
@@ -53,9 +53,9 @@ export default function NousRejoindre() {
                 Montréal, Qc H2S 2E1 Canada
               </p>
               <p>
-                Vous pouvez aussi écrire à{' '}
-                <Accent>lentement // oiedecravan.com</Accent>{' '}
-                <span css={{ fontWeight: 'bold' }}>*</span>
+                Vous pouvez aussi écrire à
+                <Accent> lentement // oiedecravan.com</Accent>
+                <span css={{ fontWeight: 'bold' }}> *</span>
               </p>
             </Body1>
           </TextCard>
@@ -68,7 +68,7 @@ export default function NousRejoindre() {
               <Body2>
                 * Le lecteur aura compris qu'il faut remplacer // par le signe @
                 pour nous joindre. Nous recourons ici à cette forme subtilement
-                codée afin d'éviter les vils robots spammeurs depuis 2004.
+                codée afin d'éviter les vils robots spammeurs.
               </Body2>
             </TextCard>
           </div>
@@ -82,17 +82,17 @@ export default function NousRejoindre() {
           <Box gcs='2' gce='7'>
             <p>
               L'Oie de Cravan est une structure minuscule et un éditeur lent.
-              Pour cette raison, il ne nous est malheureusemetn pas possible de
-              répondre adéquatement à tous les envois qui nous sont fiats. Nous
+              Pour cette raison, il ne nous est malheureusement pas possible de
+              répondre adéquatement à tous les envois qui nous sont faits. Nous
               nous engageons à vous manifester notre intérêt, le cas échéant,
-              dans les trosi mois suivant la réception de votre manuscrit. Par
+              dans les trois mois suivant la réception de votre manuscrit. Par
               contre, si votre manuscrit ne retient pas notre attention, nous ne
-              vous enverrons pas de lettre de refus ou d'évaluation crittique.{' '}
+              vous enverrons pas de lettre de refus ou d'évaluation crittique.
             </p>
             <p>
               Pour les livres d'images/bandes dessinées envoyées par courriel,
               nous vous demandons de nous noumettre quelques planches seulement.
-              Si votre projet suscite notre intérêt, nous communiquerons vaec
+              Si votre projet suscite notre intérêt, nous communiquerons avec
               vous pour en voir d'avantage.
             </p>
           </Box>
@@ -159,6 +159,7 @@ export default function NousRejoindre() {
         </Box>
       </Grid>
       <HSpacerLarge />
+      {/*
       <H2Icon Icon={Icons.Coeur}>Mécénat express</H2Icon>
       <HSpacerSmall />
       <Grid>
@@ -174,6 +175,7 @@ export default function NousRejoindre() {
       <HSpacerSmall />
       <Arrows href='#'>Envoyer un don à L'Oie</Arrows>
       <HSpacerLarge />
+      */}
     </Layout>
   );
 }
