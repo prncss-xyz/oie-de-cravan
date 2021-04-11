@@ -75,17 +75,6 @@ function Buy({ data, epuise, noticeRetour }) {
             {data.prixEuro}&nbsp;€
           </Box>
         )}
-        <Box
-          px='18px'
-          py='12px'
-          borderWidth='1px'
-          borderStyle='solid'
-          borderColor={color}
-          backgroundColor={color}
-          color='background'
-        >
-          {epuise ? 'Non disponible' : 'Ajouter au panier'}
-        </Box>
       </Flex>
       {epuise && noticeRetour && <Body2>{noticeRetour}</Body2>}
     </>

@@ -64,12 +64,6 @@ const Page = ({ title, children }) => {
             </Navigation>
             <Nav to='/nous-rejoindre'>Nous rejoindre</Nav>
           </Flex>
-          <Flex color='accent' {...theme.styles.button} pl='20px'>
-            <Box>En</Box>
-            <Box>
-              <img height='20px' src={panier} alt='panier' />
-            </Box>
-          </Flex>
         </Flex>
       </Box>
       <Box px='40px' maxWidth='1480px' margin='auto'>
