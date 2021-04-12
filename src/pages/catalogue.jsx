@@ -37,11 +37,10 @@ export default function Catalogue({
     localSearchBooks: { store, index },
   },
 }) {
-  ///  const edges = props.data.allAirtable.edges;
-  //  console.log(props);
   const [query, setQuery] = useState('');
-  const index0 = JSON.parse(index);
   const res = useLunr(query, index, store);
+  console.log(query);
+  console.log(res);
   const books = edges
     .filter(({ node }) => query === '' || res.some(({ id }) => id === node.id))
     .map(({ node }) => cleanBook(node));

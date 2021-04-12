@@ -57,6 +57,7 @@ module.exports = {
           data.allAirtable.edges.map(({ node }) => {
             return {
               id: node.id,
+              titre: node.data['Titre'],
             };
           }),
       },
