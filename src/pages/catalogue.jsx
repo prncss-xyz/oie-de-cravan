@@ -50,7 +50,7 @@ export default function Catalogue({
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
       <HSpacerLarge />
       <Flex alignItems='baseline' justifyContent='space-between'>
-        <Search label='Recherche un titre' handler={setQuery} />
+        <Search label='Rechercher un titre' handler={setQuery} />
         <Link to='/auteurs'>
           <ButtonSmall
             color='accent'
