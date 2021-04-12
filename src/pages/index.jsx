@@ -113,21 +113,12 @@ export default function Home({
       <HSpacerSmall />
       <Box textAlign='center'>
         <Body1>
+          <div>Camille Readman Prud´homme</div>
+          <div>Anne Lardeux</div>
+          <div>Alice Massénat</div>
+          <div>Michel Garneau</div>
           <div>
-            <i>Dans le bois avec les sorcières, </i>poèmes de Julie Roy
-          </div>
-          <div>
-            <i>Delete</i>, prose poétique de Daphné B.
-          </div>
-          <div>
-            <i>Maman apprivoisée</i>, poèmes de Geneviève Elverum (Geneviève
-            Castrée)
-          </div>
-          <div>
-            <i>L'Oiseau de ma mère</i>, poèmes de Natalie Thibault
-          </div>
-          <div>
-            Le catalogue historique des 25 ans de L'Oie de Cravan&nbsp;!
+            <i>et bien d’autres encore…</i>
           </div>
         </Body1>
       </Box>
