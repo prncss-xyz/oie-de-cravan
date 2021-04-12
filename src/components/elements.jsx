@@ -171,6 +171,25 @@ export function Arrows({ children }) {
   );
 }
 
+export function Disk({ active, ...props }) {
+  const theme = useTheme();
+  const color = active ? theme.colors.accent : theme.colors.highLight;
+  return (
+    <svg
+      css={{
+        'height': '10px',
+        'paddingRight': '10px',
+        '&:last-child': { paddingRight: '0px' },
+      }}
+      fill={color}
+      viewBox='0 0 10 10'
+      {...props}
+    >
+      <circle cx='5' cy='5' r='5' />
+    </svg>
+  );
+}
+
 export function Search({ label, handler }) {
   const theme = useTheme();
   const ref = useRef();

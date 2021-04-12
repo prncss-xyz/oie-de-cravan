@@ -48,14 +48,14 @@ export default function Home({
                 D'abord, répéter une évidence : la poésie n'est pas
                 particulièrement affaire de livre. Elle ne l'est même que
                 rarement, et les livres, y compris ceux de l'Oie, ne sauraient
-                être suffisants ! Toute l'histoire poétique du siècle qui vient
-                de passer nous fait voir que si c'est bien avec les mots que
-                l'on fait le poème, ce n'est pas nécessairement avec leur
+                être suffisants&nbsp;! Toute l'histoire poétique du siècle qui
+                vient de passer nous fait voir que si c'est bien avec les mots
+                que l'on fait le poème, ce n'est pas nécessairement avec leur
                 concours qu'apparaît la poésie.
               </p>
               <p>
                 Sans doute, au départ, la poésie ne serait qu'assemblage
-                d'éléments : le collage est cette belle leçon. Ces éléments
+                d'éléments&nbsp;: le collage est cette belle leçon. Ces éléments
                 peuvent être les instants de la vie, les bribes de la nature,
                 les mots, les images. Ce sont ces éléments qui nous bouleversent
                 lorsque nous les laissons nous bouleverser.
@@ -67,13 +67,13 @@ export default function Home({
                 fil tendu au-dessus du vide. On veut nous faire croire que la
                 vie est vide, qu'elle ne peut chercher que le confort et sa
                 répétition, que notre vie est mort. La vie au contraire ne peut
-                être que révolte, profonde, souriante ; ne peut être que poésie.
-                Un livre de l'Oie, aimons-nous penser, est une fenêtre
-                différente sur les possibles poétiques ; une fenêtre petite,
-                certes, mais bien présente. Une invitation à jouer avec le monde
-                et avec la phrase. L'ennemi de la poésie, c'est l'institué,
-                l'institution, la mort dans l'âme et dans le mot. La voix du
-                poème reste à chacun·e.
+                être que révolte, profonde, souriante&nbsp;; ne peut être que
+                poésie. Un livre de l'Oie, aimons-nous penser, est une fenêtre
+                différente sur les possibles poétiques&nbsp;; une fenêtre
+                petite, certes, mais bien présente. Une invitation à jouer avec
+                le monde et avec la phrase. L'ennemi de la poésie, c'est
+                l'institué, l'institution, la mort dans l'âme et dans le mot. La
+                voix du poème reste à chacun·e.
               </p>
             </Body1>
           </TextCard>
@@ -101,7 +101,7 @@ export default function Home({
         </Box>
       </Grid>
       <HSpacerLarge />
-      <H2Icon Icon={Icons.Soleil}>Les Nouveautés de l'oie de Cravan</H2Icon>
+      <H2Icon Icon={Icons.Soleil}>Les Nouveautés de l’oie de Cravan</H2Icon>
       <HSpacerSmall />
       <Books books={books} />
       <HSpacerSmall />
@@ -109,11 +109,11 @@ export default function Home({
         <Arrows>Consulter le catalogue complet</Arrows>
       </Link>
       <HSpacerLarge />
-      <H2Icon Icon={Icons.Avion}>Ce qui s'en vient</H2Icon>
+      <H2Icon Icon={Icons.Avion}>Ce qui s’en vient</H2Icon>
       <HSpacerSmall />
       <Box textAlign='center'>
         <Body1>
-          <div>Camille Readman Prud´homme</div>
+          <div>Camille Readman Prud’homme</div>
           <div>Anne Lardeux</div>
           <div>Alice Massénat</div>
           <div>Michel Garneau</div>

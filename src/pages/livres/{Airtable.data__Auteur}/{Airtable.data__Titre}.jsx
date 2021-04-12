@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { Link, graphql } from 'gatsby';
 import Layout from '../../../components/layout';
 import * as Icons from '../../../components/icons';
 import {
-  H1Tilde,
+  Disk,
   H2Icon,
   H2,
   H3,
@@ -11,16 +11,10 @@ import {
   Body1,
   Body2,
   Flex,
-  Card,
   QuoteSmall,
   Grid,
   Tilde,
-  Image,
-  Arrows,
-  Caption,
   Subtitle,
-  SubtitleFooter,
-  HSpacerMedium,
   HSpacerLarge,
   HSpacerSmall,
   HSpacerXSmall,
@@ -28,7 +22,6 @@ import {
   TextCard,
 } from '../../../components/elements';
 import { useTheme } from '@emotion/react';
-import bookSample from '../../../images/book-sample.jpg';
 import nuage from '../../../icons/nuage.svg';
 import arrowLeft from '../../../icons/arrow_left.svg';
 import { cleanBook, MD } from '../../../utils';
@@ -90,17 +83,44 @@ function Share() {
   );
 }
 
+const cycle = (length) => ({ type: 'CYCLE', length });
+const go = (position) => ({ type: 'GO', position });
+const reducer = (pos, action) => {
+  switch (action.type) {
+    case 'CYCLE':
+      pos += 1;
+      if (pos === action.length) pos = 0;
+      return pos;
+    case 'GO':
+      return action.position;
+  }
+};
+
 const BookCol = ({ data }) => {
   const theme = useTheme();
+  const [pos, dispatch] = useReducer(reducer, 0);
+  const next = () => dispatch(cycle(data.couvertures.length));
   return (
     <Box color='accent' {...theme.styles.button} textTransform='uppercase'>
-      {data.couvertures[0] && (
+      {data.couvertures.length > 0 && (
         <img
+          onClick={next}
           width='1000px'
-          src={data.couvertures[0]}
+          src={data.couvertures[pos]}
           alt='couverture'
-          css={{ paddingBottom: '20px' }}
+          css={{ paddingBottom: '15px' }}
         />
+      )}
+      {data.couvertures.length > 1 && (
+        <Flex pb='20px' justifyContent='center'>
+          {data.couvertures.map((_, index) => (
+            <Disk
+              key={index}
+              active={index === pos}
+              onClick={() => dispatch(go(index))}
+            />
+          ))}
+        </Flex>
       )}
       {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
       {data.annee && <Box>{data.annee}</Box>}
