@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Masonry } from 'masonic';
 import { Helmet } from 'react-helmet';
 import Layout from '../components/layout';
 import * as Icons from '../components/icons';
 import { Link, graphql } from 'gatsby';
 import { cleanBook } from '../utils';
+import { useLunr } from 'react-lunr';
 import {
   H1Tilde,
   H2Icon,
@@ -24,6 +25,7 @@ import {
   HSpacerSmall,
   HSpacerMedium,
   HSpacerLarge,
+  Search,
 } from '../components/elements';
 import nousRejoindre from '../images/NousRejoindre.png';
 import cartePostaleDuBureauOie from '../images/CartePostaleBureauOie.png';
@@ -32,40 +34,49 @@ import { useTheme } from '@emotion/react';
 export default function Catalogue({
   data: {
     allAirtable: { edges },
+    localSearchBooks: { store, index },
   },
 }) {
-  const books = edges.map(({ node }) => cleanBook(node));
-
+  ///  const edges = props.data.allAirtable.edges;
+  //  console.log(props);
+  const [query, setQuery] = useState('');
+  const index0 = JSON.parse(index);
+  const res = useLunr(query, index, store);
+  const books = edges
+    .filter(({ node }) => query === '' || res.some(({ id }) => id === node.id))
+    .map(({ node }) => cleanBook(node));
   return (
     <Layout title='Catalogue'>
       <HSpacerLarge />
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
       <HSpacerLarge />
-      <Link to='/auteurs'>
-        <ButtonSmall
-          color='accent'
-          textAlign='right'
-          css={{ textDecoration: 'underline' }}
-        >
-          Voir nos auteur.e.s
-        </ButtonSmall>
-      </Link>
+      <Flex alignItems='baseline' justifyContent='space-between'>
+        <Search label='Recherche un titre' handler={setQuery} />
+        <Link to='/auteurs'>
+          <ButtonSmall
+            color='accent'
+            textAlign='right'
+            css={{ textDecoration: 'underline' }}
+          >
+            Voir nos auteur·e·s
+          </ButtonSmall>
+        </Link>
+      </Flex>
       <HSpacerSmall />
-      <Masonry items={books} render={bc} columnCount={4} columnGutter={36} />
-      {books.map((book) => (
-        <bc book={book} />
-      ))}
+      <Masonry
+        key={query}
+        items={books}
+        render={Bc}
+        columnCount={4}
+        columnGutter={36}
+      />
       <HSpacerLarge />
     </Layout>
   );
 }
 
-const bc = (...args) => {
-  const book = args[0].data;
-  if (!book) {
-    return <div></div>;
-  }
-  return <BookCard book={book} />;
+const Bc = ({ data }) => {
+  return <BookCard book={data} />;
 };
 
 export const query = graphql`
@@ -84,6 +95,10 @@ export const query = graphql`
           }
         }
       }
+    }
+    localSearchBooks {
+      store
+      index
     }
   }
 `;

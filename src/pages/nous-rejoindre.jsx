@@ -45,12 +45,14 @@ export default function NousRejoindre() {
                 Nos gigantesques bureaux sont situés au bucolique 6264 De la
                 Roche. Comme le facteur craint de déranger notre concentration,
                 le courrier est plutôt livré à l'adresse du dessous, à laquelle
-                on peut nous écrire:
+                on peut nous écrire&nbsp;:
               </p>
               <p>
-                6258, rue De a Roche
+                6258,&nbsp;rue De la Roche
                 <br />
-                Montréal, Qc H2S 2E1 Canada
+                Montréal,&nbsp;Qc
+                <br />
+                H2S&nbsp;2E1 Canada
               </p>
               <p>
                 Vous pouvez aussi écrire à
@@ -87,29 +89,29 @@ export default function NousRejoindre() {
               nous engageons à vous manifester notre intérêt, le cas échéant,
               dans les trois mois suivant la réception de votre manuscrit. Par
               contre, si votre manuscrit ne retient pas notre attention, nous ne
-              vous enverrons pas de lettre de refus ou d'évaluation crittique.
+              vous enverrons pas de lettre de refus ou d'évaluation critique.
             </p>
             <p>
-              Pour les livres d'images/bandes dessinées envoyées par courriel,
-              nous vous demandons de nous noumettre quelques planches seulement.
+              Pour les livres d'images/bandes dessinées envoyés par courriel,
+              nous vous demandons de nous soumettre quelques planches seulement.
               Si votre projet suscite notre intérêt, nous communiquerons avec
-              vous pour en voir d'avantage.
+              vous pour en voir davantage.
             </p>
           </Box>
           <Box gcs='7' gce='12'>
             <p>
-              La non-publication d'un manuscrit ne peut en aucune façon être
+              La non publication d'un manuscrit ne peut en aucune façon être
               interprétée comme un jugement spécifique sur un projet et encore
-              moins sur son auteur! L'éditeur ne se veut pas critique
-              littérarie. La littérature n'a que peu à voir avec nos choix.
+              moins sur son auteur·e&nbsp;! L'éditeur ne se veut pas critique
+              littéraire. La littérature n'a que peu à voir avec nos choix.
               Plutôt la petite liberté de publier ce qui frappe de prime abord
-              au coeur, quelquefois inexplicablement.
+              au cœur, quelquefois inexplicablement. ****
             </p>
             <p>
-              En dernier lieu, une invitation: s'il le faut, s'il y a nécessité,
-              vos textes trouveront leur voie. À vous d'y voir, chacun peut
-              trouver le moyen de sa diffusion. Les outils sont là. La voix du
-              poème reste à chacun.
+              En dernier lieu, une invitation&nbsp;: s'il le faut, s'il y a
+              nécessité, vos textes trouveront leur voie. À vous d'y voir,
+              chacun·e peut trouver le moyen de sa diffusion. Les outils sont
+              là. La voix du poème reste à chacun·e.
             </p>
           </Box>
         </Grid>
@@ -120,8 +122,8 @@ export default function NousRejoindre() {
           <TextCard>
             <Body1>
               <p>
-                Veuillez nous acheminer votre manuscrit à l'adresse suivante:
-                oiedecravan.manuscrits // gmail.com.
+                Veuillez nous acheminer votre manuscrit à l'adresse
+                suivante&nbsp;: oiedecravan.manuscrits // gmail.com.
               </p>
               <p>
                 Nous continuons par ailleurs d'accepter les envois papier. Merci

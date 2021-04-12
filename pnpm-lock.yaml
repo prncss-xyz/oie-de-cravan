@@ -8,13 +8,16 @@ dependencies:
   '@types/react-helmet': 6.1.0
   '@types/styled-system': 5.1.11
   babel-preset-gatsby: 1.2.0_@babel+core@7.13.15
+  flexsearch: 0.6.32
   gatsby: 3.2.1_react-dom@17.0.2+react@17.0.2
   gatsby-plugin-emotion: 6.2.0_50d5e55b288cce12dfaeab2a86d84da7
+  gatsby-plugin-local-search: 2.0.1_gatsby@3.2.1
   gatsby-plugin-paypal: 1.1.4_8514b3d236412a6c90aa1e83347f26a9
   gatsby-plugin-pnpm: 1.2.5_gatsby@3.2.1
   gatsby-plugin-react-helmet: 4.2.0_gatsby@3.2.1+react-helmet@6.1.0
   gatsby-source-airtable: 2.1.1_gatsby-source-filesystem@3.2.0
   hast-util-to-html: 7.1.2
+  lunr: 2.3.9
   masonic: 3.4.1_react@17.0.2
   mdast-util-from-markdown: 0.8.5
   mdast-util-to-hast: 10.2.0
@@ -22,6 +25,8 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-helmet: 6.1.0_react@17.0.2
+  react-lunr: 1.1.0_lunr@2.3.9+react@17.0.2
+  react-use-flexsearch: 0.1.1_react@17.0.2
   remove-accents: 0.4.2
   styled-system: 5.1.5
 devDependencies:
@@ -5393,6 +5398,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
+  /flexsearch/0.6.32:
+    dev: false
+    resolution:
+      integrity: sha512-EF1BWkhwoeLtbIlDbY/vDSLBen/E5l/f1Vg7iX5CDymQCamcx1vhlc3tIZxIDplPjgi0jhG37c67idFbjg+v+Q==
   /follow-redirects/1.13.3_debug@3.2.7:
     dependencies:
       debug: 3.2.7
@@ -5697,6 +5706,20 @@ packages:
       gatsby: ^3.0.0-next.0
     resolution:
       integrity: sha512-dioO7fb7IJwmbfn13wqMkmDXLLC0aWfWZTyR+tWSEaWTwXrMws26OpbijALEBexxJ9WfqiCdV1KNSGjTRuu+Wg==
+  /gatsby-plugin-local-search/2.0.1_gatsby@3.2.1:
+    dependencies:
+      flexsearch: 0.6.32
+      gatsby: 3.2.1_react-dom@17.0.2+react@17.0.2
+      lodash: 4.17.21
+      lunr: 2.3.9
+      pascal-case: 3.1.2
+    dev: false
+    engines:
+      node: '>=10'
+    peerDependencies:
+      gatsby: '>= 2.20.0'
+    resolution:
+      integrity: sha512-qrApdH2IYfHL+dSmcwSzhDPVxlkt13N0IfEkKxfWf0gITmBwObOJBYAMnYiYUmP0dpYmSV9anJE//SLZBSsisA==
   /gatsby-plugin-page-creator/3.2.0_gatsby@3.2.1:
     dependencies:
       '@babel/traverse': 7.13.15
@@ -7945,6 +7968,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Jzi9nw089PhEkMVzbEhpmsYyzaM=
+  /lunr/2.3.9:
+    dev: false
+    resolution:
+      integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==
   /make-dir/3.1.0:
     dependencies:
       semver: 6.3.0
@@ -10005,6 +10032,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+  /react-lunr/1.1.0_lunr@2.3.9+react@17.0.2:
+    dependencies:
+      invariant: 2.2.4
+      lunr: 2.3.9
+      react: 17.0.2
+      tiny-invariant: 1.1.0
+      tiny-warning: 1.0.3
+    dev: false
+    peerDependencies:
+      lunr: '>=2.3'
+      react: '>=16'
+    resolution:
+      integrity: sha512-9qAySthBbFb7UFrWJ0GLKpOQk+3RMlKT6u3GrbEvksxXR9Z+gTDcO8Cdo49tQyd42J02JLY6BUoW1cViN5WlAg==
   /react-refresh/0.9.0:
     dev: false
     engines:
@@ -10019,6 +10059,15 @@ packages:
       react: ^16.3.0 || ^17.0.0
     resolution:
       integrity: sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ==
+  /react-use-flexsearch/0.1.1_react@17.0.2:
+    dependencies:
+      flexsearch: 0.6.32
+      react: 17.0.2
+    dev: false
+    peerDependencies:
+      react: '>=16.8'
+    resolution:
+      integrity: sha512-UDRDB26HPcAo0gXNkUYYkcjoYCW4FSWr7Ich4adgVr7bqefJG7fnjlcqnwsKQkbZuteRLYzzox+1FKRTt3Z5vg==
   /react/17.0.2:
     dependencies:
       loose-envify: 1.4.0
@@ -11438,6 +11487,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
+  /tiny-invariant/1.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
+  /tiny-warning/1.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
   /tmp/0.0.33:
     dependencies:
       os-tmpdir: 1.0.2
@@ -12547,14 +12604,17 @@ specifiers:
   babel-preset-gatsby: ^1.2.0
   eslint-config-prettier: ^8.1.0
   eslint-plugin-react: ^7.23.2
+  flexsearch: ^0.6.32
   gatsby: ^3.2.1
   gatsby-plugin-emotion: ^6.2.0
+  gatsby-plugin-local-search: ^2.0.1
   gatsby-plugin-paypal: ^1.1.4
   gatsby-plugin-pnpm: ^1.2.5
   gatsby-plugin-react-helmet: ^4.2.0
   gatsby-source-airtable: ^2.1.1
   gatsby-source-filesystem: ^3.2.0
   hast-util-to-html: ^7.1.2
+  lunr: ^2.3.9
   masonic: ^3.4.1
   mdast-util-from-markdown: ^0.8.5
   mdast-util-to-hast: ^10.2.0
@@ -12562,5 +12622,7 @@ specifiers:
   react: ^17.0.2
   react-dom: ^17.0.2
   react-helmet: ^6.1.0
+  react-lunr: ^1.1.0
+  react-use-flexsearch: ^0.1.1
   remove-accents: ^0.4.2
   styled-system: ^5.1.5

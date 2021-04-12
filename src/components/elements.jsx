@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -171,8 +171,14 @@ export function Arrows({ children }) {
   );
 }
 
-export function Search({ label }) {
+export function Search({ label, handler }) {
   const theme = useTheme();
+  const ref = useRef();
+
+  const submit = (e) => {
+    e.preventDefault();
+    handler(ref.current.value);
+  };
   return (
     <Flex
       width='max-content'
@@ -180,28 +186,37 @@ export function Search({ label }) {
       borderStyle='solid'
       color='accent'
     >
-      <input
-        css={{
-          ...theme.styles.search,
-          padding: '12px 18px',
-          backgroundColor: 'inherit',
-          color: theme.colors.primary,
-          borderStyle: 'none',
-        }}
-        type='text'
-        placeholder={label}
-      />
+      <form onSubmit={submit}>
+        <input
+          css={{
+            ...theme.styles.search,
+            'height': '100%',
+            'padding': '12px 18px',
+            'backgroundColor': 'inherit',
+            'color': theme.colors.primary,
+            'borderStyle': 'none',
+            '&:focus': {
+              outline: 'none',
+            },
+          }}
+          type='text'
+          placeholder={label}
+          ref={ref}
+        />
+      </form>
       <button
+        onClick={submit}
         css={{
           borderRadius: 0,
           padding: 0,
           borderStyle: 'none',
           display: 'inline',
-          width: '44px',
+          paddingLeft: '12px',
+          width: '40px',
           backgroundColor: theme.colors.accent,
         }}
       >
-        <img css={{ width: '50%', height: '50%' }} src={search} alt='search' />
+        <img css={{ height: '20px' }} src={search} alt='search' />
       </button>
     </Flex>
   );

@@ -53,14 +53,14 @@ const Page = ({ title, children }) => {
           </Flex>
           <Flex flexGrow='1' />
           <Flex alignItems='baseline'>
-            <Nav to='/catalogue'>Catalogue général de la compagnie</Nav>
+            <Nav to='/catalogue'>Catalogue</Nav>
             {/*
             <Nav to='/'>L'Oie de Cravan&nbsp;?</Nav>
             <Nav to='/'>Nouvelles de l'oie</Nav>
             <Nav to='/'>Les Ami.e.s</Nav>
             */}
             <Navigation>
-              <a href='https://oiedecravan.blogspot.com/'>Blogue</a>
+              <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
             </Navigation>
             <Nav to='/nous-rejoindre'>Nous rejoindre</Nav>
           </Flex>
@@ -114,7 +114,7 @@ const Page = ({ title, children }) => {
             </Box>
             */}
             <Box textAlign='left'>
-              <a href='https://oiedecravan.blogspot.com/'>Blogue</a>
+              <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
             </Box>
             <Box textAlign='left'>
               <Link to='/nous-rejoindre'>Nous rejoindre</Link>
@@ -132,7 +132,7 @@ const Page = ({ title, children }) => {
         <Box flexGrow='1' />
         <Box flexGrow='1' maxWidth='330px'>
           <QuoteXSmall>
-            Les Oies de Cravan naissent des mâts pourris des navires perdus du
+            Les Oies de Cravan naissent des mâts pourris des navires perdus au
             Golfe du Mexique
           </QuoteXSmall>
           <SubtitleFooter>

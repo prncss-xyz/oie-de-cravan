@@ -1,6 +1,3 @@
-const { resolve } = require('path');
-
-// gatsby-config.js
 module.exports = {
   pathPrefix: `/oie-de-cravan`,
   siteMetadata: {
@@ -29,10 +26,39 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_BASE,
-            // tableName: 'catalogue',
             tableName: process.env.AIRTABLE_TABLE_NAME,
           },
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-local-search',
+      options: {
+        name: 'books',
+        engine: 'lunr',
+        query: `
+          {
+            allAirtable {
+              edges {
+                node {
+                  id
+                  data {
+                    Titre
+                  }
+                }
+              }
+            }
+          }
+        `,
+
+        ref: 'id',
+        index: ['titre'],
+        normalizer: ({ data }) =>
+          data.allAirtable.edges.map(({ node }) => {
+            return {
+              id: node.id,
+            };
+          }),
       },
     },
   ],

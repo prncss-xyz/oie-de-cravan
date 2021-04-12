@@ -119,9 +119,9 @@ const theme = {
     },
     search: {
       fontFamily: 'Arimo',
-      fontSize: '8px',
+      fontSize: '16px',
       letterSpacing: 1,
-      lineHeight: '10px',
+      lineHeight: '20px',
     },
     navigationFooter: {
       fontFamily: 'Arimo',

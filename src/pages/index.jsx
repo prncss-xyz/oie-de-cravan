@@ -73,7 +73,7 @@ export default function Home({
                 certes, mais bien présente. Une invitation à jouer avec le monde
                 et avec la phrase. L'ennemi de la poésie, c'est l'institué,
                 l'institution, la mort dans l'âme et dans le mot. La voix du
-                poème reste à chacun.
+                poème reste à chacun·e.
               </p>
             </Body1>
           </TextCard>
@@ -83,7 +83,7 @@ export default function Home({
       <Grid alignItems='end'>
         <Box color='accent' gcs='2' gce='7'>
           <Quote>
-            Jeune gens, refusez le siège qu'on vous offre. Vous n'en seriez que
+            Jeunes gens, refusez le siège qu'on vous offre. Vous n'en seriez que
             la housse humaine, très vite froissée.
           </Quote>
           <Subtitle>
