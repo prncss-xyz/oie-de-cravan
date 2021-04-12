@@ -1,35 +1,18 @@
 import React, { useState } from 'react';
 import { Masonry } from 'masonic';
-import { Helmet } from 'react-helmet';
 import Layout from '../components/layout';
-import * as Icons from '../components/icons';
 import { Link, graphql } from 'gatsby';
-import { cleanBook } from '../utils';
+import { cleanBook, normalize } from '../utils';
 import { useLunr } from 'react-lunr';
 import {
   H1Tilde,
-  H2Icon,
-  H3,
-  Box,
   Flex,
-  Card,
-  Quote,
-  Image,
-  Arrows,
-  Body1,
-  Body2,
   ButtonSmall,
-  Caption,
-  Subtitle,
   BookCard,
   HSpacerSmall,
-  HSpacerMedium,
   HSpacerLarge,
   Search,
 } from '../components/elements';
-import nousRejoindre from '../images/NousRejoindre.png';
-import cartePostaleDuBureauOie from '../images/CartePostaleBureauOie.png';
-import { useTheme } from '@emotion/react';
 
 export default function Catalogue({
   data: {
@@ -37,10 +20,9 @@ export default function Catalogue({
     localSearchBooks: { store, index },
   },
 }) {
-  const [query, setQuery] = useState('');
+  const [query0, setQuery] = useState('');
+  const query = normalize(query0);
   const res = useLunr(query, index, store);
-  console.log(query);
-  console.log(res);
   const books = edges
     .filter(({ node }) => query === '' || res.some(({ id }) => id === node.id))
     .map(({ node }) => cleanBook(node));

@@ -2,8 +2,12 @@ import slugify from '@sindresorhus/slugify';
 import fromMarkdown from 'mdast-util-from-markdown';
 import toHast from 'mdast-util-to-hast';
 import toHtml from 'hast-util-to-html';
+import { normalize as normalize_ } from '../util';
+
 // import MarkdownIt from 'markdown-it';
 // import marked from 'marked';
+
+export const normalize = normalize_;
 
 export const cleanBook = (node) => {
   const auteur = rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']);
