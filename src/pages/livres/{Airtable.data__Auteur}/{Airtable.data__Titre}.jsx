@@ -35,7 +35,6 @@ const Nuage = () => {
 };
 
 function BackLink() {
-  const theme = useTheme();
   return (
     <Flex justifyContent='space-between' alignItems='flex-end'>
       <Link to='/catalogue'>
@@ -83,30 +82,38 @@ function Share() {
   );
 }
 
-const cycle = (length) => ({ type: 'CYCLE', length });
-const go = (position) => ({ type: 'GO', position });
-const reducer = (pos, action) => {
-  switch (action.type) {
-    case 'CYCLE':
-      pos += 1;
-      if (pos === action.length) pos = 0;
-      return pos;
-    case 'GO':
-      return action.position;
-  }
+const useCycle = (length) => {
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'CYCLE':
+        let position = state.position + 1;
+        if (position === state.length) position = 0;
+        return { ...state, position };
+      case 'GO':
+        return { ...state, position: action.position };
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, { position: 0, length });
+  const cycle = () => dispatch({ type: 'CYCLE' });
+  const go = (position) => dispatch({ type: 'GO', position });
+  return {
+    position: state.position,
+    cycle,
+    go,
+  };
 };
 
 const BookCol = ({ data }) => {
   const theme = useTheme();
-  const [pos, dispatch] = useReducer(reducer, 0);
-  const next = () => dispatch(cycle(data.couvertures.length));
+  const { position, cycle, go } = useCycle(data.couvertures.length);
   return (
     <Box color='accent' {...theme.styles.button} textTransform='uppercase'>
       {data.couvertures.length > 0 && (
         <img
-          onClick={next}
+          onClick={cycle}
           width='1000px'
-          src={data.couvertures[pos]}
+          src={data.couvertures[position]}
           alt='couverture'
           css={{ paddingBottom: '15px' }}
         />
@@ -116,8 +123,8 @@ const BookCol = ({ data }) => {
           {data.couvertures.map((_, index) => (
             <Disk
               key={index}
-              active={index === pos}
-              onClick={() => dispatch(go(index))}
+              active={index === position}
+              onClick={() => go(index)}
             />
           ))}
         </Flex>
@@ -168,7 +175,7 @@ export default function Livre({ data: { airtable } }) {
           <HSpacerXSmall />
           <Body1>
             {dataOut.presentation.length > 0 && (
-              <MD raw={dataOut.presentation} />
+              <MD lang='fr' contents={dataOut.presentation} />
             )}
           </Body1>
           <HSpacerXSmall />
@@ -190,7 +197,7 @@ export default function Livre({ data: { airtable } }) {
                   <Box color='accent'>
                     <QuoteSmall>
                       {dataOut.autourDuLivre && (
-                        <MD raw={dataOut.autourDuLivre} />
+                        <MD lang='fr' contents={dataOut.autourDuLivre}/>
                       )}
                     </QuoteSmall>
                     {
@@ -231,7 +238,7 @@ export const query = graphql`
         Prix_site_Web__EU_
         Publication__date_
         Titre
-        Pr_sentation
+        Pr_sentation_et_Bio
         Autour_du_livre
         Cr_ateurs_secondaires
         _puis_
@@ -239,5 +246,3 @@ export const query = graphql`
     }
   }
 `;
-
-//        Pr_sentation

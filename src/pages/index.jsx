@@ -109,14 +109,23 @@ export default function Home({
         <Arrows>Consulter le catalogue complet</Arrows>
       </Link>
       <HSpacerLarge />
-      <H2Icon Icon={Icons.Avion}>Ce qui s’en vient</H2Icon>
+      <H2Icon Icon={Icons.Avion}>Ce qui vient</H2Icon>
       <HSpacerSmall />
       <Box textAlign='center'>
         <Body1>
-          <div>Camille Readman Prud’homme</div>
-          <div>Anne Lardeux</div>
-          <div>Alice Massénat</div>
-          <div>Michel Garneau</div>
+          <div>
+            <i>Camille Readman Prud’homme,</i> Quand je ne dis rien je pense
+            encore
+          </div>
+          <div>
+            <i>Alice Massénat,</i> Le croque-l’œil
+          </div>
+          <div>
+            <i>Michel Garneau</i>, Le couteau de bois
+          </div>
+          <div>
+            <i>Anne Lardeux,</i> Les mauvais plis
+          </div>
           <div>
             <i>et bien d’autres encore…</i>
           </div>

@@ -48,7 +48,8 @@ export default function Catalogue({
         key={query}
         items={books}
         render={Bc}
-        columnCount={4}
+        columnWidth={280}
+        // columnCount={4}
         columnGutter={36}
       />
       <HSpacerLarge />

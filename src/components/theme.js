@@ -1,4 +1,5 @@
 const theme = {
+  breakpoints: ['720px'],
   colors: {
     background: '#000000',
     accent: '#ED1F24',

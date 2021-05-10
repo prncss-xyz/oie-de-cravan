@@ -1,5 +1,4 @@
 const { normalize } = require('./util');
-
 module.exports = {
   pathPrefix: `/oie-de-cravan`,
   siteMetadata: {
@@ -52,14 +51,13 @@ module.exports = {
             }
           }
         `,
-
         ref: 'id',
         index: ['titre'],
         normalizer: ({ data }) =>
           data.allAirtable.edges.map(({ node }) => {
             return {
-              id: node.id,
-              titre: normalize(node.data['Titre']),
+              id: node?.id,
+              titre: normalize(node?.data['Titre']),
             };
           }),
       },

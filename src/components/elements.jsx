@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
+import { useBreakpoints } from '../breakpoints';
 import styled from '@emotion/styled';
 import {
   border,
@@ -86,9 +87,15 @@ export const Tilde = () => {
 
 export const H1Tilde = ({ children }) => {
   const theme = useTheme();
+  const bp = useBreakpoints();
   return (
     <Flex justifyContent='center' color='accent'>
-      <Flex maxWidth='800px' {...theme.styles.h1} alignItems='center'>
+      <Flex
+        maxWidth='800px'
+        {...theme.styles.h1}
+        alignItems='center'
+        flexDirection={['column', 'row']}
+      >
         <Box>~</Box>
         <Box px='18px' textAlign='center' {...theme.styles.h1}>
           {children}
@@ -125,9 +132,19 @@ export const HSpacerXSmall = () => <Box pb='40px' />;
 export const H2Icon = ({ Icon, children, ...props }) => {
   return (
     <Flex justifyContent='center' color='accent'>
-      <Flex justifyContent='center' alignItems='center'>
+      <Flex
+        justifyContent='center'
+        alignItems='center'
+        flexDirection={['column', 'row']}
+      >
         {<Icon />}
-        <H2 testAlign='center' textAlign='center' px='16px' {...props}>
+        <H2
+          testAlign='center'
+          textAlign='center'
+          px='16px'
+          {...props}
+          py={['20px', '0px']}
+        >
           {children}
         </H2>
         {<Icon />}
