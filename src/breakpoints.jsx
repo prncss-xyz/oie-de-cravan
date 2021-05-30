@@ -4,22 +4,21 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 const Context = createContext(0);
 
 export const BreakpointsProvider = ({ breakpoints, children }) => {
-  const [value, setValue] = useState(0);
-  const matches = [];
+  const [matches, setMatches] = useState([]);
   useEffect(() => {
     const handlers = breakpoints.map((_w, i) => (e) => {
-      matches[i] = e.matches;
-      let m = 0;
-      while (matches[m]) {
-        ++m;
-      }
-      setValue(m);
+      const matchesOut = [...matches];
+      matchesOut.splice(i, 1, e.matches);
+      setMatches(matchesOut);
     });
     breakpoints.forEach((w, i) => {
       window
         .matchMedia(`(min-width: ${w})`)
         .addEventListener('change', handlers[i]);
     });
+    setMatches(
+      breakpoints.map((w) => window.matchMedia(`(min-width: ${w})`).matches),
+    );
     return () => {
       breakpoints.forEach((w, i) => {
         window
@@ -29,6 +28,10 @@ export const BreakpointsProvider = ({ breakpoints, children }) => {
     };
   }, breakpoints);
 
+  let value = 0;
+  while (matches[value]) {
+    ++value;
+  }
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
