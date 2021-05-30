@@ -6,10 +6,7 @@ import * as Icons from '../components/icons';
 import {
   H1Tilde,
   H2Icon,
-  H3,
   Box,
-  Flex,
-  Card,
   Quote,
   Image,
   Arrows,
@@ -25,7 +22,7 @@ import {
 } from '../components/elements';
 import oiseauHome from '../images/Oiseau_Home.svg';
 import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
-import bookSample from '../images/book-sample.jpg';
+import { useBreakpoints } from '../breakpoints';
 
 export default function Home({
   data: {

@@ -21,7 +21,7 @@ export const cleanBook = (node) => {
     rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']) ?? '';
   const linkAuteur = node.data['Auteur'] ?? node.data['Auteur_livre'] ?? '';
   const titre = node.data['Titre'] ?? '';
-  return spy({
+  return {
     auteur: auteur || '',
     id: node.id,
     auteur: rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']),
@@ -42,7 +42,7 @@ export const cleanBook = (node) => {
     couvertures: node.data['Couverture']?.map(({ url }) => url) || [],
     page: `/livres/${slugify(linkAuteur)}/${slugify(titre)}`,
     pageAuteur: `/auteurs/${slugify(linkAuteur)}`,
-  });
+  };
 };
 
 export const rectAuteur = (name) => {

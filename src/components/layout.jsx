@@ -65,7 +65,6 @@ function OverlayMenu({ closeHandler }) {
 
 const Header = () => {
   const breakpoint = useBreakpoints();
-  console.log(breakpoint);
   const theme = useTheme();
   const [menuOpened, menuOpen] = useState(false);
   if (breakpoint === 0)
