@@ -9,7 +9,6 @@ module.exports = {
       options: {},
       resolve: `gatsby-plugin-pnpm`,
     },
-    'gatsby-plugin-svgr-svgo',
     {
       resolve: `gatsby-plugin-paypal`,
       options: {
@@ -20,6 +19,9 @@ module.exports = {
         //vault: true, // Optional
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-build-date`,
+    // },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-airtable`,

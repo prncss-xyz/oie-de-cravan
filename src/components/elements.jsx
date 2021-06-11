@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
 import { useBreakpointsArray } from '../breakpoints';
@@ -24,9 +24,11 @@ export const BookCard = ({ book }) => {
           {book.titre}
         </H3>
         <Subtitle pb='20px'>{book.auteur}</Subtitle>
+        <Flex justifyContent='center'>
         {couverture && (
-          <Image src={couverture} alt={book.titre} width='100%' margin="auto"/>
+          <Image src={couverture} alt={book.titre}/>
         )}
+         </Flex>
       </Card>
     </Link>
   );
@@ -205,13 +207,14 @@ export function Disk({ active, ...props }) {
   );
 }
 
-export function Search({ label, handler, ...props }) {
+export function Search({ label, handler, value0, ...props }) {
   const theme = useTheme();
   const ref = useRef();
   const submit = (e) => {
     e.preventDefault();
     handler(ref.current.value);
   };
+  useEffect(() => {ref.current.value = value0}, [])
   return (
     <Box px={["20px", "0px"]}>
     <Flex

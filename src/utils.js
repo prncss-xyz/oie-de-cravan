@@ -17,16 +17,14 @@ const spy = (x) => {
 };
 
 export const cleanBook = (node) => {
-  const auteur =
-    rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']) ?? '';
   const linkAuteur = node.data['Auteur'] ?? node.data['Auteur_livre'] ?? '';
   const titre = node.data['Titre'] ?? '';
   return {
-    auteur: auteur || '',
     id: node.id,
-    auteur: rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']),
-    titre: titre || '',
+    auteur: rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']) ?? '',
+    titre: titre ?? '',
     annee: node.data['Publication__date_']?.slice(0, 4),
+    date: new Date(node.data['Publication__date_']),
     collection: node.data['Collection'],
     genre: node.data['Genre'],
     hauteur: node.data['Hauteur__cm_'],
@@ -35,11 +33,11 @@ export const cleanBook = (node) => {
     prixCAD: node.data['Prix_site_Web__CAD_'],
     prixEuro: node.data['Prix_site_Web__EU_'],
     pages: node.data['Pages__nombre_'],
-    presentation: node.data['Pr_sentation_et_Bio']?.trim() || '',
-    autourDuLivre: node.data['Autour_du_livre']?.trim() || '',
-    createursSecondaires: node.data['Cr_ateurs_secondaires']?.trim() || '',
+    presentation: node.data['Pr_sentation_et_Bio']?.trim() ?? '',
+    autourDuLivre: node.data['Autour_du_livre']?.trim() ?? '',
+    createursSecondaires: node.data['Cr_ateurs_secondaires']?.trim() ?? '',
     epuise: !!node.data['_puis_'],
-    couvertures: node.data['Couverture']?.map(({ url }) => url) || [],
+    couvertures: node.data['Couverture']?.map(({ url }) => url) ?? [],
     page: `/livres/${slugify(linkAuteur)}/${slugify(titre)}`,
     pageAuteur: `/auteurs/${slugify(linkAuteur)}`,
   };

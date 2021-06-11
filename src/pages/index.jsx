@@ -23,7 +23,7 @@ import {
 } from '../components/elements';
 import oiseauHome from '../images/Oiseau_Home.svg';
 import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
-import { useBreakpoints, switchedBreakpoints } from '../breakpoints';
+import { switchedBreakpoints } from '../breakpoints';
 
 const Id = ({ children }) => children;
 const TextMd = ({ children }) => (
@@ -37,13 +37,30 @@ const BoxMd = ({ children }) => <Grid alignItems='end'>{children}</Grid>;
 const Box1 = switchedBreakpoints(Id, BoxMd);
 const Sp1 = switchedBreakpoints(VSpacerLarge, null);
 
+const getCurrentIndex = (books, date) => {
+  let currentIndex = 0;
+  for (const book of books) {
+    if (book.date < date) break;
+    currentIndex++;
+  }
+  return currentIndex;
+}
+
 export default function Home({
   data: {
     allAirtable: { edges },
+    site: {
+      buildTime
+    }
   },
 }) {
+  const build = new Date (buildTime);
   const books = edges.map(({ node }) => cleanBook(node));
-  const bp = useBreakpoints();
+  const [currentIndex, setCurrentIndex] = useState(getCurrentIndex(books, build));
+  useEffect(() => {
+    const index = getCurrentIndex(books, Date.now())
+    setCurrentIndex(index);
+  }, [])
   return (
     <Layout>
       <Box pb={['60px', '100px']} />
@@ -109,35 +126,24 @@ export default function Home({
       <VSpacerLarge />
       <H2Icon Icon={Icons.Soleil}>Les Nouveautés de l’oie de Cravan</H2Icon>
       <VSpacerSmall />
-      <Books books={books} />
+      <Books books={books} startIndex={currentIndex} />
       <VSpacerSmall />
       <Link to='/catalogue'>
         <Arrows>Consulter le catalogue complet</Arrows>
       </Link>
       <VSpacerLarge />
+      {
+        (currentIndex > 0) && (<>
       <H2Icon Icon={Icons.Avion}>Ce qui vient</H2Icon>
       <VSpacerSmall />
       <Box textAlign='center'>
         <Body1>
-          <div>
-            <i>Camille Readman Prud’homme,</i> Quand je ne dis rien je pense
-            encore
-          </div>
-          <div>
-            <i>Alice Massénat,</i> Le croque-l’œil
-          </div>
-          <div>
-            <i>Michel Garneau</i>, Le couteau de bois
-          </div>
-          <div>
-            <i>Anne Lardeux,</i> Les mauvais plis
-          </div>
-          <div>
-            <i>et bien d’autres encore…</i>
-          </div>
+          {books.slice(0,currentIndex).map(book => <div key={book.id}><i>{book.auteur},</i> {book.titre}</div>)}
         </Body1>
       </Box>
       <VSpacerLarge />
+      </>)
+   }
     </Layout>
   );
 }
@@ -154,27 +160,27 @@ const useWidth = () => {
   return [ref, width];
 };
 
-const Books = ({ books }) => {
+const Books = ({ books, startIndex }) => {
   const [ref, width] = useWidth();
   const n = Math.floor((width + 36) / (280 + 36));
   return (
     <Flex ref={ref} css={{ gap: '36px' }}>
       <Box flex='1'>
-        <BookCard book={books[0]} />
+        <BookCard book={books[startIndex + 0]} />
       </Box>
       {n > 1 && (
         <Box flex='1'>
-          <BookCard book={books[1]} />
+          <BookCard book={books[startIndex + 1]} />
         </Box>
       )}
       {n > 2 && (
         <Box flex='1'>
-          <BookCard book={books[2]} />
+          <BookCard book={books[startIndex + 2]} />
         </Box>
       )}
       {n > 3 && (
         <Box flex='1'>
-          <BookCard book={books[3]} />
+          <BookCard book={books[startIndex + 3]} />
         </Box>
       )}
     </Flex>
@@ -183,8 +189,10 @@ const Books = ({ books }) => {
 
 export const query = graphql`
   query IndexQuery {
+    site {
+      buildTime
+    }
     allAirtable(
-      limit: 4
       sort: { fields: data___Publication__date_, order: DESC }
     ) {
       edges {

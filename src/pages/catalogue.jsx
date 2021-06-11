@@ -24,14 +24,17 @@ const processQuery = query => {
 }
 
 export default function Catalogue({
-  location: {search}, 
+  location: { search}, 
   data: {
     allAirtable: { edges },
     localSearchBooks: { store, index },
   },
 }) {
-  console.log(decodeURI(search));
-  const [query0, setQuery] = useState('');
+  const searchParams = new URLSearchParams(search);
+  const q0 = searchParams.get('q') || '';
+  console.log(q0);
+  // console.log(decodeURI(search));
+  const [query0, setQuery] = useState(q0);
   const query = processQuery(query0);
   const indexObj = useMemo(()=>{
     return lunr.Index.load(JSON.parse(index)); 
@@ -41,7 +44,7 @@ export default function Catalogue({
     if (query === null) {
       filtered = edges;
     } else {
-      const res = indexObj.search(query+"*").map(({ ref }) => store[ref])
+      const res = indexObj.search(query + '*').map(({ ref }) => store[ref])
       filtered = edges.filter(({ node }) => res.some(({ id }) => id === node.id));
     }
     return filtered.map(({ node }) => cleanBook(node));
@@ -52,7 +55,7 @@ export default function Catalogue({
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
       <VSpacerLarge />
       <Flex flexDirection={['column', 'row']} alignItems={['center', 'baseline']} justifyContent='space-between'>
-        <Search label='Rechercher un titre' handler={setQuery} mb="40px"/>
+        <Search label='Rechercher un titre' handler={setQuery} value0={q0} mb="40px"/>
         <Link to='/auteurs'>
           <ButtonSmall
             color='accent'

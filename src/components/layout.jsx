@@ -29,7 +29,6 @@ import { useBreakpoints, useBreakpointsArray } from '../breakpoints';
 
 function OverlayMenu({ closeHandler }) {
   const theme = useTheme();
-  console.log('caca')
   return (<Box
       bg='accent'
       color='background'
