@@ -4,10 +4,10 @@ import { Global, ThemeProvider, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import { name } from '../../package.json';
 import { Link } from 'gatsby';
+import {FaBars} from "react-icons/fa"
 import theme from './theme';
 import logoOie_footer from '../images/LogoOie_Footer.png';
-import arrowLeft from '../icons/arrow_left.svg';
-import arrowRight from '../icons/arrow_right.svg';
+import {ArrowLeftBlack, ArrowRightBlack} from "./icons"
 import {
   Flex,
   Box,
@@ -16,13 +16,12 @@ import {
   Caption,
   NavigationFooter,
   SubtitleFooter,
-  HSpacerMedium,
   Navigation,
 } from './elements';
-import panier from '../icons/panier.svg';
 import 'modern-css-reset/dist/reset.min.css';
 import '@fontsource/arimo';
 import '@fontsource/arimo/400.css';
+import '@fontsource/arimo/700.css';
 import '@fontsource/spectral/400-italic.css';
 import '@fontsource/spectral';
 import '@fontsource/spectral/400.css';
@@ -31,21 +30,16 @@ import { useBreakpoints, useBreakpointsArray } from '../breakpoints';
 function OverlayMenu({ closeHandler }) {
   const theme = useTheme();
   return (
-    <Flex
+  <Box
+      bg='accent'
+      color='background'
       css={{
         position: 'fixed',
         zIndex: 1,
       }}
-      bg='accent'
       height='100%'
       width='100%'
-      color='background'
-      flexDirection='column'
-      onClick={closeHandler}
-      justifyContent='center'
-      textAlign='center'
-      {...theme.styles.h3}
-    >
+>
       <a
         onClick={(e) => {
           e.preventDefault();
@@ -53,14 +47,29 @@ function OverlayMenu({ closeHandler }) {
         }}
         href=''
       >
+      <Flex  pt="40px" justifyContent="center" alignItems="center">
+      <ArrowRightBlack/>
+      <Box {...theme.styles.navigation} px="30px">
         Fermer
+          </Box>
+      <ArrowLeftBlack/>
+        </Flex>
       </a>
+    <Flex
+      height='100%'
+      flexDirection='column'
+      onClick={closeHandler}
+      justifyContent='center'
+      textAlign='center'
+      {...theme.styles.overlay}
+      css={{gap: "10px"}}
+    >
       <Link to='/'>L’Oie de Cravan</Link>
       <Link to='/catalogue'>Catalogue</Link>
       <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
       <Link to='/nous-rejoindre'>Nous rejoindre</Link>
     </Flex>
-  );
+  </Box>);
 }
 
 const Header = () => {
@@ -80,29 +89,23 @@ const Header = () => {
         >
           <Flex color='accent' justifyContent='space-between'>
             <Box {...theme.styles.h3}>L’Oie de Cravan</Box>
-            <Box> = </Box>
+            <FaBars size={theme.styles.h3.fontSize}/>
           </Flex>
         </a>
       </>
     );
   return (
     <Box margin='auto' pt='80px' maxWidth='1560px' px='40px'>
-      <Flex alignItems='baseline' css={{ '&>*>*': { paddingRight: '20px' } }}>
+      <Flex alignItems='baseline'  
+        >
         <Flex color='accent' alignItems='baseline' {...theme.styles.oie}>
           <Link to='/'>L’Oie de Cravan</Link>
         </Flex>
         <Flex flexGrow='1' />
-        <Flex alignItems='baseline'>
-          <Nav to='/catalogue'>Catalogue</Nav>
-          {/*
-            <Nav to='/'>L'Oie de Cravan&nbsp;?</Nav>
-            <Nav to='/'>Nouvelles de l'oie</Nav>
-            <Nav to='/'>Les Ami.e.s</Nav>
-            */}
-          <Navigation>
-            <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
-          </Navigation>
-          <Nav to='/nous-rejoindre'>Nous rejoindre</Nav>
+        <Flex alignItems='baseline' css={{ 'column-gap': '20px'}} {...theme.styles.navigation}>
+          <Link to='/catalogue'>Catalogue</Link>
+          <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
+          <Link to='/nous-rejoindre'>Nous rejoindre</Link>
         </Flex>
       </Flex>
     </Box>
@@ -110,92 +113,86 @@ const Header = () => {
 };
 
 const Footer = () => {
-  const breakpoint = useBreakpoints();
-  const cssLogo =
-    breakpoint === 0 ? {} : { position: 'relative', bottom: '10px' };
+  const theme = useTheme();
+  const mw = "10%"
   return (
     <>
       <Box color='accent' borderTopStyle='solid' borderWidth='1px' />
-
       <Flex
         px='40px'
-        maxWidth='1480px'
-        pt='60px'
+        maxWidth={['300px', '1480px']}
+        pt='50px'
         pb='60px'
         margin='auto'
         color='accent'
         flexDirection={['column', 'row']}
         alignItems={['center', 'flex-start']}
+        textAlign={['center', 'left']}
+        justifyContent="stretch"
       >
-        <img
+        <Box
           width='70px'
           height='100%'
-          alt='logo oie'
-          src={logoOie_footer}
-          margin='auto'
-          css={cssLogo}
-        />
-        <Flex flexDirection={['column', 'row']}>
-          <Caption
-            pr={['0px', '100px']}
-            pl={['0px', '20px']}
-            pb='40px'
-            pt={['40px', '0px']}
-            flexGrow='1'
-          >
-            <Box textAlign={['center', 'left']}>L’Oie de Cravan</Box>
-            <Box textAlign={['center', 'left']}>6258 rue De La Roche</Box>
-            <Box textAlign={['center', 'left']}>Montréal, Qc</Box>
-            <Box textAlign={['center', 'left']}>H2S 2E1</Box>
-            <Box textAlign={['center', 'left']}>
-              lentement // oiedecravan.com
-            </Box>
-          </Caption>
-          <NavigationFooter pr={['0px', '100px']} flexGrow='1'>
-            <Box textAlign={['center', 'left']}>
-              <Link to='/'>Accueil</Link>
-            </Box>
-            <Box textAlign={['center', 'left']}>
-              <Link to='/catalogue'>Catalogue</Link>
-            </Box>
-            {/*
-            <Box textAlign='left'>
-              <Link to='/'>L'Oie de cravan&#8239;?</Link>
-            </Box>
-            <Box textAlign='left'>
-              <Link to='/'>Les nouvelles</Link>
-            </Box>
-            <Box textAlign='left'>
-              <Link to='/'>Les ami.e.s</Link>
-            </Box>
-            */}
-            <Box textAlign={['center', 'left']}>
-              <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
-            </Box>
-            <Box textAlign={['center', 'left']}>
-              <Link to='/nous-rejoindre'>Nous rejoindre</Link>
-            </Box>
-          </NavigationFooter>
-          <NavigationFooter flexGrow='1'>
-            <Box pt={['40px', '0px']} textAlign={['center', 'left']}>
-              <a href='https://twitter.com/oiedecravan/'>Twitter</a>
-            </Box>
-            <Box textAlign={['center', 'left']}>
-              <a href='https://www.instagram.com/oiedecravan/'>Instagram</a>
-            </Box>
-          </NavigationFooter>
-        </Flex>
-        <Box flexGrow='1' />
-        <Box pt={['40px', '0px']} flexGrow='1' maxWidth={[undefined, '330px']}>
-          <QuoteXSmall textAlign={['center', 'left']}>
+          pr={['0px', '20px']}
+          flex="0 0 auto"
+        >
+          <img
+            alt='logo oie'
+            src={logoOie_footer}
+            margin='auto'
+          />
+        </Box>
+        <Box
+          flex='1 1 auto'
+          pb='40px'
+          pt={['40px', '10px']}
+        {...theme.styles.caption}
+        >
+          <Box>L’Oie de Cravan</Box>
+          <Box>6258 rue De La Roche</Box>
+          <Box>Montréal, Qc</Box>
+          <Box>H2S 2E1</Box>
+          <Box>lentement // oiedecravan.com</Box>
+        </Box>
+        <Box 
+          flex='1 1 auto'
+          {...theme.styles.navigationFooter} 
+          pt={['0px', '10px']} >
+          <Box>
+            <Link to='/'>Accueil</Link>
+          </Box>
+          <Box>
+            <Link to='/catalogue'>Catalogue</Link>
+          </Box>
+          <Box>
+            <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
+          </Box>
+          <Box>
+            <Link to='/nous-rejoindre'>Nous rejoindre</Link>
+          </Box>
+        </Box>
+        <Box
+          flex='1 1 auto'
+          {...theme.styles.navigationFooter} pt={['40px', '10px']} >
+          <Box>
+            <a href='https://twitter.com/oiedecravan/'>Twitter</a>
+          </Box>
+          <Box>
+            <a href='https://www.instagram.com/oiedecravan/'>Instagram</a>
+          </Box>
+        </Box>
+        <Box flex={['0', '1 2 60px']} />
+        <Flex flex={['1 1 auto', '0 2 400px']} pt={['40px', '10px']}>
+          <Box>
+          <QuoteXSmall>
             Les Oies de Cravan naissent des mâts pourris des navires perdus au
             Golfe du Mexique
           </QuoteXSmall>
-          <SubtitleFooter textAlign={['center', 'left']}>
-            <br />
+          <SubtitleFooter pt="10px">
             Louis Scutenaire
           </SubtitleFooter>
-        </Box>
+          </Box>
+        </Flex>
       </Flex>
     </>
   );
@@ -224,7 +221,7 @@ const Page = ({ title, children }) => {
         }}
       />
       <Header />
-      <Box px='40px' maxWidth='1480px' margin='auto'>
+      <Box px={['0px', '40px']} maxWidth='1480px' margin='auto'>
         {children}
       </Box>
       <Footer />
@@ -235,7 +232,7 @@ const Page = ({ title, children }) => {
 export default function Layout(props) {
   return (
     <ThemeProvider theme={theme}>
-      <BreakpointsProvider breakpoints={['720px']}>
+      <BreakpointsProvider>
         <Page {...props} />
       </BreakpointsProvider>
     </ThemeProvider>

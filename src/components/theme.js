@@ -1,5 +1,5 @@
 const theme = {
-  breakpoints: ['720px'],
+  breakpoints: ['785px'],
   colors: {
     background: '#000000',
     accent: '#ED1F24',
@@ -42,6 +42,13 @@ const theme = {
       fontSize: '33px',
       lineHeight: '32px',
       fontWeight: 'normal',
+    },
+    overlay: {
+      fontFamily: 'Spectral',
+      fontSize: '28px',
+      lineHeight: '32px',
+      fontWeight: 'normal',
+      textTransform: 'uppercase',
     },
     h3: {
       fontFamily: 'Spectral',
@@ -104,7 +111,7 @@ const theme = {
     buttonSmall: {
       color: 'accent',
       fontFamily: 'Arimo',
-      fontWeight: 'bol',
+      fontWeight: 'bold',
       fontSize: '14px',
       letterSpacing: 0.75,
       lineHeight: '16px',
@@ -112,7 +119,7 @@ const theme = {
     },
     navigation: {
       fontFamily: 'Arimo',
-      fontWeight: 'bol',
+      // fontWeight: 'bold',
       fontSize: '16px',
       letterSpacing: 1,
       lineHeight: '20px',

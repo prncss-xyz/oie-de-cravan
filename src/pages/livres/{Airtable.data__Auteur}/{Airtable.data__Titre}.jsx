@@ -15,31 +15,31 @@ import {
   Grid,
   Tilde,
   Subtitle,
-  HSpacerLarge,
-  HSpacerSmall,
-  HSpacerXSmall,
+  VSpacerLarge,
+  VSpacerSmall,
+  VSpacerXSmall,
   ButtonSmall,
   TextCard,
 } from '../../../components/elements';
+import {ArrowLeftSmall, Nuage} from '../../../components/icons';
 import { useTheme } from '@emotion/react';
-import nuage from '../../../icons/nuage.svg';
-import arrowLeft from '../../../icons/arrow_left.svg';
 import { cleanBook, MD } from '../../../utils';
+import { switchedBreakpoints, useBreakpoints, useBreakpointsChoose } from '../../../breakpoints';
 
-const Nuage = () => {
+{/* const Nuage = () => {
   return (
     <Box px='10px' alignSelf='center'>
       <img src={nuage} alt='nuage' height='8px' />
     </Box>
   );
-};
+}; */}
 
 function BackLink() {
   return (
     <Flex justifyContent='space-between' alignItems='flex-end'>
       <Link to='/catalogue'>
         <Box pr='8px' pb='4px'>
-          <img width='8px' src={arrowLeft} alt='catalogue' />
+          <ArrowLeftSmall/>
         </Box>
       </Link>
       <Link to='/catalogue'>
@@ -104,11 +104,11 @@ const useCycle = (length) => {
   };
 };
 
-const BookCol = ({ data }) => {
+const BookCol = ({ data, ...props }) => {
   const theme = useTheme();
   const { position, cycle, go } = useCycle(data.couvertures.length);
   return (
-    <Box color='accent' {...theme.styles.button} textTransform='uppercase'>
+    <Box color='accent' {...theme.styles.button} textTransform='uppercase' {...props}>
       {data.couvertures.length > 0 && (
         <img
           onClick={cycle}
@@ -129,6 +129,7 @@ const BookCol = ({ data }) => {
           ))}
         </Flex>
       )}
+      <Box py={['20px', '0px']}>
       {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
       {data.annee && <Box>{data.annee}</Box>}
       {data.hauteur && data.largeur && (
@@ -137,67 +138,77 @@ const BookCol = ({ data }) => {
         </Box>
       )}
       {data.pages && <Box>{data.pages} pages</Box>}
+      </Box>
     </Box>
   );
 };
 
-export default function Livre({ data: { airtable } }) {
-  const dataOut = cleanBook(airtable);
+const Test = () => {
+  return null;
+}
 
-  return (
-    <Layout title={dataOut.titre}>
-      <HSpacerSmall />
-      <BackLink />
-      <HSpacerSmall />
-      <Grid>
+const Id = ({ children }) => children || null
+const Conditional = ({ cond, children}) => cond && children || null;
+const Grid0 = switchedBreakpoints(Id, Grid)
+
+
+const Main = ({ data }) => {
+  const bp = useBreakpoints();
+  const [Book0, Book1] = useBreakpointsChoose(BookCol, 2);
+  return (<>
+      <Box pb={['40px', '60px']} />
+      <Conditional cond={bp>0}>
+        <BackLink />
+      </Conditional>
+      <Box pb={['40px', '60px']} />
+      <Grid0>
         <Box gcs='1' gce='4'>
-          <BookCol data={dataOut} />
+          <Book1 data={data} />
         </Box>
         <Box gcs='5' gce='13'>
-          <H2 color='accent'>{dataOut.titre}</H2>
+          <H2 color='accent'>{data.titre}</H2>
           <Box color='accent'>
             <Tilde />
           </Box>
-          <Link to={dataOut.pageAuteur}>
+          <Link to={data.pageAuteur}>
             <H3 color='accent' textTransform='uppercase'>
-              {dataOut.auteur}
+              {data.auteur}
             </H3>
           </Link>
-          {dataOut.createursSecondaires && (
-            <Subtitle>{dataOut.createursSecondaires}</Subtitle>
+          {data.createursSecondaires && (
+            <Subtitle>{data.createursSecondaires}</Subtitle>
           )}
-          <HSpacerXSmall />
+          <Box pb='40px' />
           <Flex color='accent' alignItems='baseline'>
-            {dataOut.genre && <Subtitle>{dataOut.genre}</Subtitle>}
-            {dataOut.genre && dataOut.collection && <Nuage />}
-            {dataOut.collection && <Subtitle>{dataOut.collection}</Subtitle>}
+            {data.genre && <Subtitle>{data.genre}</Subtitle>}
+            {data.genre && data.collection && <Nuage />}
+            {data.collection && <Subtitle>{data.collection}</Subtitle>}
           </Flex>
-          <HSpacerXSmall />
+          <Box pb='40px' />
+          <Book0 data={data}/>
           <Body1>
-            {dataOut.presentation.length > 0 && (
-              <MD lang='fr' contents={dataOut.presentation} />
+            {data.presentation.length > 0 && (
+              <MD lang='fr' contents={data.presentation} />
             )}
           </Body1>
-          <HSpacerXSmall />
-          <Buy data={dataOut} />
-          <HSpacerXSmall />
+          <Box pb='40px' />
+          <Buy data={data} />
+          <Box pb='40px' />
           {/*<Share />*/}
         </Box>
-      </Grid>
-      <HSpacerLarge />
-      {dataOut.autourDuLivre.length > 0 && (
-        <>
+    </Grid0>
+        <Box pb={['100px', '180px']} />
+        <Conditional cond={data.autourDuLivre.length > 0}>
           <H2Icon Icon={Icons.Ecrire}>Autour du livre</H2Icon>
-          <HSpacerSmall />
+          <Box pb={['40px', '60px']} />
           <Grid>
             <Box gcs='3' gce='11'>
               <Flex>
-                {/*arrow left*/}
                 <TextCard>
                   <Box color='accent'>
                     <QuoteSmall>
-                      {dataOut.autourDuLivre && (
-                        <MD lang='fr' contents={dataOut.autourDuLivre}/>
+                      {data.autourDuLivre && (
+                        <MD lang='fr'>{data.autourDuLivre}</MD>
                       )}
                     </QuoteSmall>
                     {
@@ -208,13 +219,20 @@ export default function Livre({ data: { airtable } }) {
                     }
                   </Box>
                 </TextCard>
-                {/*arrow left*/}
               </Flex>
             </Box>
           </Grid>
-        </>
-      )}
-      <HSpacerLarge />
+          <Box pb={['40px', '60px']} />
+        </Conditional>
+  </>);
+}
+
+
+export default function Livre({ data: { airtable } }) {
+  const dataOut = cleanBook(airtable);
+  return (
+    <Layout title={dataOut.titre}>
+      <Main data={dataOut}/>
     </Layout>
   );
 }

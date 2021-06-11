@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "gatsby develop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juliette Lamarche <juliette.lamarche@princesse.xyz> (https://github.com/prncss-xyz/)",
@@ -16,6 +17,7 @@
     "@fontsource/spectral": "^4.2.3",
     "@mavrin/remark-typograf": "^2.2.0",
     "@sindresorhus/slugify": "^1.1.2",
+    "@svgr/webpack": "^5.5.0",
     "@types/react-helmet": "^6.1.1",
     "@types/styled-system": "^5.1.11",
     "babel-preset-gatsby": "^1.4.0",
@@ -25,6 +27,7 @@
     "gatsby-plugin-paypal": "^1.1.4",
     "gatsby-plugin-pnpm": "^1.2.6",
     "gatsby-plugin-react-helmet": "^4.4.0",
+    "gatsby-plugin-svgr-svgo": "^1.2.2",
     "gatsby-source-airtable": "^2.1.1",
     "lunr": "^2.3.9",
     "masonic": "^3.4.1",
@@ -33,7 +36,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-lunr": "^1.1.0",
+    "react-icons": "^4.2.0",
     "react-markdown": "^6.0.1",
     "remark-breaks": "^2.0.2",
     "remove-accents": "^0.4.2",

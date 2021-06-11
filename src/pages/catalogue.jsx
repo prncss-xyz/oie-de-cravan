@@ -1,38 +1,58 @@
-import React, { useState } from 'react';
 import { Masonry } from 'masonic';
+import React, { useState, useMemo, useEffect } from 'react';
 import Layout from '../components/layout';
 import { Link, graphql } from 'gatsby';
 import { cleanBook, normalize } from '../utils';
-import { useLunr } from 'react-lunr';
+import lunr from 'lunr'
 import {
   H1Tilde,
   Flex,
   ButtonSmall,
   BookCard,
-  HSpacerSmall,
-  HSpacerLarge,
+  VSpacerSmall,
+  VSpacerLarge,
   Search,
 } from '../components/elements';
+import { useBreakpoints, switchedBreakpoints } from '../breakpoints';
+import { Query } from 'lunr';
+
+const processQuery = query => {
+  query = normalize(query);
+  if (query.startsWith('l')) query = query.slice(2);
+  if (query.length < 3) return null;
+  return query;
+}
 
 export default function Catalogue({
+  location: {search}, 
   data: {
     allAirtable: { edges },
     localSearchBooks: { store, index },
   },
 }) {
+  console.log(decodeURI(search));
   const [query0, setQuery] = useState('');
-  const query = normalize(query0);
-  const res = useLunr(query, index, store);
-  const books = edges
-    .filter(({ node }) => query === '' || res.some(({ id }) => id === node.id))
-    .map(({ node }) => cleanBook(node));
+  const query = processQuery(query0);
+  const indexObj = useMemo(()=>{
+    return lunr.Index.load(JSON.parse(index)); 
+  }, [index])
+  const books = useMemo(() => {
+    let filtered;
+    if (query === null) {
+      filtered = edges;
+    } else {
+      const res = indexObj.search(query+"*").map(({ ref }) => store[ref])
+      filtered = edges.filter(({ node }) => res.some(({ id }) => id === node.id));
+    }
+    return filtered.map(({ node }) => cleanBook(node));
+  }, [query]);
   return (
     <Layout title='Catalogue'>
-      <HSpacerLarge />
+      <VSpacerLarge />
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
-      <HSpacerLarge />
-      <Flex alignItems='baseline' justifyContent='space-between'>
-        <Search label='Rechercher un titre' handler={setQuery} />
+      <VSpacerLarge />
+      <Flex flexDirection={['column', 'row']} alignItems={['center', 'baseline']} justifyContent='space-between'>
+        <Search label='Rechercher un titre' handler={setQuery} mb="40px"/>
         <Link to='/auteurs'>
           <ButtonSmall
             color='accent'
@@ -43,21 +63,20 @@ export default function Catalogue({
           </ButtonSmall>
         </Link>
       </Flex>
-      <HSpacerSmall />
+      <VSpacerSmall />
       <Masonry
         key={query}
         items={books}
         render={Bc}
         columnWidth={280}
-        // columnCount={4}
         columnGutter={36}
       />
-      <HSpacerLarge />
+      <VSpacerLarge />
     </Layout>
   );
 }
 
-const Bc = ({ data }) => {
+const Bc = ({data }) => {
   return <BookCard book={data} />;
 };
 

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
-import { useBreakpoints } from '../breakpoints';
+import { useBreakpointsArray } from '../breakpoints';
 import styled from '@emotion/styled';
 import {
   border,
@@ -14,8 +14,6 @@ import {
   system,
 } from 'styled-system';
 import * as Icons from './icons';
-import search from '../icons/search.svg';
-import avion from '../icons/avion.svg';
 
 export const BookCard = ({ book }) => {
   const couverture = book.couvertures?.[0];
@@ -27,7 +25,7 @@ export const BookCard = ({ book }) => {
         </H3>
         <Subtitle pb='20px'>{book.auteur}</Subtitle>
         {couverture && (
-          <Image src={couverture} alt={book.titre} width='275px' />
+          <Image src={couverture} alt={book.titre} width='100%' margin="auto"/>
         )}
       </Card>
     </Link>
@@ -87,7 +85,7 @@ export const Tilde = () => {
 
 export const H1Tilde = ({ children }) => {
   const theme = useTheme();
-  const bp = useBreakpoints();
+  const styles = useBreakpointsArray([theme.styles.h2 , theme.styles.h1]);
   return (
     <Flex justifyContent='center' color='accent'>
       <Flex
@@ -97,7 +95,7 @@ export const H1Tilde = ({ children }) => {
         flexDirection={['column', 'row']}
       >
         <Box>~</Box>
-        <Box px='18px' textAlign='center' {...theme.styles.h1}>
+        <Box px='18px' textAlign='center' {...styles}>
           {children}
         </Box>
         <Box>~</Box>
@@ -109,7 +107,7 @@ export const H1Tilde = ({ children }) => {
 export const H2 = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Box {...props} as='h2' {...theme.styles.h2}>
+    <Box as='h2' {...theme.styles.h2} {...props} >
       {children}
     </Box>
   );
@@ -118,16 +116,16 @@ export const H2 = ({ children, ...props }) => {
 export const H3 = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Box {...props} as='h3' {...theme.styles.h3}>
+    <Box as='h3' {...theme.styles.h3} {...props} >
       {children}
     </Box>
   );
 };
 
-export const HSpacerLarge = () => <Box pb='180px' />;
-export const HSpacerMedium = () => <Box pb='100px' />;
-export const HSpacerSmall = () => <Box pb='60px' />;
-export const HSpacerXSmall = () => <Box pb='40px' />;
+export const VSpacerLarge = () => <Box pb={['100px', '180px']} />
+export const VSpacerMedium = () => <Box pb={['60px', '100px']} />
+export const VSpacerSmall = () =>  <Box pb={['40px', '60px']} />
+export const VSpacerXSmall = () => <Box pb='40px' />;
 
 export const H2Icon = ({ Icon, children, ...props }) => {
   return (
@@ -142,8 +140,8 @@ export const H2Icon = ({ Icon, children, ...props }) => {
           testAlign='center'
           textAlign='center'
           px='16px'
-          {...props}
           py={['20px', '0px']}
+          {...props}
         >
           {children}
         </H2>
@@ -178,7 +176,7 @@ export function Arrows({ children }) {
       <Icons.ArrowBottom />
       <Flex alignItems='center'>
         <Icons.ArrowRight />
-        <Box px='18px' py='16px' {...theme.styles.button}>
+        <Box px='18px' py='16px' textAlign="center" {...theme.styles.button}>
           {children}{' '}
         </Box>
         <Icons.ArrowLeft />
@@ -207,22 +205,23 @@ export function Disk({ active, ...props }) {
   );
 }
 
-export function Search({ label, handler }) {
+export function Search({ label, handler, ...props }) {
   const theme = useTheme();
   const ref = useRef();
-
   const submit = (e) => {
     e.preventDefault();
     handler(ref.current.value);
   };
   return (
+    <Box px={["20px", "0px"]}>
     <Flex
-      width='max-content'
+      width={['100%','max-content']}
       borderWidth='1px'
       borderStyle='solid'
       color='accent'
+      {...props}
     >
-      <form onSubmit={submit}>
+      <form onChange={submit}>
         <input
           css={{
             ...theme.styles.search,
@@ -240,27 +239,14 @@ export function Search({ label, handler }) {
           ref={ref}
         />
       </form>
-      <button
-        onClick={submit}
-        css={{
-          borderRadius: 0,
-          padding: 0,
-          borderStyle: 'none',
-          display: 'inline',
-          paddingLeft: '12px',
-          width: '40px',
-          backgroundColor: theme.colors.accent,
-        }}
-      >
-        <img css={{ height: '20px' }} src={search} alt='search' />
-      </button>
-    </Flex>
+    </Flex></Box>
   );
 }
 
 export function Card({ children, pix, piy }) {
   return (
     <Box
+      heigh='100%'
       backgroundColor='background'
       borderStyle='solid'
       borderColor='primary'
@@ -342,7 +328,7 @@ export const ButtonSmall = ({ children, ...props }) => {
 export function SubtitleFooter({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box {...props} {...theme.styles.subtitleFooter}>
+    <Box {...theme.styles.subtitleFooter} {...props}>
       {children}
     </Box>
   );
@@ -350,7 +336,7 @@ export function SubtitleFooter({ children, ...props }) {
 export function Subtitle({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box {...props} {...theme.styles.subtitle}>
+    <Box {...theme.styles.subtitle} {...props}>
       {children}
     </Box>
   );
@@ -397,7 +383,7 @@ export function Body2({ children }) {
 export function Caption({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box {...props} {...theme.styles.caption} textAlign='center'>
+    <Box {...theme.styles.caption} {...props} >
       {children}
     </Box>
   );
@@ -406,21 +392,18 @@ export function Caption({ children, ...props }) {
 export function NavigationFooter({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box {...props} {...theme.styles.navigationFooter} textAlign='center'>
+    <Box{...theme.styles.navigationFooter} {...props} >
       {children}
     </Box>
   );
 }
-export function Image({ width, height, src, alt }) {
+export function Image({ src, alt, ...props }) {
   return (
+    <Box {...props}>
     <img
       src={src}
       alt={alt}
-      css={{
-        width: width ?? 'auto',
-        height: height ?? 'auto',
-        margin: 'auto',
-      }}
     />
+  </Box>
   );
 }

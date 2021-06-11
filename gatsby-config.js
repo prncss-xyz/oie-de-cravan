@@ -9,6 +9,7 @@ module.exports = {
       options: {},
       resolve: `gatsby-plugin-pnpm`,
     },
+    'gatsby-plugin-svgr-svgo',
     {
       resolve: `gatsby-plugin-paypal`,
       options: {

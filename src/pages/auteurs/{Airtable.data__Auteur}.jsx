@@ -22,10 +22,10 @@ import {
   Caption,
   Subtitle,
   BookCard,
-  HSpacerXSmall,
-  HSpacerSmall,
-  HSpacerMedium,
-  HSpacerLarge,
+  VSpacerXSmall,
+  VSpacerSmall,
+  VSpacerMedium,
+  VSpacerLarge,
 } from '../../components/elements';
 import nousRejoindre from '../../images/NousRejoindre.png';
 import cartePostaleDuBureauOie from '../../images/CartePostaleBureauOie.png';
@@ -35,13 +35,11 @@ export default function Auteur({ data, pageContext }) {
   const edges = data.allAirtable.edges;
   const books = edges.map(({ node }) => cleanBook(node));
   const auteur = pageContext.data__Auteur;
-  console.log(rectAuteur(auteur));
-
   return (
     <Layout title={rectAuteur(auteur)}>
-      <HSpacerLarge />
+      <VSpacerLarge />
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
-      <HSpacerLarge />
+      <VSpacerLarge />
       <Link to='/auteurs'>
         <ButtonSmall
           color='accent'
@@ -51,18 +49,18 @@ export default function Auteur({ data, pageContext }) {
           Voir nos auteur.e.s
         </ButtonSmall>
       </Link>
-      <HSpacerSmall />
+      <VSpacerSmall />
       <Box color='accent' borderTopStyle='solid' borderWidth='1px' />
-      <HSpacerSmall />
+      <VSpacerSmall />
       <Box color='accent'>
         <H2>{rectAuteur(auteur)}</H2>
       </Box>
-      <HSpacerXSmall />
+      <VSpacerXSmall />
       <Masonry items={books} render={bc} columnCount={4} columnGutter={36} />
       {books.map((book) => (
         <bc book={book} />
       ))}
-      <HSpacerLarge />
+      <VSpacerLarge />
     </Layout>
   );
 }

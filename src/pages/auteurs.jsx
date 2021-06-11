@@ -13,9 +13,8 @@ import {
   Image,
   Arrows,
   Caption,
-  HSpacerMedium,
+  VSpacerMedium,
   ButtonSmall,
-  HSpacerLarge,
 } from '../components/elements';
 import oiseauHome from '../images/Oiseau_Home.svg';
 import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
@@ -75,11 +74,11 @@ export default function Home({ data }) {
   auteurs.sort(cmp);
   return (
     <Layout>
-      <HSpacerMedium />
+      <VSpacerMedium />
       <H1Tilde>Nos Auteur.e.s</H1Tilde>
-      <HSpacerMedium />
+      <VSpacerMedium />
       <Authors auteurs={auteurs} />
-      <HSpacerMedium />
+      <VSpacerMedium />
     </Layout>
   );
 }
