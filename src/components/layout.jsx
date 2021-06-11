@@ -29,8 +29,8 @@ import { useBreakpoints, useBreakpointsArray } from '../breakpoints';
 
 function OverlayMenu({ closeHandler }) {
   const theme = useTheme();
-  return (
-  <Box
+  console.log('caca')
+  return (<Box
       bg='accent'
       color='background'
       css={{
@@ -48,11 +48,11 @@ function OverlayMenu({ closeHandler }) {
         href=''
       >
       <Flex  pt="40px" justifyContent="center" alignItems="center">
-      <ArrowRightBlack/>
+        <ArrowRightBlack/>
       <Box {...theme.styles.navigation} px="30px">
         Fermer
           </Box>
-      <ArrowLeftBlack/>
+        <ArrowLeftBlack/>
         </Flex>
       </a>
     <Flex

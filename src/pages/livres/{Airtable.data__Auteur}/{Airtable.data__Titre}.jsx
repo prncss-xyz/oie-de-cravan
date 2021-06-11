@@ -21,7 +21,7 @@ import {
   ButtonSmall,
   TextCard,
 } from '../../../components/elements';
-import {ArrowLeftSmall, Nuage} from '../../../components/icons';
+import {ArrowLeft, Nuage} from '../../../components/icons';
 import { useTheme } from '@emotion/react';
 import { cleanBook, MD } from '../../../utils';
 import { switchedBreakpoints, useBreakpoints, useBreakpointsChoose } from '../../../breakpoints';
@@ -39,7 +39,7 @@ function BackLink() {
     <Flex justifyContent='space-between' alignItems='flex-end'>
       <Link to='/catalogue'>
         <Box pr='8px' pb='4px'>
-          <ArrowLeftSmall/>
+          <ArrowLeft/>
         </Box>
       </Link>
       <Link to='/catalogue'>
@@ -181,7 +181,7 @@ const Main = ({ data }) => {
           <Box pb='40px' />
           <Flex color='accent' alignItems='baseline'>
             {data.genre && <Subtitle>{data.genre}</Subtitle>}
-            {data.genre && data.collection && <Nuage />}
+          {data.genre && data.collection && <Box px='16px'><Nuage /></Box>}
             {data.collection && <Subtitle>{data.collection}</Subtitle>}
           </Flex>
           <Box pb='40px' />

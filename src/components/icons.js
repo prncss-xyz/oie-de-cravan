@@ -1,4 +1,6 @@
 import React from 'react';
+import arrowLeftBlack from '../icons/arrow_left_black.svg';
+import arrowRightBlack from '../icons/arrow_right_black.svg';
 import arrowLeft from '../icons/arrow_left.svg';
 import arrowRight from '../icons/arrow_right.svg';
 import arrowTop from '../icons/arrow_top.svg';
@@ -15,6 +17,12 @@ import Box from './elements';
 
 const height = '18px';
 
+export function ArrowLeftBlack() {
+  return <img width='22px' src={arrowLeftBlack} alt='arrow left' />;
+}
+export function ArrowRightBlack() {
+  return <img width='22px' src={arrowRightBlack} alt='arrow right' />;
+}
 export function ArrowLeft() {
   return <img width='22px' src={arrowLeft} alt='arrow left' />;
 }
