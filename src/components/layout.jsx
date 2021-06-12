@@ -72,12 +72,10 @@ function OverlayMenu({ closeHandler }) {
 }
 
 const Header = () => {
-  const breakpoint = useBreakpoints();
   const theme = useTheme();
   const [menuOpened, menuOpen] = useState(false);
-  if (breakpoint === 0)
-    return (
-      <>
+    return (<>
+      <Box display={["inherit", "none"]}>
         {menuOpened && <OverlayMenu closeHandler={() => menuOpen(false)} />}
         <a
           href=''
@@ -91,10 +89,8 @@ const Header = () => {
             <FaBars size={theme.styles.h3.fontSize}/>
           </Flex>
         </a>
-      </>
-    );
-  return (
-    <Box margin='auto' pt='80px' maxWidth='1560px' px='40px'>
+      </Box>
+    <Box display={["none", "inherit"]} margin='auto' pt='80px' maxWidth='1560px' px='40px'>
       <Flex alignItems='baseline'  
         >
         <Flex color='accent' alignItems='baseline' {...theme.styles.oie}>
@@ -108,7 +104,7 @@ const Header = () => {
         </Flex>
       </Flex>
     </Box>
-  );
+  </>);
 };
 
 const Footer = () => {
