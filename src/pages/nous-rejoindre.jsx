@@ -6,11 +6,9 @@ import {
   H1Tilde,
   H2Icon,
   Box,
-  Flex,
-  Grid,
+  GridMd,
   Quote,
   Image,
-  Arrows,
   Body1,
   Body2,
   Caption,
@@ -19,47 +17,17 @@ import {
   VSpacerLarge,
   VSpacerSmall,
   TextCard,
+  TextCardMd,
   VSpacerXSmall,
 } from '../components/elements';
 import nousRejoindre from '../images/NousRejoindre.png';
 import cartePostaleDuBureauOie from '../images/CartePostaleBureauOie.png';
 import { useTheme } from '@emotion/react';
-import { switchedBreakpoints } from '../breakpoints';
 
 const Accent = ({ children }) => {
   const theme = useTheme();
   return <span css={{ color: theme.colors.accent }}>{children}</span>;
 };
-
-const Id = ({ children }) => children;
-const TextMd = ({ children }) => (
-  <Grid>
-    <Box gcs='4' gce='10'>
-      <TextCard>{children}</TextCard>
-    </Box>
-  </Grid>
-);
-const Text = switchedBreakpoints(Id, TextMd);
-
-const Text2Sm = ({ children }) => (
-  <>
-    <VSpacerXSmall />
-    {children}
-  </>
-);
-
-const Text2Md = ({ children }) => (
-  <Grid>
-    <Box gcs='7' gce='11'>
-      <div css={{ position: 'relative', bottom: '17px' }}>
-        <TextCard>{children}</TextCard>
-      </div>
-    </Box>
-  </Grid>
-);
-const Text2 = switchedBreakpoints(Text2Sm, Text2Md);
-const Text3 = switchedBreakpoints(Id, Grid);
-const CBox = switchedBreakpoints(Id, Box);
 
 export default function NousRejoindre() {
   console.log(nousRejoindre);
@@ -70,7 +38,8 @@ export default function NousRejoindre() {
       <VSpacerLarge />
       <H1Tilde>Nous rejoindre</H1Tilde>
       <VSpacerMedium />
-      <Text>
+      <GridMd>
+      <TextCardMd gcs='4' gce='10'>
         <Body1>
           <p>
             Nos gigantesques bureaux sont situés au bucolique 6264 De la Roche.
@@ -91,20 +60,24 @@ export default function NousRejoindre() {
             <span css={{ fontWeight: 'bold' }}> *</span>
           </p>
         </Body1>
-      </Text>
-      <Text2>
+      </TextCardMd>
+      </GridMd>
+      <Box pb={['40px', '0px']}/>
+      <GridMd>
+      <TextCardMd gcs='7' gce='11' css={{ position: 'relative', bottom: '17px' }}>
         <Body2>
           * Le lecteur aura compris qu'il faut remplacer // par le signe @ pour
           nous joindre. Nous recourons ici à cette forme subtilement codée afin
           d'éviter les vils robots spammeurs.
         </Body2>
-      </Text2>
+      </TextCardMd>
+      </GridMd>
       <VSpacerLarge />
       <H2Icon Icon={Icons.Nuage}>Pour vos envois de manuscrits</H2Icon>
       <VSpacerSmall />
       <Body1>
-        <Text3>
-          <CBox gcs='2' gce='7'>
+        <GridMd gridGap="36px">
+          <Box gcs='2' gce='7'>
             <p>
               L'Oie de Cravan est une structure minuscule et un éditeur lent.
               Pour cette raison, il ne nous est malheureusement pas possible de
@@ -120,8 +93,8 @@ export default function NousRejoindre() {
               Si votre projet suscite notre intérêt, nous communiquerons avec
               vous pour en voir davantage.
             </p>
-          </CBox>
-          <CBox gcs='7' gce='12'>
+          </Box>
+          <Box gcs='7' gce='12'>
             <p>
               La non publication d'un manuscrit ne peut en aucune façon être
               interprétée comme un jugement spécifique sur un projet et encore
@@ -136,11 +109,11 @@ export default function NousRejoindre() {
               chacun·e peut trouver le moyen de sa diffusion. Les outils sont
               là. La voix du poème reste à chacun·e.
             </p>
-          </CBox>
-        </Text3>
+          </Box>
+        </GridMd>
       </Body1>
       <VSpacerMedium />
-      <Text3>
+      <GridMd>
         <Box gcs='4' gce='10'>
           <TextCard>
             <Body1>
@@ -158,9 +131,9 @@ export default function NousRejoindre() {
             </Body1>
           </TextCard>
         </Box>
-      </Text3>
+      </GridMd>
       <VSpacerLarge />
-      <Text3 alignItems='end'>
+      <GridMd alignItems='end'>
         <Box gcs='2' gce='7'>
           <Image
             src={cartePostaleDuBureauOie}
@@ -182,7 +155,7 @@ export default function NousRejoindre() {
             Jean-Yves Bériou
           </Subtitle>
         </Box>
-      </Text3>
+      </GridMd>
       <VSpacerLarge />
       {/*
       <H2Icon Icon={Icons.Coeur}>Mécénat express</H2Icon>

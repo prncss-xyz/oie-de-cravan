@@ -64,8 +64,12 @@ export const Flex = styled(Box)({ display: 'flex' });
 export const Grid = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gap: '36px',
 });
+export const GridMd = ({...props}) => <Box 
+  display= {['', 'grid']}
+  gridTemplateColumns={['repeat(12, 1fr)']}
+  {...props}
+/>
 
 export const Nav = ({ to, children }) => {
   const theme = useTheme();
@@ -85,9 +89,26 @@ export const Tilde = () => {
   return <Box {...theme.styles.h1}>{'~'}</Box>;
 };
 
+
+// Create an object of arrays from an array of object,
+// intended for reposive styles
+const respPros = (...propObjs) => {
+  const keys = {};
+  for (const propObj of propObjs) {
+    for (const key of Object.keys(propObj)) {
+      keys[key] = true;
+    }
+  }
+  const res = {};
+  for (const key of Object.keys(keys)) {
+    res[key] = propObjs.map(propObj => propObj[key]);
+  }
+  return res;
+}
+
 export const H1Tilde = ({ children }) => {
   const theme = useTheme();
-  const styles = useBreakpointsArray([theme.styles.h2 , theme.styles.h1]);
+  const styles = respPros(theme.styles.h2 , theme.styles.h1)
   return (
     <Flex justifyContent='center' color='accent'>
       <Flex
@@ -214,6 +235,9 @@ export function Search({ label, handler, value0, ...props }) {
     e.preventDefault();
     handler(ref.current.value);
   };
+  const noop = (e) => {
+    e.preventDefault();
+  }
   useEffect(() => {ref.current.value = value0}, [])
   return (
     <Box px={["20px", "0px"]}>
@@ -224,7 +248,7 @@ export function Search({ label, handler, value0, ...props }) {
       color='accent'
       {...props}
     >
-      <form onChange={submit}>
+      <form onChange={submit} onSubmit={noop}>
         <input
           css={{
             ...theme.styles.search,
@@ -271,6 +295,33 @@ export function Card({ children, pix, piy }) {
   );
 }
 
+export function TextCardMd({ children, ...props }) {
+  return (
+    <Box
+      heigh='100%'
+      backgroundColor='background'
+      borderStyle={['', 'solid']}
+      borderColor='primary'
+      borderWidth={['', '1px']}
+      p={['', '8px']}
+      margin={['auto','']}
+      maxWidth={['682px', '']}
+      {...props}
+    >
+      <Box
+        width='100%'
+        height='100%'
+        borderStyle={['', 'solid']}
+        borderColor={['', 'primary']}
+        borderWidth={['', '1px']}
+        px={['', '30px']}
+        py={['', '25px']}
+      >
+        {children}
+      </Box>
+    </Box>
+  );
+}
 export const TextCard = ({ children }) => (
   <Card pix='30px' piy='25px'>
     {children}

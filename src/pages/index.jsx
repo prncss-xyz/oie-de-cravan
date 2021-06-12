@@ -14,28 +14,15 @@ import {
   Subtitle,
   Caption,
   BookCard,
-  TextCard,
   VSpacerSmall,
   VSpacerLarge,
   VSpacerMedium,
-  Grid,
+  GridMd,
   Flex,
+  TextCardMd,
 } from '../components/elements';
 import oiseauHome from '../images/Oiseau_Home.svg';
 import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
-import { switchedBreakpoints } from '../breakpoints';
-
-const Id = ({ children }) => children;
-const TextMd = ({ children }) => (
-  <Box margin='auto' maxWidth='682px'>
-    <TextCard>{children}</TextCard>
-  </Box>
-);
-const Text = switchedBreakpoints(Id, TextMd);
-
-const BoxMd = ({ children }) => <Grid alignItems='end'>{children}</Grid>;
-const Box1 = switchedBreakpoints(Id, BoxMd);
-const Sp1 = switchedBreakpoints(VSpacerLarge, null);
 
 const getCurrentIndex = (books, date) => {
   let currentIndex = 0;
@@ -68,7 +55,7 @@ export default function Home({
       <Box pb={['100px', '180px']} />
       <H1Tilde>La Poésie</H1Tilde>
       <Box pb={['60px', '100px']} />
-      <Text>
+      <TextCardMd>
         <Body1>
           <p>
             D'abord, répéter une évidence : la poésie n'est pas particulièrement
@@ -100,9 +87,9 @@ export default function Home({
             l'âme et dans le mot. La voix du poème reste à chacun·e.
           </p>
         </Body1>
-      </Text>
+      </TextCardMd>
       <VSpacerLarge />
-      <Box1>
+      <GridMd alignItems='end'>
         <Box color='accent' gcs='2' gce='7'>
           <Quote>
             Jeunes gens, refusez le siège qu'on vous offre. Vous n'en seriez que
@@ -113,7 +100,7 @@ export default function Home({
             Georges Henein
           </Subtitle>
         </Box>
-        <Sp1 />
+        <Box pb={['0px', '180px']} />
         <Box gcs='8' gce='13' pt={['40px', '0px']} display="flex" flexDirection="column" alignItems='center'>
           <Image src={stoneGoose} alt='oie de Cravan' />
           <Caption textAlign='center' px={['0px', '40px']} pt='20px' maxWidth='570px'>
@@ -122,7 +109,7 @@ export default function Home({
           </Caption>
           <VSpacerMedium />
         </Box>
-      </Box1>
+      </GridMd>
       <VSpacerLarge />
       <H2Icon Icon={Icons.Soleil}>Les Nouveautés de l’oie de Cravan</H2Icon>
       <VSpacerSmall />
