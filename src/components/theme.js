@@ -131,6 +131,13 @@ const theme = {
       letterSpacing: 1,
       lineHeight: '20px',
     },
+    searchCritaria: {
+      fontFamily: 'Arimo',
+      fontSize: '14px',
+      letterSpacing: 0.75,
+      letterSpacing: 1,
+      lineHeight: '20px',
+    },
     navigationFooter: {
       fontFamily: 'Arimo',
       fontSize: '14px',
