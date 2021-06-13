@@ -3,7 +3,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Layout from '../components/layout';
 import { Link, graphql } from 'gatsby';
 import { cleanBook, normalize } from '../utils';
-import lunr from 'lunr'
 import {
   H1Tilde,
   Flex,
@@ -13,18 +12,37 @@ import {
   VSpacerLarge,
   Search,
 } from '../components/elements';
-import { useBreakpoints, switchedBreakpoints } from '../breakpoints';
-import { Query } from 'lunr';
+import lunr from 'lunr'
 
-const processQuery = query => {
-  query = normalize(query);
-  if (query.startsWith('l')) query = query.slice(2);
-  if (query.length < 3) return null;
-  return query;
+const processQuery = query => (query.length < 3) ? null : normalize(query).toLocaleLowerCase();
+
+// returns an array which is the intersection of a list of arrays
+// returns undefined to an empty list
+const intersect = (ass) => {
+  let res;
+  for (const as of ass) {
+    if (!res) {
+      res = {}
+      for (const a of as) {
+        res[a] = true;
+      }
+      continue;
+    }
+    const nxt = {}
+    for (const a of as) {
+      if (a in res) {
+        nxt[a] = true;
+      }
+    }
+    res = nxt;
+  }
+  if (res) {
+    return Object.keys(res)
+  }
 }
 
 export default function Catalogue({
-  location: { search}, 
+  location: { search },
   data: {
     allAirtable: { edges },
     localSearchBooks: { store, index },
@@ -32,20 +50,28 @@ export default function Catalogue({
 }) {
   const searchParams = new URLSearchParams(search);
   const q0 = searchParams.get('q') || '';
-  console.log(q0);
   // console.log(decodeURI(search));
   const [query0, setQuery] = useState(q0);
   const query = processQuery(query0);
-  const indexObj = useMemo(()=>{
-    return lunr.Index.load(JSON.parse(index)); 
+  const indexObj = useMemo(() => {
+    return lunr.Index.load(JSON.parse(index));
   }, [index])
   const books = useMemo(() => {
     let filtered;
     if (query === null) {
       filtered = edges;
     } else {
-      const res = indexObj.search(query + '*').map(({ ref }) => store[ref])
-      filtered = edges.filter(({ node }) => res.some(({ id }) => id === node.id));
+      const qq = query.split(' ')
+      const res0 = qq.map(query => (indexObj.query((fn) => {
+        fn.term(query)
+        fn.term(query, { wildcard: lunr.Query.wildcard.TRAILING })
+        for (const cons of 'lsd') {
+          fn.term(cons + query)
+          fn.term(query, { wildcard: lunr.Query.wildcard.TRAILING })
+        }
+      }).map(({ ref }) => store[ref].id)))
+      const res = intersect(res0);
+      filtered = edges.filter(({ node }) => res.some((id) => id === node.id));
     }
     return filtered.map(({ node }) => cleanBook(node));
   }, [query]);
@@ -55,7 +81,7 @@ export default function Catalogue({
       <H1Tilde>Catalogue général de la compagnie</H1Tilde>
       <VSpacerLarge />
       <Flex flexDirection={['column', 'row']} alignItems={['center', 'baseline']} justifyContent='space-between'>
-        <Search label='Rechercher un titre' handler={setQuery} value0={q0} mb="40px"/>
+        <Search label='Rechercher un titre' handler={setQuery} value0={q0} mb="40px" />
         <Link to='/auteurs'>
           <ButtonSmall
             color='accent'
@@ -79,7 +105,7 @@ export default function Catalogue({
   );
 }
 
-const Bc = ({data }) => {
+const Bc = ({ data }) => {
   return <BookCard book={data} />;
 };
 

@@ -48,6 +48,11 @@ module.exports = {
                   id
                   data {
                     Titre
+                    Auteur
+                    Collection
+                    Genre
+                    ISBN
+                    Cr_ateurs_secondaires
                   }
                 }
               }
@@ -55,12 +60,26 @@ module.exports = {
           }
         `,
         ref: 'id',
-        index: ['titre'],
+        index: [
+          'titre',
+          'auteur',
+          'collection',
+          'genre',
+          'isbn',
+          'createursSecondaires',
+        ],
         normalizer: ({ data }) =>
           data.allAirtable.edges.map(({ node }) => {
             return {
               id: node?.id,
               titre: normalize(node?.data['Titre']),
+              auteur: normalize(node?.data['Auteur']),
+              collection: normalize(node?.data['Collection']),
+              genre: normalize(node?.data['Genre']),
+              isbn: normalize(node?.data['ISBN']),
+              createursSecondaires: normalize(
+                node?.data['Cr_ateurs_secondaires'],
+              ),
             };
           }),
       },

@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
-import { useBreakpointsArray } from '../breakpoints';
 import styled from '@emotion/styled';
 import {
   border,
@@ -25,10 +24,10 @@ export const BookCard = ({ book }) => {
         </H3>
         <Subtitle pb='20px'>{book.auteur}</Subtitle>
         <Flex justifyContent='center'>
-        {couverture && (
-          <Image src={couverture} alt={book.titre}/>
-        )}
-         </Flex>
+          {couverture && (
+            <Image src={couverture} alt={book.titre} />
+          )}
+        </Flex>
       </Card>
     </Link>
   );
@@ -65,25 +64,17 @@ export const Grid = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
 });
-export const GridMd = ({...props}) => <Box 
-  display= {['', 'grid']}
+export const GridMd = ({ ...props }) => <Box
+  display={['', 'grid']}
   gridTemplateColumns={['repeat(12, 1fr)']}
   {...props}
 />
 
-export const Nav = ({ to, children }) => {
-  const theme = useTheme();
-  return (
-    <Box {...theme.styles.navigation}>
-      <Link to={to}>{children}</Link>
-    </Box>
-  );
-};
-
-export const Navigation = ({ to, children }) => {
+export const Navigation = ({ children }) => {
   const theme = useTheme();
   return <Box {...theme.styles.navigation}>{children}</Box>;
 };
+
 export const Tilde = () => {
   const theme = useTheme();
   return <Box {...theme.styles.h1}>{'~'}</Box>;
@@ -108,7 +99,7 @@ const respPros = (...propObjs) => {
 
 export const H1Tilde = ({ children }) => {
   const theme = useTheme();
-  const styles = respPros(theme.styles.h2 , theme.styles.h1)
+  const styles = respPros(theme.styles.h2, theme.styles.h1)
   return (
     <Flex justifyContent='center' color='accent'>
       <Flex
@@ -147,7 +138,7 @@ export const H3 = ({ children, ...props }) => {
 
 export const VSpacerLarge = () => <Box pb={['100px', '180px']} />
 export const VSpacerMedium = () => <Box pb={['60px', '100px']} />
-export const VSpacerSmall = () =>  <Box pb={['40px', '60px']} />
+export const VSpacerSmall = () => <Box pb={['40px', '60px']} />
 export const VSpacerXSmall = () => <Box pb='40px' />;
 
 export const H2Icon = ({ Icon, children, ...props }) => {
@@ -238,35 +229,35 @@ export function Search({ label, handler, value0, ...props }) {
   const noop = (e) => {
     e.preventDefault();
   }
-  useEffect(() => {ref.current.value = value0}, [])
+  useEffect(() => { ref.current.value = value0 }, [])
   return (
     <Box px={["20px", "0px"]}>
-    <Flex
-      width={['100%','max-content']}
-      borderWidth='1px'
-      borderStyle='solid'
-      color='accent'
-      {...props}
-    >
-      <form onChange={submit} onSubmit={noop}>
-        <input
-          css={{
-            ...theme.styles.search,
-            'height': '100%',
-            'padding': '12px 18px',
-            'backgroundColor': 'inherit',
-            'color': theme.colors.primary,
-            'borderStyle': 'none',
-            '&:focus': {
-              outline: 'none',
-            },
-          }}
-          type='text'
-          placeholder={label}
-          ref={ref}
-        />
-      </form>
-    </Flex></Box>
+      <Flex
+        width={['100%', 'max-content']}
+        borderWidth='1px'
+        borderStyle='solid'
+        color='accent'
+        {...props}
+      >
+        <form onChange={submit} onSubmit={noop}>
+          <input
+            css={{
+              ...theme.styles.search,
+              'height': '100%',
+              'padding': '12px 18px',
+              'backgroundColor': 'inherit',
+              'color': theme.colors.primary,
+              'borderStyle': 'none',
+              '&:focus': {
+                outline: 'none',
+              },
+            }}
+            type='text'
+            placeholder={label}
+            ref={ref}
+          />
+        </form>
+      </Flex></Box>
   );
 }
 
@@ -304,7 +295,7 @@ export function TextCardMd({ children, ...props }) {
       borderColor='primary'
       borderWidth={['', '1px']}
       p={['', '8px']}
-      margin={['auto','']}
+      margin={['auto', '']}
       maxWidth={['682px', '']}
       {...props}
     >
@@ -454,10 +445,10 @@ export function NavigationFooter({ children, ...props }) {
 export function Image({ src, alt, ...props }) {
   return (
     <Box {...props}>
-    <img
-      src={src}
-      alt={alt}
-    />
-  </Box>
+      <img
+        src={src}
+        alt={alt}
+      />
+    </Box>
   );
 }

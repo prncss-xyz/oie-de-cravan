@@ -53,7 +53,7 @@ const Authors = ({ auteurs }) => {
     <Box color='accent' textAlign='center' {...theme.styles.authors}>
       <ul css={{ listStyle: 'none' }}>
         {auteurs.map((auteur) => (
-          <Link key={auteur} to={`/auteurs/${slugify(auteur)}`}>
+          <Link key={auteur} to={`/catalogue?q=${rectAuteur(auteur)}`}>
             <li>{rectAuteur(auteur)}</li>
           </Link>
         ))}

@@ -21,7 +21,8 @@ export const cleanBook = (node) => {
   const titre = node.data['Titre'] ?? '';
   return {
     id: node.id,
-    auteur: rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']) ?? '',
+    auteur: rectAuteur(node.data['Auteur']) ?? '',
+    auteurLivre: rectAuteur(node.data['Auteur_livre'] ?? node.data['Auteur']) ?? '',
     titre: titre ?? '',
     annee: node.data['Publication__date_']?.slice(0, 4),
     date: new Date(node.data['Publication__date_']),

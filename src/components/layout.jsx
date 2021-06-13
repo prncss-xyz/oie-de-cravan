@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BreakpointsProvider } from '../breakpoints';
 import { Global, ThemeProvider, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import { name } from '../../package.json';
@@ -25,7 +24,6 @@ import '@fontsource/arimo/700.css';
 import '@fontsource/spectral/400-italic.css';
 import '@fontsource/spectral';
 import '@fontsource/spectral/400.css';
-import { useBreakpoints, useBreakpointsArray } from '../breakpoints';
 
 function OverlayMenu({ closeHandler }) {
   const theme = useTheme();
@@ -75,7 +73,7 @@ const Header = () => {
   const theme = useTheme();
   const [menuOpened, menuOpen] = useState(false);
     return (<>
-      <Box display={["inherit", "none"]}>
+      <Box display={["", "none"]}>
         {menuOpened && <OverlayMenu closeHandler={() => menuOpen(false)} />}
         <a
           href=''
@@ -227,9 +225,7 @@ const Page = ({ title, children }) => {
 export default function Layout(props) {
   return (
     <ThemeProvider theme={theme}>
-      <BreakpointsProvider>
         <Page {...props} />
-      </BreakpointsProvider>
     </ThemeProvider>
   );
 }
