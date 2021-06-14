@@ -14,6 +14,20 @@ import {
 } from 'styled-system';
 import * as Icons from './icons';
 
+export const Video = ({ url, title }) => (
+  <iframe
+    width='100%'
+    height='100%'
+    src={url}
+    title={title}
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    frameBorder="0"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+  />
+)
+
 export const BookCard = ({ book }) => {
   const couverture = book.couvertures?.[0];
   return (
@@ -452,3 +466,10 @@ export function Image({ src, alt, ...props }) {
     </Box>
   );
 }
+
+export const Clickable = ({ onClick, children }) => (<button
+  css={{ border: '0px', background: 'transparent', padding: '0px' }}
+  onClick={onClick}
+>
+  {children}
+</button>)

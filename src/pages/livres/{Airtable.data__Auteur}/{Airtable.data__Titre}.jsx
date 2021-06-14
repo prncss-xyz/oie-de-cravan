@@ -1,8 +1,11 @@
 import React, { useReducer } from 'react';
 import { Link, graphql } from 'gatsby';
+import { useTheme } from '@emotion/react';
 import Layout from '../../../components/layout';
 import * as Icons from '../../../components/icons';
 import {
+  Clickable,
+  Video,
   Disk,
   H2Icon,
   H2,
@@ -22,17 +25,17 @@ import {
   ButtonSmall,
   TextCard,
 } from '../../../components/elements';
-import { ArrowLeft, Nuage } from '../../../components/icons';
-import { useTheme } from '@emotion/react';
+import nuage from '../../../icons/nuage.svg';
+import { ArrowLeft, ArrowRight } from '../../../components/icons';
 import { cleanBook, MD } from '../../../utils';
 
-{/* const Nuage = () => {
+const Nuage = () => {
   return (
-    <Box px='10px' alignSelf='center'>
+    <Box px='10px' pb='2px'>
       <img src={nuage} alt='nuage' height='8px' />
     </Box>
   );
-}; */}
+};
 
 function BackLink() {
   return (
@@ -84,10 +87,16 @@ function Share() {
 
 const useCycle = (length) => {
   const reducer = (state, action) => {
+    let position;
     switch (action.type) {
       case 'CYCLE':
-        let position = state.position + 1;
+        position = state.position + 1;
         if (position === state.length) position = 0;
+        return { ...state, position };
+      case 'BACKCYCLE':
+        position = state.position;
+        if (position === 0) position = state.length;
+        position = position - 1;
         return { ...state, position };
       case 'GO':
         return { ...state, position: action.position };
@@ -96,10 +105,12 @@ const useCycle = (length) => {
 
   const [state, dispatch] = useReducer(reducer, { position: 0, length });
   const cycle = () => dispatch({ type: 'CYCLE' });
+  const backcycle = () => dispatch({ type: 'BACKCYCLE' });
   const go = (position) => dispatch({ type: 'GO', position });
   return {
     position: state.position,
     cycle,
+    backcycle,
     go,
   };
 };
@@ -108,34 +119,30 @@ const BookCol = ({ data, ...props }) => {
   const theme = useTheme();
   const { position, cycle, go } = useCycle(data.couvertures.length);
   return (
-    <Box color='accent' {...theme.styles.button} textTransform='uppercase' {...props} pb='15px'>
+    <Box
+      color='accent'
+      {...theme.styles.button}
+      textTransform='uppercase'
+      {...props}
+      pb='15px'
+    >
       {data.couvertures.length > 0 && (
-        <button css={{ border: '0px', background: 'transparent', padding: '0px' }}
-          onClick={(e) => {
-            cycle();
-            e.preventDefault();
-          }}>
-          <img
-            src={data.couvertures[position]}
-            alt='couverture'
-          />
-          <Box pb="15px" />
-        </button>
-      )
-      }
-      {
-        data.couvertures.length > 1 && (
-          <Flex pb='20px' justifyContent='center'>
-            {data.couvertures.map((_, index) => (
-              <Disk
-                key={index}
-                active={index === position}
-                onClick={() => go(index)}
-              />
-            ))}
-          </Flex>
-        )
-      }
+        <Clickable onClick={cycle}>
+          <img src={data.couvertures[position]} alt='couverture' />
+          <Box pb='15px' />
+        </Clickable>
+      )}
+      {data.couvertures.length > 1 && (
+        <Flex pb='20px' justifyContent='center'>
+          {data.couvertures.map((_, index) => (
+            <Disk
+              key={index}
+              active={index === position}
+              onClick={() => go(index)}
+            />
+          ))}
+        </Flex>
+      )}
       <Box py={['20px', '0px']}>
         {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
         {data.annee && <Box>{data.annee}</Box>}
@@ -146,88 +153,136 @@ const BookCol = ({ data, ...props }) => {
         )}
         {data.pages && <Box>{data.pages} pages</Box>}
       </Box>
-    </Box >
+    </Box>
   );
 };
 
-
-const Conditional = ({ cond, children }) => cond && children || null;
-
 const Main = ({ data }) => {
-  return (<>
-    <Box pb={['40px', '60px']} />
-    <Box display={["none", "inherit"]}>
-      <BackLink />
-    </Box>
-    <Box pb={['40px', '60px']} />
-    <GridMd>
-      <Box gcs='1' gce='4' display={["none", "inherit"]}>
-        <BookCol data={data} />
-      </Box>
-      <Box gcs='5' gce='13'>
-        <H2 color='accent'>{data.titre}</H2>
-        <Box color='accent'>
-          <Tilde />
+  return (
+    <>
+      <Box pb={['40px', '60px']} />
+      <GridMd>
+        <Box gcs='2' gce='12' display={['none', 'inherit']}>
+          <BackLink />
+          <Box pb={['40px', '60px']} />
         </Box>
-        <Link to={`/catalogue?q=${data.auteur}`}>
-          <H3 color='accent' textTransform='uppercase'>
-            {data.auteurLivre}
-          </H3>
-        </Link>
-        {data.createursSecondaires && (
-          <Subtitle>{data.createursSecondaires}</Subtitle>
-        )}
-        <Box pb='40px' />
-        <Flex color='accent' alignItems='baseline'>
-          {data.genre && <Subtitle>{data.genre}</Subtitle>}
-          {data.genre && data.collection && <Box px='10px'><Nuage /></Box>}
-          {data.collection && <Subtitle>{data.collection}</Subtitle>}
-        </Flex>
-        <Box pb='40px' />
-        <Box display={["inherit", "none"]}>
+        <Box gcs='2' gce='5' display={['none', 'inherit']}>
           <BookCol data={data} />
         </Box>
-        <Body1>
-          {data.presentation.length > 0 && (
-            <MD lang='fr' contents={data.presentation} />
+        <Box gcs='6' gce='12'>
+          <H2 color='accent'>{data.titre}</H2>
+          <Box color='accent'>
+            <Tilde />
+          </Box>
+          <Link to={`/catalogue?q=${data.auteur}`}>
+            <H3 color='accent' textTransform='uppercase'>
+              {data.auteurLivre}
+            </H3>
+          </Link>
+          {data.createursSecondaires && (
+            <Subtitle>{data.createursSecondaires}</Subtitle>
           )}
-        </Body1>
-        <Box pb='40px' />
-        <Buy data={data} />
-        <Box pb='40px' />
-        {/*<Share />*/}
+          <Box pb='40px' />
+          <Flex color='accent' alignItems='baseline'>
+            {data.genre && <Subtitle>{data.genre}</Subtitle>}
+            {data.genre && data.collection && (
+              <Box px='10px'>
+                <Nuage />
+              </Box>
+            )}
+            {data.collection && <Subtitle>{data.collection}</Subtitle>}
+          </Flex>
+          <Box pb='40px' />
+          <Box display={['inherit', 'none']}>
+            <BookCol data={data} />
+          </Box>
+          <Body1>
+            {data.presentation.length > 0 && (
+              <MD lang='fr' contents={data.presentation} />
+            )}
+          </Body1>
+          <Box pb='40px' />
+          <Buy data={data} />
+          <Box pb='40px' />
+          {/*<Share />*/}
+        </Box>
+      </GridMd>
+      <Box pb={['100px', '180px']} />
+      <AutourDuLivre autourDuLivre={data.autourDuLivre} />
+    </>
+  );
+};
+
+const EmbbededText = ({ text, caption }) => {
+  const theme = useTheme();
+  return (
+    <TextCard>
+      <Box color='accent'>
+        <QuoteSmall>
+          <MD lang='fr' contents={text} />
+        </QuoteSmall>
+        <Box pt="20px" {...theme.styles.subtitle}>{caption}</Box>
       </Box>
-    </GridMd>
-    <Box pb={['100px', '180px']} />
-    <Conditional cond={data.autourDuLivre.length > 0}>
+    </TextCard>
+  );
+};
+
+const EmbbededYoutube = ({ id, caption }) => {
+  const theme = useTheme();
+  return <><Box width='100%' height='500px'>
+    <Video url={'https://www.youtube.com/embed/' + id} title={"caca"} />
+  </Box>
+    <Box pt="20px" {...theme.styles.body2}><i>{caption}</i></Box>
+  </>
+}
+
+const directive = /youtube.com\/watch\?v=([a-zA-Z0-9]+)/
+const hd = /#+(.*)\n(.*)/
+
+const AutourDuLivre = ({ autourDuLivre }) => {
+  if (!autourDuLivre || autourDuLivre.length === 0) return null;
+  const textes = autourDuLivre.split('---');
+  const { position, cycle, backcycle } = useCycle(textes.length);
+  const text = textes[position];
+  let caption, rest;
+  const match = text.match(hd);
+  if (match) {
+    [, caption, rest] = match;
+  }
+  console.log('---')
+  console.log(text)
+  console.log(caption, rest);
+  const youtube = text.match(directive)?.[1];
+  console.log(youtube)
+  return (
+    <>
       <H2Icon Icon={Icons.Ecrire}>Autour du livre</H2Icon>
       <Box pb={['40px', '60px']} />
       <Grid>
-        <Box gcs='3' gce='11'>
-          <Flex>
-            <TextCard>
-              <Box color='accent'>
-                <QuoteSmall>
-                  {data.autourDuLivre && (
-                    <MD lang='fr'>{data.autourDuLivre}</MD>
-                  )}
-                </QuoteSmall>
-                {
-                  // <SubtitleFooter>
-                  //   <br />
-                  //   <Box>Anne-Renée Caillée, Liberté.</Box>
-                  // </SubtitleFooter>
-                }
-              </Box>
-            </TextCard>
-          </Flex>
+        {textes.length > 1 && (
+          <Box gcs='2' gce='3' alignSelf='center'>
+            <Clickable onClick={backcycle}>
+              <ArrowLeft />
+            </Clickable>
+          </Box>
+        )}
+        <Box gcs='4' gce='10'>
+          {youtube ? <EmbbededYoutube id={youtube} caption={caption} /> :
+            <EmbbededText text={rest} caption={caption} />
+          }
         </Box>
+        {textes.length > 1 && (
+          <Box gcs='11' gce='12' alignSelf='center'>
+            <Clickable onClick={cycle}>
+              <ArrowRight />
+            </Clickable>
+          </Box>
+        )}
       </Grid>
       <Box pb={['40px', '60px']} />
-    </Conditional>
-  </>);
-}
-
+    </>
+  );
+};
 
 export default function Livre({ data: { airtable } }) {
   const dataOut = cleanBook(airtable);
@@ -239,8 +294,8 @@ export default function Livre({ data: { airtable } }) {
 }
 
 export const query = graphql`
-  query($id: String) {
-    airtable(id: { eq: $id }) {
+  query ($id: String) {
+    airtable(id: {eq: $id }) {
       data {
         Auteur
         Auteur_livre
