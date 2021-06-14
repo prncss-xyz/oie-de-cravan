@@ -36,7 +36,7 @@ export const BookCard = ({ book }) => {
         <H3 color='accent' pb='5px'>
           {book.titre}
         </H3>
-        <Subtitle pb='20px'>{book.auteur}</Subtitle>
+        <Subtitle pb='20px'>{book.auteurLivre}</Subtitle>
         <Flex justifyContent='center'>
           {couverture && (
             <Image src={couverture} alt={book.titre} />

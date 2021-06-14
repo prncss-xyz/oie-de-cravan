@@ -144,7 +144,7 @@ export default function Home({
             <Body1>
               {books.slice(0, currentIndex).map((book) => (
                 <div key={book.id}>
-                  <i>{book.auteur},</i> {book.titre}
+                  {book.auteur},<i> {book.titre}</i>
                 </div>
               ))}
             </Body1>

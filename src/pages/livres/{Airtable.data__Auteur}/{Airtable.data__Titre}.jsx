@@ -249,11 +249,7 @@ const AutourDuLivre = ({ autourDuLivre }) => {
   if (match) {
     [, caption, rest] = match;
   }
-  console.log('---')
-  console.log(text)
-  console.log(caption, rest);
   const youtube = text.match(directive)?.[1];
-  console.log(youtube)
   return (
     <>
       <H2Icon Icon={Icons.Ecrire}>Autour du livre</H2Icon>
