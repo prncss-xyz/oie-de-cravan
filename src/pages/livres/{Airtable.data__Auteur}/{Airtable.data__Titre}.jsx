@@ -260,7 +260,7 @@ const AutourDuLivre = ({ autourDuLivre }) => {
       <Box pb={['40px', '60px']} />
       <Grid>
         {textes.length > 1 && (
-          <Box gcs='2' gce='3' alignSelf='center'>
+          <Box gcs='3' gce='4' justifyContent='end' alignSelf='center'>
             <Clickable onClick={backcycle}>
               <ArrowLeft />
             </Clickable>
