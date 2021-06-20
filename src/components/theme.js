@@ -70,6 +70,20 @@ const theme = {
       fontFamily: 'Spectral',
       fontSize: '22px',
       lineHeight: '32px',
+      css: {
+        '& p': {
+          marginBottom: '24px',
+        },
+        '& p:last-child': {
+          marginBottom: 0,
+        },
+        '& code': {
+          color: '#ED1F24',
+          fontFamily: 'Spectral',
+          fontSize: '22px',
+          lineHeight: '32px',
+        }
+      }
     },
     body2: {
       fontFamily: 'Spectral',

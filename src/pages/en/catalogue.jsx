@@ -1,26 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Main from '/src/templates/home';
+import Catalogue from '/src/templates/catalogue'
 
 export default function Page({ ...props }) {
-  return <Main en='/en' {...props} />;
+  return <Catalogue fr='/catalogue' {...props} />
 }
 
-export const queryStr = graphql`
-  query {
-    site {
-      buildTime
-    }
+export const query = graphql`
+  query EnCatalogueQuery {
     layout: allAirtableTexteDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
         data {
-          fr {
-            childMarkdownRemark {
-              html
-            }
-          }
           en {
             childMarkdownRemark {
               html
@@ -30,14 +22,9 @@ export const queryStr = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/" } } }) {
+    allAirtableTexteDuSite(filter: { data: { url: { eq: "/catalogue" } } }) {
       nodes {
         data {
-          fr {
-            childMarkdownRemark {
-              html
-            }
-          }
           en {
             childMarkdownRemark {
               html
@@ -48,7 +35,7 @@ export const queryStr = graphql`
       }
     }
     allAirtableCatalogue(
-      sort: { fields: data___Publication__date_, order: DESC }
+      sort: {fields: data___Publication__date_, order: DESC }
     ) {
       nodes {
         id
@@ -57,11 +44,14 @@ export const queryStr = graphql`
           Couverture {
             url
           }
-          Publication__date_
           Titre
           Auteur
         }
       }
+    }
+    localSearchBooks {
+      store
+      index
     }
   }
 `;

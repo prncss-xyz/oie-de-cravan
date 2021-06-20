@@ -1,18 +1,18 @@
-import Main from '/src/templates/nous-rejoindre';
+import React from 'react';
 import { graphql } from 'gatsby';
+import Main from '/src/templates/auteurs';
 
 export default function Page({ ...props }) {
-  return <Main en='/en/reach-us' {...props} />;
+  return <Main fr='/auteurs' {...props} />;
 }
-
-export const queryStr = graphql`
-  query NousRejoindreQuery {
+export const query = graphql`
+  query {
     layout: allAirtableTexteDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
         data {
-          fr {
+          en {
             childMarkdownRemark {
               html
             }
@@ -21,15 +21,22 @@ export const queryStr = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/nous-rejoindre" } } }) {
+    allAirtableTexteDuSite(filter: { data: { url: { eq: "/auteurs" } } }) {
       nodes {
         data {
-          fr {
+          en {
             childMarkdownRemark {
               html
             }
           }
           Name
+        }
+      }
+    }
+    allAirtableCatalogue {
+      nodes {
+        data {
+          Auteur
         }
       }
     }

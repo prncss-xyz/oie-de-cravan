@@ -1,8 +1,9 @@
 import React, { useReducer } from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
-import Layout from '../../../components/layout';
-import * as Icons from '../../../components/icons';
+import { useLang } from '../components/lang';
+import page from '../components/layout';
+import * as Icons from '../components/icons';
 import {
   Clickable,
   Video,
@@ -19,15 +20,14 @@ import {
   GridMd,
   Tilde,
   Subtitle,
-  VSpacerLarge,
-  VSpacerSmall,
-  VSpacerXSmall,
   ButtonSmall,
   TextCard,
-} from '../../../components/elements';
-import nuage from '../../../icons/nuage.svg';
-import { ArrowLeft, ArrowRight } from '../../../components/icons';
-import { cleanBook, MD } from '../../../utils';
+} from '../components/elements';
+import nuage from '../icons/nuage.svg';
+import { ArrowLeft, ArrowRight } from '../components/icons';
+import { cleanBook, MD, unP } from '../utils';
+
+const lang = "fr";
 
 const Nuage = () => {
   return (
@@ -38,6 +38,8 @@ const Nuage = () => {
 };
 
 function BackLink() {
+  const theme = useTheme();
+  const { textes } = useLang();
   return (
     <Flex justifyContent='space-between' alignItems='flex-end'>
       <Link to='/catalogue'>
@@ -46,9 +48,7 @@ function BackLink() {
         </Box>
       </Link>
       <Link to='/catalogue'>
-        <ButtonSmall pt='20px'>
-          Retour au catalogue général de la compagnie
-        </ButtonSmall>
+        <Box t='20px' {...theme.styles.buttonSmall} dangerouslySetInnerHTML={{ __html: textes['retour'] }} />
       </Link>
       <Box flexGrow='1' />
     </Flex>
@@ -90,13 +90,14 @@ const useCycle = (length) => {
     let position;
     switch (action.type) {
       case 'CYCLE':
-        position = state.position + 1;
+        position = state.position;
+        position++;
         if (position === state.length) position = 0;
         return { ...state, position };
       case 'BACKCYCLE':
         position = state.position;
         if (position === 0) position = state.length;
-        position = position - 1;
+        position--;
         return { ...state, position };
       case 'GO':
         return { ...state, position: action.position };
@@ -116,6 +117,7 @@ const useCycle = (length) => {
 };
 
 const BookCol = ({ data, ...props }) => {
+  const { textes } = useLang();
   const theme = useTheme();
   const { position, cycle, go } = useCycle(data.couvertures.length);
   return (
@@ -151,13 +153,79 @@ const BookCol = ({ data, ...props }) => {
             {data.hauteur} x {data.largeur} cm
           </Box>
         )}
-        {data.pages && <Box>{data.pages} pages</Box>}
+        {data.pages && <Box>{data.pages} <div dangerouslySetInnerHTML={{ __html: unP(textes['pages']) }} /></Box>}
       </Box>
     </Box>
   );
 };
 
-const Main = ({ data }) => {
+const EmbbededText = ({ text, caption }) => {
+  const theme = useTheme();
+  return (
+    <TextCard>
+      <Box color='accent'>
+        <QuoteSmall>
+          <MD lang={lang} contents={text} />
+        </QuoteSmall>
+        <Box pt="20px" {...theme.styles.subtitle}>{caption}</Box>
+      </Box>
+    </TextCard>
+  );
+};
+
+const EmbbededYoutube = ({ id, caption }) => {
+  const theme = useTheme();
+  return <><Box width='100%' height='500px'>
+    <Video url={'https://www.youtube.com/embed/' + id} title={"caca"} />
+  </Box>
+    <Box pt="20px" {...theme.styles.body2}><i>{caption}</i></Box>
+  </>
+}
+
+const re = /youtube.com\/watch\?v=(.+)/
+
+const AutourDuLivre = ({ autour }) => {
+  const { position, cycle, backcycle } = useCycle(autour.length);
+  const {
+    Description: description,
+    Texte: texte,
+    Youtube: youtube,
+  } = autour[position].data;
+  const { textes } = useLang();
+  const youtubeId = youtube?.match(re)?.[1];
+  return (
+    <>
+      <H2Icon Icon={Icons.Ecrire} dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }} />
+      <Box pb={['40px', '60px']} />
+      <Grid>
+        {autour.length > 1 && (
+          <Box gcs='3' gce='4' justifyContent='end' alignSelf='center'>
+            <Clickable onClick={backcycle}>
+              <ArrowLeft />
+            </Clickable>
+          </Box>
+        )}
+        <Box gcs='4' gce='10'>
+          {youtubeId ? <EmbbededYoutube id={youtubeId} caption={description} /> :
+            <EmbbededText text={texte} caption={description} />
+          }
+        </Box>
+        {autour.length > 1 && (
+          <Box gcs='11' gce='12' alignSelf='center'>
+            <Clickable onClick={cycle}>
+              <ArrowRight />
+            </Clickable>
+          </Box>
+        )}
+      </Grid>
+      <Box pb={['40px', '60px']} />
+    </>
+  );
+};
+
+const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
+  const data = cleanBook(airtableCatalogue);
+  const autour = allAirtableAutourDuLivre.nodes
   return (
     <>
       <Box pb={['40px', '60px']} />
@@ -198,7 +266,7 @@ const Main = ({ data }) => {
           </Box>
           <Body1>
             {data.presentation.length > 0 && (
-              <MD lang='fr' contents={data.presentation} />
+              <MD lang={lang} contents={data.presentation} />
             )}
           </Body1>
           <Box pb='40px' />
@@ -208,112 +276,11 @@ const Main = ({ data }) => {
         </Box>
       </GridMd>
       <Box pb={['100px', '180px']} />
-      <AutourDuLivre autourDuLivre={data.autourDuLivre} />
-    </>
-  );
-};
-
-const EmbbededText = ({ text, caption }) => {
-  const theme = useTheme();
-  return (
-    <TextCard>
-      <Box color='accent'>
-        <QuoteSmall>
-          <MD lang='fr' contents={text} />
-        </QuoteSmall>
-        <Box pt="20px" {...theme.styles.subtitle}>{caption}</Box>
-      </Box>
-    </TextCard>
-  );
-};
-
-const EmbbededYoutube = ({ id, caption }) => {
-  const theme = useTheme();
-  return <><Box width='100%' height='500px'>
-    <Video url={'https://www.youtube.com/embed/' + id} title={"caca"} />
-  </Box>
-    <Box pt="20px" {...theme.styles.body2}><i>{caption}</i></Box>
-  </>
-}
-
-const directive = /youtube.com\/watch\?v=([a-zA-Z0-9]+)/
-const hd = /#+(.*)\n(.*)/
-
-const AutourDuLivre = ({ autourDuLivre }) => {
-  if (!autourDuLivre || autourDuLivre.length === 0) return null;
-  const textes = autourDuLivre.split('---');
-  const { position, cycle, backcycle } = useCycle(textes.length);
-  const text = textes[position];
-  let caption, rest;
-  const match = text.match(hd);
-  if (match) {
-    [, caption, rest] = match;
-  }
-  const youtube = text.match(directive)?.[1];
-  return (
-    <>
-      <H2Icon Icon={Icons.Ecrire}>Autour du livre</H2Icon>
-      <Box pb={['40px', '60px']} />
-      <Grid>
-        {textes.length > 1 && (
-          <Box gcs='3' gce='4' justifyContent='end' alignSelf='center'>
-            <Clickable onClick={backcycle}>
-              <ArrowLeft />
-            </Clickable>
-          </Box>
-        )}
-        <Box gcs='4' gce='10'>
-          {youtube ? <EmbbededYoutube id={youtube} caption={caption} /> :
-            <EmbbededText text={rest} caption={caption} />
-          }
-        </Box>
-        {textes.length > 1 && (
-          <Box gcs='11' gce='12' alignSelf='center'>
-            <Clickable onClick={cycle}>
-              <ArrowRight />
-            </Clickable>
-          </Box>
-        )}
-      </Grid>
-      <Box pb={['40px', '60px']} />
-    </>
-  );
-};
-
-export default function Livre({ data: { airtable } }) {
-  const dataOut = cleanBook(airtable);
-  return (
-    <Layout title={dataOut.titre}>
-      <Main data={dataOut} />
-    </Layout>
-  );
-}
-
-export const query = graphql`
-  query ($id: String) {
-    airtable(id: {eq: $id }) {
-      data {
-        Auteur
-        Auteur_livre
-        Collection
-        Couverture {
-          url
-        }
-        Critiques__extrait_
-        Genre
-        Hauteur__cm_
-        Largeur__cm_
-        ISBN
-        Pages__nombre_
-        Prix_site_Web__CAD_
-        Prix_site_Web__EU_
-        Publication__date_
-        Titre
-        Pr_sentation_et_Bio
-        Autour_du_livre
-        Cr_ateurs_secondaires
-        _puis_
+      {
+        autour.length > 0 && <AutourDuLivre autour={autour} autourDuLivre={data.autourDuLivre} />
       }
-    }
-  }
-`;
+    </>
+  );
+};
+
+export default page(Main)

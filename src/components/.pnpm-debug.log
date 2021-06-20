@@ -1,0 +1,15 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+    "hint": "Available dependencies: eslint-config-prettier, eslint-plugin-react, gatsby-source-filesystem, @babel/core, @emotion/react, @emotion/styled, @fontsource/arimo, @fontsource/spectral, @mavrin/remark-typograf, @sindresorhus/slugify, @types/react-helmet, @types/styled-system, babel-preset-gatsby, gatsby, gatsby-plugin-emotion, gatsby-plugin-local-search, gatsby-plugin-paypal, gatsby-plugin-pnpm, gatsby-plugin-react-helmet, gatsby-remark-line-breaks, gatsby-source-airtable, gatsby-transformer-remark, lunr, masonic, mdast-util-from-markdown, modern-css-reset, react, react-dom, react-helmet, react-icons, react-markdown, remove-accents, styled-system",
+    "err": {
+      "name": "Error",
+      "message": "Cannot remove 'remark-breaks': no such dependency found",
+      "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+      "stack": "Error: Cannot remove 'remark-breaks': no such dependency found\n    at Object.handler (/usr/lib/node_modules/pnpm/dist/pnpm.cjs:112885:13)\n    at async Timeout._onTimeout (/usr/lib/node_modules/pnpm/dist/pnpm.cjs:121000:22)"
+    }
+  }
+}

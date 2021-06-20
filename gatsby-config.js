@@ -1,4 +1,5 @@
 const { normalize } = require('./util');
+
 module.exports = {
   pathPrefix: `/oie-de-cravan`,
   siteMetadata: {
@@ -9,18 +10,15 @@ module.exports = {
       options: {},
       resolve: `gatsby-plugin-pnpm`,
     },
-    {
-      resolve: `gatsby-plugin-paypal`,
-      options: {
-        //clientId: process.env.PAYPAL_CLIENT_ID,
-        clienId: 'sb',
-        // buyerCountry: 'CA',
-        //currency: `EUR`, // Optional
-        //vault: true, // Optional
-      },
-    },
     // {
-    //   resolve: `gatsby-plugin-build-date`,
+    //   options: {
+    //     resolve: `gatsby-plugin-paypal`,
+    //     //clientId: process.env.PAYPAL_CLIENT_ID,
+    //     clienId: 'sb',
+    //     // buyerCountry: 'CA',
+    //     //currency: `EUR`, // Optional
+    //     //vault: true, // Optional
+    //   },
     // },
     `gatsby-plugin-emotion`,
     {
@@ -30,10 +28,38 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_BASE,
-            tableName: process.env.AIRTABLE_TABLE_NAME,
+            tableName: 'Catalogue',
+            queryName: 'Catalogue',
+            separateNodeType: true,
+            defaultValues: {
+              Cr_ateurs_secondaires__en_: '',
+            },
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE,
+            tableName: 'Autour du livre',
+            queryName: 'AutourDuLivre',
+            tableLinks: ['Livre'],
+            separateNodeType: true,
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE,
+            tableName: 'Texte du site',
+            queryName: 'TexteDuSite',
+            mapping: {
+              fr: 'text/markdown',
+              en: 'text/markdown',
+            },
+            separateNodeType: true,
           },
         ],
       },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-custom`],
+      }
     },
     {
       resolve: 'gatsby-plugin-local-search',
@@ -42,7 +68,7 @@ module.exports = {
         engine: 'lunr',
         query: `
           {
-            allAirtable {
+            allAirtableCatalogue {
               edges {
                 node {
                   id
@@ -52,7 +78,8 @@ module.exports = {
                     Collection
                     Genre
                     ISBN
-                    Cr_ateurs_secondaires
+                    Cr_ateurs_secondaires__fr_
+                    Cr_ateurs_secondaires__en_
                   }
                 }
               }
@@ -66,19 +93,23 @@ module.exports = {
           'collection',
           'genre',
           'isbn',
-          'createursSecondaires',
+          'createursSecondaires_en',
+          'createursSecondaires_fr',
         ],
         normalizer: ({ data }) =>
-          data.allAirtable.edges.map(({ node }) => {
+          data.allAirtableCatalogue.edges.map(({ node }) => {
             return {
-              id: node?.id,
+              id: node.id,
               titre: normalize(node?.data['Titre']),
               auteur: normalize(node?.data['Auteur']),
               collection: normalize(node?.data['Collection']),
               genre: normalize(node?.data['Genre']),
               isbn: normalize(node?.data['ISBN']),
-              createursSecondaires: normalize(
-                node?.data['Cr_ateurs_secondaires'],
+              createursSecondaires_fr: normalize(
+                node?.data['Cr_ateurs_secondaires__fr_'],
+              ),
+              createursSecondaires_en: normalize(
+                node?.data['Cr_ateurs_secondaires__en_'],
               ),
             };
           }),

@@ -2,17 +2,17 @@ import Main from '/src/templates/nous-rejoindre';
 import { graphql } from 'gatsby';
 
 export default function Page({ ...props }) {
-  return <Main en='/en/reach-us' {...props} />;
+  return <Main fr='/nous-rejoindre' {...props} />;
 }
 
 export const queryStr = graphql`
-  query NousRejoindreQuery {
+  query EnReachUsQuery {
     layout: allAirtableTexteDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
         data {
-          fr {
+          en {
             childMarkdownRemark {
               html
             }
@@ -24,7 +24,7 @@ export const queryStr = graphql`
     allAirtableTexteDuSite(filter: { data: { url: { eq: "/nous-rejoindre" } } }) {
       nodes {
         data {
-          fr {
+          en {
             childMarkdownRemark {
               html
             }

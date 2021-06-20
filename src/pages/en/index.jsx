@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Main from '/src/templates/home';
 
 export default function Page({ ...props }) {
-  return <Main en='/en' {...props} />;
+  return <Main fr='/' {...props} />;
 }
 
 export const queryStr = graphql`
@@ -16,11 +16,6 @@ export const queryStr = graphql`
     ) {
       nodes {
         data {
-          fr {
-            childMarkdownRemark {
-              html
-            }
-          }
           en {
             childMarkdownRemark {
               html
@@ -33,11 +28,6 @@ export const queryStr = graphql`
     allAirtableTexteDuSite(filter: { data: { url: { eq: "/" } } }) {
       nodes {
         data {
-          fr {
-            childMarkdownRemark {
-              html
-            }
-          }
           en {
             childMarkdownRemark {
               html

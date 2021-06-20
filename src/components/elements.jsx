@@ -14,7 +14,7 @@ import {
 } from 'styled-system';
 import * as Icons from './icons';
 
-export const Video = ({ url, title }) => (
+export const Video = ({ url, title, ...props }) => (
   <iframe
     width='100%'
     height='100%'
@@ -25,13 +25,14 @@ export const Video = ({ url, title }) => (
     webkitallowfullscreen="true"
     mozallowfullscreen="true"
     allowFullScreen
+    {...props}
   />
 )
 
-export const BookCard = ({ book }) => {
+export const BookCard = ({ book, ...props }) => {
   const couverture = book.couvertures?.[0];
   return (
-    <Link to={book.page}>
+    <Link to={book.page} {...props}>
       <Card pix='20px' piy='20px'>
         <H3 color='accent' pb='5px'>
           {book.titre}
@@ -89,9 +90,9 @@ export const Navigation = ({ children }) => {
   return <Box {...theme.styles.navigation}>{children}</Box>;
 };
 
-export const Tilde = () => {
+export const Tilde = ({ ...props }) => {
   const theme = useTheme();
-  return <Box {...theme.styles.h1}>{'~'}</Box>;
+  return <Box {...theme.styles.h1} {...props}>{'~'}</Box>;
 };
 
 
@@ -111,11 +112,11 @@ const respPros = (...propObjs) => {
   return res;
 }
 
-export const H1Tilde = ({ children }) => {
+export const H1Tilde = ({ children, dangerouslySetInnerHTML, ...props }) => {
   const theme = useTheme();
   const styles = respPros(theme.styles.h2, theme.styles.h1)
   return (
-    <Flex justifyContent='center' color='accent'>
+    <Flex justifyContent='center' color='accent' {...props}>
       <Flex
         maxWidth='800px'
         {...theme.styles.h1}
@@ -123,7 +124,7 @@ export const H1Tilde = ({ children }) => {
         flexDirection={['column', 'row']}
       >
         <Box>~</Box>
-        <Box px='18px' textAlign='center' {...styles}>
+        <Box as='h1' px='18px' textAlign='center' dangerouslySetInnerHTML={dangerouslySetInnerHTML} {...styles}>
           {children}
         </Box>
         <Box>~</Box>
@@ -155,9 +156,9 @@ export const VSpacerMedium = () => <Box pb={['60px', '100px']} />
 export const VSpacerSmall = () => <Box pb={['40px', '60px']} />
 export const VSpacerXSmall = () => <Box pb='40px' />;
 
-export const H2Icon = ({ Icon, children, ...props }) => {
+export const H2Icon = ({ Icon, children, dangerouslySetInnerHTML, ...props }) => {
   return (
-    <Flex justifyContent='center' color='accent'>
+    <Flex justifyContent='center' color='accent' {...props}>
       <Flex
         justifyContent='center'
         alignItems='center'
@@ -169,7 +170,7 @@ export const H2Icon = ({ Icon, children, ...props }) => {
           textAlign='center'
           px='16px'
           py={['20px', '0px']}
-          {...props}
+          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         >
           {children}
         </H2>
@@ -179,15 +180,17 @@ export const H2Icon = ({ Icon, children, ...props }) => {
   );
 };
 
-export const H3Icon = ({ Icon, children }) => {
+export const H3Icon = ({ Icon, children, dangerouslySetInnerHTML, ...props }) => {
   const theme = useTheme();
   // maxwidth
   return (
-    <Box color='accent' textAlign={'left'}>
+    <Box color='accent' textAlign={'left'} {...props}>
       <Flex justifyContent='center'>
         {Icon && <Icon />}
         <Box pr='16px' />
-        <Box as='h3' {...theme.styles.h3} minWidth='100%'>
+        <Box as='h3' {...theme.styles.h3} minWidth='100%'
+          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+        >
           {children}
         </Box>
         <Box pr='16px' />
@@ -197,15 +200,17 @@ export const H3Icon = ({ Icon, children }) => {
   );
 };
 
-export function Arrows({ children }) {
+export function Arrows({ children, dangerouslySetInnerHTML, ...props }) {
   const theme = useTheme();
   return (
     <Flex flexDirection='column' alignItems='center' color='accent'>
       <Icons.ArrowBottom />
       <Flex alignItems='center'>
         <Icons.ArrowRight />
-        <Box px='18px' py='16px' textAlign="center" {...theme.styles.button}>
-          {children}{' '}
+        <Box px='18px' py='16px' textAlign="center" {...theme.styles.button}
+          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+        >
+          {children}
         </Box>
         <Icons.ArrowLeft />
       </Flex>
@@ -245,13 +250,12 @@ export function Search({ label, handler, value0, ...props }) {
   }
   useEffect(() => { ref.current.value = value0 }, [])
   return (
-    <Box px={["20px", "0px"]}>
+    <Box px={["20px", "0px"]} {...props}>
       <Flex
         width={['100%', 'max-content']}
         borderWidth='1px'
         borderStyle='solid'
         color='accent'
-        {...props}
       >
         <form onChange={submit} onSubmit={noop}>
           <input
@@ -275,7 +279,7 @@ export function Search({ label, handler, value0, ...props }) {
   );
 }
 
-export function Card({ children, pix, piy }) {
+export function Card({ children, pix, piy, ...props }) {
   return (
     <Box
       heigh='100%'
@@ -284,6 +288,7 @@ export function Card({ children, pix, piy }) {
       borderColor='primary'
       borderWidth='1px'
       p='8px'
+      {...props}
     >
       <Box
         width='100%'
@@ -401,7 +406,7 @@ export function Subtitle({ children, ...props }) {
   );
 }
 
-export function Body1({ children }) {
+export function Body1({ children, ...props }) {
   const theme = useTheme();
   return (
     <Box
@@ -414,6 +419,7 @@ export function Body1({ children }) {
           marginBottom: 0,
         },
       }}
+      {...props}
     >
       {children}
     </Box>
@@ -467,9 +473,10 @@ export function Image({ src, alt, ...props }) {
   );
 }
 
-export const Clickable = ({ onClick, children }) => (<button
+export const Clickable = ({ onClick, children, ...props }) => (<button
   css={{ border: '0px', background: 'transparent', padding: '0px' }}
   onClick={onClick}
+  {...props}
 >
   {children}
 </button>)

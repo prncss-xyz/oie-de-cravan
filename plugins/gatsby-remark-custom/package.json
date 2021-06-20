@@ -1,0 +1,15 @@
+{
+  "name": "gatsby-remark-custom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juliette Lamarche <juliette.lamarche@princesse.xyz> (https://github.com/prncss-xyz/)",
+  "license": "MIT",
+  "dependencies": {
+    "remark-breaks": "^2.0.2",
+    "unist-util-visit": "^2"
+  }
+}

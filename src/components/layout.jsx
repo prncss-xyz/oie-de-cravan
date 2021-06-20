@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
+import { useLang, LangProvider } from '/src/components/lang';
+import { Clickable } from '/src/components/elements';
+import { unP } from '/src/utils';
 import { Global, ThemeProvider, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet';
-import { name } from '../../package.json';
 import { Link } from 'gatsby';
-import {FaBars} from "react-icons/fa"
+import { FaBars } from 'react-icons/fa';
 import theme from './theme';
 import logoOie_footer from '../images/LogoOie_Footer.png';
-import {ArrowLeftBlack, ArrowRightBlack} from "./icons"
-import {
-  Flex,
-  Box,
-  Nav,
-  QuoteXSmall,
-  Caption,
-  NavigationFooter,
-  SubtitleFooter,
-  Navigation,
-} from './elements';
+import { ArrowLeftBlack, ArrowRightBlack } from './icons';
+import { Flex, Box } from './elements';
 import 'modern-css-reset/dist/reset.min.css';
 import '@fontsource/arimo';
 import '@fontsource/arimo/400.css';
@@ -25,9 +18,13 @@ import '@fontsource/spectral/400-italic.css';
 import '@fontsource/spectral';
 import '@fontsource/spectral/400.css';
 
+const name = "L'Oie de Cravan";
+
 function OverlayMenu({ closeHandler }) {
+  const { lang, layoutTextes, links } = useLang();
   const theme = useTheme();
-  return (<Box
+  return (
+    <Box
       bg='accent'
       color='background'
       css={{
@@ -36,44 +33,83 @@ function OverlayMenu({ closeHandler }) {
       }}
       height='100%'
       width='100%'
->
-      <a
-        onClick={(e) => {
-          e.preventDefault();
-          closeHandler();
-        }}
-        href=''
-      >
-      <Flex  pt="40px" justifyContent="center" alignItems="center">
-        <ArrowRightBlack/>
-      <Box {...theme.styles.navigation} px="30px">
-        Fermer
-          </Box>
-        <ArrowLeftBlack/>
-        </Flex>
-      </a>
-    <Flex
-      height='100%'
-      flexDirection='column'
-      onClick={closeHandler}
-      justifyContent='center'
-      textAlign='center'
-      {...theme.styles.overlay}
-      css={{gap: "10px"}}
     >
-      <Link to='/'>L’Oie de Cravan</Link>
-      <Link to='/catalogue'>Catalogue</Link>
-      <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
-      <Link to='/nous-rejoindre'>Nous rejoindre</Link>
-    </Flex>
-  </Box>);
+      <Flex justifyContent='center'>
+        <Clickable onClick={closeHandler}>
+          <Flex pt='40px' justifyContent='center' alignItems='center'>
+            <ArrowRightBlack />
+            <Box
+              {...theme.styles.navigation}
+              px='30px'
+              dangerouslySetInnerHTML={{ __html: unP(layoutTextes['fermer']) }}
+            />
+            <ArrowLeftBlack />
+          </Flex>
+        </Clickable>
+      </Flex>
+      <Flex
+        height='100%'
+        flexDirection='column'
+        onClick={closeHandler}
+        justifyContent='center'
+        textAlign='center'
+        {...theme.styles.overlay}
+        css={{ gap: '10px' }}
+      >
+        <Link to={links['accueil']}>
+          <div
+            dangerouslySetInnerHTML={{ __html: unP(layoutTextes['accueil']) }}
+          />
+        </Link>
+        <Link to={links['catalogue']}>
+          <div
+            dangerouslySetInnerHTML={{ __html: unP(layoutTextes['catalogue']) }}
+          />
+        </Link>
+        <a href='https://oiedecravan.blogspot.com/'>
+          <div
+            dangerouslySetInnerHTML={{ __html: unP(layoutTextes['nouvelles']) }}
+          />
+        </a>
+        <Link to={links['nous rejoindre']}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: unP(layoutTextes['nous rejoindre']),
+            }}
+          />
+        </Link>
+      </Flex>
+    </Box>
+  );
 }
 
-const Header = () => {
+const En = ({ en }) =>
+  en ? (
+    <Box color={theme.colors.accent}>
+      <Link to={en}>en</Link>
+    </Box>
+  ) : (
+    <Box>en</Box>
+  );
+
+const Fr = ({ fr }) =>
+  fr ? (
+    <Box color={theme.colors.accent}>
+      <Link to={fr}>fr</Link>
+    </Box>
+  ) : (
+    <Box>fr</Box>
+  );
+
+const Header = ({ en, fr }) => {
   const theme = useTheme();
+  const { lang, layoutTextes, links } = useLang();
+  if (lang === 'en' && en) throw new Error(`unexpected 'en' parameter`);
+  if (lang === 'fr' && fr) throw new Error(`unexpected 'fr' parameter`);
   const [menuOpened, menuOpen] = useState(false);
-    return (<>
-      <Box display={["", "none"]}>
+  return (
+    <>
+      <Box display={['inherit', 'none']}>
         {menuOpened && <OverlayMenu closeHandler={() => menuOpen(false)} />}
         <a
           href=''
@@ -83,31 +119,69 @@ const Header = () => {
           }}
         >
           <Flex color='accent' justifyContent='space-between'>
-            <Box {...theme.styles.h3}>L’Oie de Cravan</Box>
-            <FaBars size={theme.styles.h3.fontSize}/>
+            <Box
+              {...theme.styles.h3}
+              dangerouslySetInnerHTML={{ __html: unP(layoutTextes['titre']) }}
+            />
+            <FaBars size={theme.styles.h3.fontSize} />
           </Flex>
         </a>
       </Box>
-    <Box display={["none", "inherit"]} margin='auto' pt='80px' maxWidth='1560px' px='40px'>
-      <Flex alignItems='baseline'  
-        >
-        <Flex color='accent' alignItems='baseline' {...theme.styles.oie}>
-          <Link to='/'>L’Oie de Cravan</Link>
+      <Box
+        display={['none', 'inherit']}
+        margin='auto'
+        pt='80px'
+        maxWidth='1560px'
+        px='40px'
+      >
+        <Flex alignItems='baseline'>
+          <Flex color='accent' alignItems='baseline' {...theme.styles.oie}>
+            <Link
+              to={links['accueil']}
+              dangerouslySetInnerHTML={{ __html: unP(layoutTextes['titre']) }}
+            />
+          </Flex>
+          <Flex flexGrow='1' />
+          <Flex
+            alignItems='baseline'
+            css={{ columnGap: '20px' }}
+            {...theme.styles.navigation}
+          >
+            <Link to={links['catalogue']}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['catalogue']),
+                }}
+              />
+            </Link>
+            <a href='https://oiedecravan.blogspot.com/'>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['nouvelles']),
+                }}
+              />
+            </a>
+            <Link to={links['nous rejoindre']}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['nous rejoindre']),
+                }}
+              />
+            </Link>
+          </Flex>
+          <Flex alignItems='baseline' {...theme.styles.navigation}>
+            <Box pl='20px' />
+            {lang === 'fr' ? <En en={en} /> : <Fr fr={fr} />}
+          </Flex>
         </Flex>
-        <Flex flexGrow='1' />
-        <Flex alignItems='baseline' css={{ 'column-gap': '20px'}} {...theme.styles.navigation}>
-          <Link to='/catalogue'>Catalogue</Link>
-          <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
-          <Link to='/nous-rejoindre'>Nous rejoindre</Link>
-        </Flex>
-      </Flex>
-    </Box>
-  </>);
+      </Box>
+    </>
+  );
 };
 
 const Footer = () => {
   const theme = useTheme();
-  const mw = "10%"
+  const { lang, layoutTextes, links } = useLang();
   return (
     <>
       <Box color='accent' borderTopStyle='solid' borderWidth='1px' />
@@ -121,52 +195,67 @@ const Footer = () => {
         flexDirection={['column', 'row']}
         alignItems={['center', 'flex-start']}
         textAlign={['center', 'left']}
-        justifyContent="stretch"
+        justifyContent='stretch'
       >
-        <Box
-          width='70px'
-          height='100%'
-          pr={['0px', '20px']}
-          flex="0 0 auto"
-        >
-          <img
-            alt='logo oie'
-            src={logoOie_footer}
-            margin='auto'
-          />
+        <Box width='70px' height='100%' pr={['0px', '20px']} flex='0 0 auto'>
+          <img alt='logo oie' src={logoOie_footer} margin='auto' />
         </Box>
         <Box
           flex='1 1 auto'
           pb='40px'
           pt={['40px', '10px']}
-        {...theme.styles.caption}
-        >
-          <Box>L’Oie de Cravan</Box>
-          <Box>6258 rue De La Roche</Box>
-          <Box>Montréal, Qc</Box>
-          <Box>H2S 2E1</Box>
-          <Box>lentement // oiedecravan.com</Box>
-        </Box>
-        <Box 
+          {...theme.styles.caption}
+          dangerouslySetInnerHTML={{
+            __html: layoutTextes['adresse'],
+          }}
+        />
+        <Box
           flex='1 1 auto'
-          {...theme.styles.navigationFooter} 
-          pt={['0px', '10px']} >
+          {...theme.styles.navigationFooter}
+          pt={['0px', '10px']}
+        >
           <Box>
-            <Link to='/'>Accueil</Link>
+            <Link to={links['accueil']}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['accueil']),
+                }}
+              />
+            </Link>
           </Box>
           <Box>
-            <Link to='/catalogue'>Catalogue</Link>
+            <Link to={links['catalogue']}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['catalogue']),
+                }}
+              />
+            </Link>
           </Box>
           <Box>
-            <a href='https://oiedecravan.blogspot.com/'>Nouvelles</a>
+            <a href='https://oiedecravan.blogspot.com/'>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['nouvelles']),
+                }}
+              />
+            </a>
           </Box>
           <Box>
-            <Link to='/nous-rejoindre'>Nous rejoindre</Link>
+            <Link to={links['nous rejoindre']}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: unP(layoutTextes['nous rejoindre']),
+                }}
+              />
+            </Link>
           </Box>
         </Box>
         <Box
           flex='1 1 auto'
-          {...theme.styles.navigationFooter} pt={['40px', '10px']} >
+          {...theme.styles.navigationFooter}
+          pt={['40px', '10px']}
+        >
           <Box>
             <a href='https://twitter.com/oiedecravan/'>Twitter</a>
           </Box>
@@ -177,13 +266,19 @@ const Footer = () => {
         <Box flex={['0', '1 2 60px']} />
         <Flex flex={['1 1 auto', '0 2 400px']} pt={['40px', '10px']}>
           <Box>
-          <QuoteXSmall>
-            Les Oies de Cravan naissent des mâts pourris des navires perdus au
-            Golfe du Mexique
-          </QuoteXSmall>
-          <SubtitleFooter pt="10px">
-            Louis Scutenaire
-          </SubtitleFooter>
+            <Box
+              {...theme.styles.quoteXSmall}
+              dangerouslySetInnerHTML={{
+                __html: unP(layoutTextes['citation 0']),
+              }}
+            />
+            <Box
+              {...theme.styles.subtitle}
+              pt='10px'
+              dangerouslySetInnerHTML={{
+                __html: unP(layoutTextes['signature 0']),
+              }}
+            />
           </Box>
         </Flex>
       </Flex>
@@ -191,7 +286,7 @@ const Footer = () => {
   );
 };
 
-const Page = ({ title, children }) => {
+const Page = ({ title, children, en, fr }) => {
   const theme = useTheme();
   return (
     <>
@@ -213,7 +308,7 @@ const Page = ({ title, children }) => {
           },
         }}
       />
-      <Header />
+      <Header en={en} fr={fr} />
       <Box px={['0px', '40px']} maxWidth='1480px' margin='auto'>
         {children}
       </Box>
@@ -222,10 +317,31 @@ const Page = ({ title, children }) => {
   );
 };
 
-export default function Layout(props) {
-  return (
-    <ThemeProvider theme={theme}>
-        <Page {...props} />
-    </ThemeProvider>
-  );
-}
+const page0 =
+  (Main) =>
+    ({ title, en, fr, data, ...props }) => {
+      const Main1 = () => (
+        <Page en={en} fr={fr} title={title}>
+          <Main data={data} {...props} />
+        </Page>
+      );
+      const Main0 = page(Main1);
+      return (
+        <ThemeProvider theme={theme}>
+          <Main0 en={en} fr={fr} data={data} {...props} />
+        </ThemeProvider>
+      );
+    };
+
+const page =
+  (Main) =>
+    ({ data, en, fr, ...props }) => {
+      const lang = en || en === null ? 'fr' : 'en';
+      return (
+        <LangProvider lang={lang} data={data}>
+          <Main data={data} {...props} />
+        </LangProvider>
+      );
+    };
+
+export default page0;
