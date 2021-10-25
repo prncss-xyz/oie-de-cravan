@@ -11,7 +11,7 @@ const linksEn = {
   'accueil': '/en',
   'catalogue': '/en/catalogue',
   'nouvelles': null,
-  'nous rejoindre': '/reach-us',
+  'nous rejoindre': '/en/reach-us',
 }
 
 const Context = React.createContext(null);

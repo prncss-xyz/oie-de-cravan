@@ -1,5 +1,4 @@
 const { normalize } = require('./util');
-
 module.exports = {
   pathPrefix: `/oie-de-cravan`,
   siteMetadata: {
@@ -35,7 +34,7 @@ module.exports = {
               Cr_ateurs_secondaires__en_: '',
             },
           },
-          {
+         {
             baseId: process.env.AIRTABLE_BASE,
             tableName: 'Autour du livre',
             queryName: 'AutourDuLivre',
