@@ -1,5 +1,10 @@
 image: node:latest
 
+variables:
+  AIRTABLE_API_KEY: $AIRTABLE_API_KEY
+  AIRTABLE_BASE_CATALOGUE: $AIRTABLE_BASE_CATALOGUE
+  AIRTABLE_BASE_TEXTES_DU_SITE: $AIRTABLE_BASE_TEXTES_DU_SITE
+
 cache:
   paths:
     - node_modules/
