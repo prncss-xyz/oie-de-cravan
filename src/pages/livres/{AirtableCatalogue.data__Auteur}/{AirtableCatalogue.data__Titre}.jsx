@@ -8,7 +8,7 @@ export default function Page({ ...props }) {
 
 export const query = graphql`
   query ($id: String) {
-    layout: allAirtableTexteDuSite(
+    layout: allAirtableTextesDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
@@ -22,7 +22,7 @@ export const query = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/livres" } } }) {
+    allAirtableTextesDuSite(filter: { data: { url: { eq: "/livres" } } }) {
       nodes {
         data {
           fr {
@@ -34,7 +34,7 @@ export const query = graphql`
         }
       }
     }
-    airtableCatalogue(id: {eq: $id }) {
+    airtableCatalogue(id: { eq: $id }) {
       data {
         Auteur
         Auteur_livre
@@ -60,17 +60,16 @@ export const query = graphql`
     allAirtableAutourDuLivre(
       filter: {
         data: {
-          Livre: {
-            elemMatch: {id: {eq: $id}}
-          }
-        Langue: {eq: "fr"}}
+          Catalogue: { elemMatch: { id: { eq: $id } } }
+          Langue: { eq: "fr" }
+        }
       }
     ) {
       nodes {
         data {
-          Description
-          Youtube
-          Texte
+          Texte__contenu
+          Texte__description
+          Texte__description_extra
         }
       }
     }

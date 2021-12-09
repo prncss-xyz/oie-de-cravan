@@ -8,7 +8,7 @@ export default function Page({ ...props }) {
 
 export const query = graphql`
   query CatalogueQuery {
-    layout: allAirtableTexteDuSite(
+    layout: allAirtableTextesDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
@@ -27,7 +27,7 @@ export const query = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/catalogue" } } }) {
+    allAirtableTextesDuSite(filter: { data: { url: { eq: "/catalogue" } } }) {
       nodes {
         data {
           fr {

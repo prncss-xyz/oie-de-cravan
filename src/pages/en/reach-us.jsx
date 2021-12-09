@@ -7,7 +7,7 @@ export default function Page({ ...props }) {
 
 export const queryStr = graphql`
   query EnReachUsQuery {
-    layout: allAirtableTexteDuSite(
+    layout: allAirtableTextesDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
@@ -21,7 +21,7 @@ export const queryStr = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/nous-rejoindre" } } }) {
+    allAirtableTextesDuSite(filter: { data: { url: { eq: "/nous-rejoindre" } } }) {
       nodes {
         data {
           en {

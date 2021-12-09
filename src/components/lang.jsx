@@ -18,7 +18,7 @@ const Context = React.createContext(null);
 
 export const LangProvider = ({ data: {
   layout: { nodes: layoutTextes0 },
-  allAirtableTexteDuSite: { nodes: textes0 },
+  allAirtableTextesDuSite: { nodes: textes0 },
 }, lang, children }) => {
   const textes = Object.fromEntries(
     textes0.map(({ data }) => [

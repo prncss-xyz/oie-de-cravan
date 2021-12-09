@@ -1,5 +1,4 @@
 module.exports = {
-  // "parser":"babel-eslint"
   settings: {
     react: { version: 'detect' },
   },
@@ -10,7 +9,6 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
   },
-  // plugin:@typescript-eslint/recommended
   extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
   rules: { 'react/prop-types': 0 },
 };

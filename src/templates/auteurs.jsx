@@ -8,6 +8,7 @@ import {
 } from '../components/elements';
 import { Link } from 'gatsby';
 import removeAccents from 'remove-accents';
+import { useLang } from '../components/lang';
 
 const rectAuteur = (name) => {
   let m;
@@ -50,6 +51,7 @@ const Authors = ({ auteurs }) => {
 };
 
 function Main({ data }) {
+  const { textes } = useLang();
   let auteurs = new Set();
   for (const node of data.allAirtableCatalogue.nodes) {
     const auteur = node.data.Auteur;
@@ -62,7 +64,7 @@ function Main({ data }) {
   return (
     <>
       <VSpacerMedium />
-      <H1Tilde>Nos Auteur.e.s</H1Tilde>
+      <H1Tilde dangerouslySetInnerHTML={{ __html: textes['h1'] }} />
       <VSpacerMedium />
       <Authors auteurs={auteurs} />
       <VSpacerMedium />

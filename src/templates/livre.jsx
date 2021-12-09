@@ -27,7 +27,7 @@ import nuage from '../icons/nuage.svg';
 import { ArrowLeft, ArrowRight } from '../components/icons';
 import { cleanBook, MD, unP } from '../utils';
 
-const lang = "fr";
+const lang = 'fr';
 
 const Nuage = () => {
   return (
@@ -48,7 +48,11 @@ function BackLink() {
         </Box>
       </Link>
       <Link to='/catalogue'>
-        <Box t='20px' {...theme.styles.buttonSmall} dangerouslySetInnerHTML={{ __html: textes['retour'] }} />
+        <Box
+          t='20px'
+          {...theme.styles.buttonSmall}
+          dangerouslySetInnerHTML={{ __html: textes['retour'] }}
+        />
       </Link>
       <Box flexGrow='1' />
     </Flex>
@@ -153,7 +157,12 @@ const BookCol = ({ data, ...props }) => {
             {data.hauteur} x {data.largeur} cm
           </Box>
         )}
-        {data.pages && <Box>{data.pages} <div dangerouslySetInnerHTML={{ __html: unP(textes['pages']) }} /></Box>}
+        {data.pages && (
+          <Box>
+            {data.pages}{' '}
+            <div dangerouslySetInnerHTML={{ __html: unP(textes['pages']) }} />
+          </Box>
+        )}
       </Box>
     </Box>
   );
@@ -167,7 +176,9 @@ const EmbbededText = ({ text, caption }) => {
         <QuoteSmall>
           <MD lang={lang} contents={text} />
         </QuoteSmall>
-        <Box pt="20px" {...theme.styles.subtitle}>{caption}</Box>
+        <Box pt='20px' {...theme.styles.subtitle}>
+          {caption}
+        </Box>
       </Box>
     </TextCard>
   );
@@ -175,14 +186,19 @@ const EmbbededText = ({ text, caption }) => {
 
 const EmbbededYoutube = ({ id, caption }) => {
   const theme = useTheme();
-  return <><Box width='100%' height='500px'>
-    <Video url={'https://www.youtube.com/embed/' + id} title={"caca"} />
-  </Box>
-    <Box pt="20px" {...theme.styles.body2}><i>{caption}</i></Box>
-  </>
-}
+  return (
+    <>
+      <Box width='100%' height='500px'>
+        <Video url={'https://www.youtube.com/embed/' + id} title={'caca'} />
+      </Box>
+      <Box pt='20px' {...theme.styles.body2}>
+        <i>{caption}</i>
+      </Box>
+    </>
+  );
+};
 
-const re = /youtube.com\/watch\?v=(.+)/
+const re = /youtube.com\/watch\?v=(.+)/;
 
 const AutourDuLivre = ({ autour }) => {
   const { position, cycle, backcycle } = useCycle(autour.length);
@@ -195,7 +211,10 @@ const AutourDuLivre = ({ autour }) => {
   const youtubeId = youtube?.match(re)?.[1];
   return (
     <>
-      <H2Icon Icon={Icons.Ecrire} dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }} />
+      <H2Icon
+        Icon={Icons.Ecrire}
+        dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }}
+      />
       <Box pb={['40px', '60px']} />
       <Grid>
         {autour.length > 1 && (
@@ -206,9 +225,11 @@ const AutourDuLivre = ({ autour }) => {
           </Box>
         )}
         <Box gcs='4' gce='10'>
-          {youtubeId ? <EmbbededYoutube id={youtubeId} caption={description} /> :
+          {youtubeId ? (
+            <EmbbededYoutube id={youtubeId} caption={description} />
+          ) : (
             <EmbbededText text={texte} caption={description} />
-          }
+          )}
         </Box>
         {autour.length > 1 && (
           <Box gcs='11' gce='12' alignSelf='center'>
@@ -225,7 +246,7 @@ const AutourDuLivre = ({ autour }) => {
 
 const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
   const data = cleanBook(airtableCatalogue);
-  const autour = allAirtableAutourDuLivre.nodes
+  const autour = allAirtableAutourDuLivre.nodes;
   return (
     <>
       <Box pb={['40px', '60px']} />
@@ -276,11 +297,9 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
         </Box>
       </GridMd>
       <Box pb={['100px', '180px']} />
-      {
-        autour.length > 0 && <AutourDuLivre autour={autour} autourDuLivre={data.autourDuLivre} />
-      }
+      { process.env.GATSBY_AUTOUR_DU_LIVRE && autour.length > 0 && <AutourDuLivre autour={autour} autourDuLivre={data.autourDuLivre} /> }
     </>
   );
 };
 
-export default page(Main)
+export default page(Main);

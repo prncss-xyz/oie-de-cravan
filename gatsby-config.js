@@ -1,6 +1,11 @@
 const { normalize } = require('./util');
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
-  pathPrefix: `/oie-de-cravan`,
+  // pathPrefix: `/oie-de-cravan`,
   siteMetadata: {
     title: "L'Oie de Cravan",
   },
@@ -9,16 +14,6 @@ module.exports = {
       options: {},
       resolve: `gatsby-plugin-pnpm`,
     },
-    // {
-    //   options: {
-    //     resolve: `gatsby-plugin-paypal`,
-    //     //clientId: process.env.PAYPAL_CLIENT_ID,
-    //     clienId: 'sb',
-    //     // buyerCountry: 'CA',
-    //     //currency: `EUR`, // Optional
-    //     //vault: true, // Optional
-    //   },
-    // },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-airtable`,
@@ -26,7 +21,7 @@ module.exports = {
         apiKey: process.env.AIRTABLE_API_KEY,
         tables: [
           {
-            baseId: process.env.AIRTABLE_BASE,
+            baseId: process.env.AIRTABLE_BASE_CATALOGUE,
             tableName: 'Catalogue',
             queryName: 'Catalogue',
             separateNodeType: true,
@@ -34,17 +29,17 @@ module.exports = {
               Cr_ateurs_secondaires__en_: '',
             },
           },
-         {
-            baseId: process.env.AIRTABLE_BASE,
+          {
+            baseId: process.env.AIRTABLE_BASE_CATALOGUE,
             tableName: 'Autour du livre',
             queryName: 'AutourDuLivre',
-            tableLinks: ['Livre'],
+            tableLinks: ['Catalogue'],
             separateNodeType: true,
           },
           {
-            baseId: process.env.AIRTABLE_BASE,
-            tableName: 'Texte du site',
-            queryName: 'TexteDuSite',
+            baseId: process.env.AIRTABLE_BASE_TEXTES_DU_SITE,
+            tableName: 'Textes du site',
+            queryName: 'TextesDuSite',
             mapping: {
               fr: 'text/markdown',
               en: 'text/markdown',
@@ -58,7 +53,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [`gatsby-remark-custom`],
-      }
+      },
     },
     {
       resolve: 'gatsby-plugin-local-search',

@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Main from '/src/templates/home';
-
 export default function Page({ ...props }) {
   return <Main en='/en' {...props} />;
 }
@@ -11,7 +10,7 @@ export const queryStr = graphql`
     site {
       buildTime
     }
-    layout: allAirtableTexteDuSite(
+    layout: allAirtableTextesDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
@@ -30,7 +29,7 @@ export const queryStr = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/" } } }) {
+    allAirtableTextesDuSite(filter: { data: { url: { eq: "/" } } }) {
       nodes {
         data {
           fr {

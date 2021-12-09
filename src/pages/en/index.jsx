@@ -11,7 +11,7 @@ export const queryStr = graphql`
     site {
       buildTime
     }
-    layout: allAirtableTexteDuSite(
+    layout: allAirtableTextesDuSite(
       filter: { data: { url: { eq: "layout" } } }
     ) {
       nodes {
@@ -25,7 +25,7 @@ export const queryStr = graphql`
         }
       }
     }
-    allAirtableTexteDuSite(filter: { data: { url: { eq: "/" } } }) {
+    allAirtableTextesDuSite(filter: { data: { url: { eq: "/" } } }) {
       nodes {
         data {
           en {
