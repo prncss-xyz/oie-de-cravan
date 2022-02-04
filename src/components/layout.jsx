@@ -9,6 +9,7 @@ import { FaBars } from 'react-icons/fa';
 import theme from './theme';
 import logoOie_footer from '../images/LogoOie_Footer.png';
 import { ArrowLeftBlack, ArrowRightBlack } from './icons';
+import { CurrencyProvider } from '../components/currency';
 import { Flex, Box } from './elements';
 import 'modern-css-reset/dist/reset.min.css';
 import '@fontsource/arimo';
@@ -66,11 +67,11 @@ function OverlayMenu({ closeHandler }) {
             dangerouslySetInnerHTML={{ __html: unP(layoutTextes['catalogue']) }}
           />
         </Link>
-        <a href='https://oiedecravan.blogspot.com/'>
+        <Link to={links['nouvelles']}>
           <div
             dangerouslySetInnerHTML={{ __html: unP(layoutTextes['nouvelles']) }}
           />
-        </a>
+        </Link>
         <Link to={links['nous rejoindre']}>
           <div
             dangerouslySetInnerHTML={{
@@ -111,6 +112,7 @@ const Header = ({ en, fr }) => {
     <>
       <Box display={['inherit', 'none']}>
         {menuOpened && <OverlayMenu closeHandler={() => menuOpen(false)} />}
+        {/* TODO: change for button */}
         <a
           href=''
           onClick={(e) => {
@@ -154,13 +156,13 @@ const Header = ({ en, fr }) => {
                 }}
               />
             </Link>
-            <a href='https://oiedecravan.blogspot.com/'>
+            <Link to={links['nouvelles']}>
               <div
                 dangerouslySetInnerHTML={{
                   __html: unP(layoutTextes['nouvelles']),
                 }}
               />
-            </a>
+            </Link>
             <Link to={links['nous rejoindre']}>
               <div
                 dangerouslySetInnerHTML={{
@@ -319,29 +321,31 @@ const Page = ({ title, children, en, fr }) => {
 
 const page0 =
   (Main) =>
-    ({ title, en, fr, data, ...props }) => {
-      const Main1 = () => (
-        <Page en={en} fr={fr} title={title}>
-          <Main data={data} {...props} />
-        </Page>
-      );
-      const Main0 = page(Main1);
-      return (
-        <ThemeProvider theme={theme}>
-          <Main0 en={en} fr={fr} data={data} {...props} />
-        </ThemeProvider>
-      );
-    };
+  ({ title, en, fr, data, ...props }) => {
+    const Main1 = () => (
+      <Page en={en} fr={fr} title={title}>
+        <Main data={data} {...props} />
+      </Page>
+    );
+    const Main0 = page(Main1);
+    return (
+      <ThemeProvider theme={theme}>
+        <Main0 en={en} fr={fr} data={data} {...props} />
+      </ThemeProvider>
+    );
+  };
 
 const page =
   (Main) =>
-    ({ data, en, fr, ...props }) => {
-      const lang = en || en === null ? 'fr' : 'en';
-      return (
-        <LangProvider lang={lang} data={data}>
+  ({ data, en, fr, ...props }) => {
+    const lang = en || en === null ? 'fr' : 'en';
+    return (
+      <LangProvider lang={lang} data={data}>
+        <CurrencyProvider>
           <Main data={data} {...props} />
-        </LangProvider>
-      );
-    };
+        </CurrencyProvider>
+      </LangProvider>
+    );
+  };
 
 export default page0;

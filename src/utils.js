@@ -32,12 +32,12 @@ export const cleanBook = (node) => {
     hauteur: node.data['Hauteur__cm_'],
     largeur: node.data['Largeur__cm_'],
     isbn: node.data['ISBN'],
-    prixCAD: node.data['Prix_site_Web__CAD_'],
-    prixEuro: node.data['Prix_site_Web__EU_'],
+    prixCAD: node.data['Prix_site_web__CAD_'],
+    prixEuro: node.data['Prix_site_web__EUR_'],
     pages: node.data['Pages__nombre_'],
     presentation:
-      node.data[`Pr_sentation_et_Bio__fr_`]?.trim() ??
-      node.data[`Pr_sentation_et_Bio__en_`]?.trim() ??
+      node.data[`Pr_sentation_et_bio__fr_`]?.trim() ??
+      node.data[`Pr_sentation_et_bio__en_`]?.trim() ??
       '',
     createursSecondaires:
       node.data[`Cr_ateurs_secondaires__fr_`]?.trim() ??

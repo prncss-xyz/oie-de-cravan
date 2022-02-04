@@ -1,14 +1,6 @@
 module.exports = {
-  settings: {
-    react: { version: 'detect' },
+  globals: {
+    __PATH_PREFIX__: true,
   },
-  env: {
-    es2020: true,
-    node: true,
-  },
-  parserOptions: {
-    sourceType: 'module',
-  },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
-  rules: { 'react/prop-types': 0 },
-};
+  extends: `react-app`,
+}

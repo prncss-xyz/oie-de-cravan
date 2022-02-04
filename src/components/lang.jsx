@@ -3,14 +3,14 @@ import React, { useContext } from 'react';
 const linksFr = {
   'accueil': '/',
   'catalogue': '/catalogue',
-  'nouvelles': null,
+  'nouvelles': 'https://oiedecravan.blogspot.com/',
   'nous rejoindre': '/nous-rejoindre',
 }
 
 const linksEn = {
   'accueil': '/en',
   'catalogue': '/en/catalogue',
-  'nouvelles': null,
+  'nouvelles': 'https://boxinggoose.blogspot.com/',
   'nous rejoindre': '/en/reach-us',
 }
 

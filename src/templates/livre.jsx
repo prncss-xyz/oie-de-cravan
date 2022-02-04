@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { useCurrency } from '../components/currency';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
 import { useLang } from '../components/lang';
@@ -13,14 +14,12 @@ import {
   H3,
   Box,
   Body1,
-  Body2,
   Flex,
   QuoteSmall,
   Grid,
   GridMd,
   Tilde,
   Subtitle,
-  ButtonSmall,
   TextCard,
 } from '../components/elements';
 import nuage from '../icons/nuage.svg';
@@ -59,25 +58,63 @@ function BackLink() {
   );
 }
 
-function Buy({ data, epuise, noticeRetour }) {
+function AddToCart({ data }) {
+  const currency = 'CAD'; // EURO
+  const amount = currency === 'CAD' ? data.prixCAD : data.prixEuro;
+  const query = new URLSearchParams({
+    add: 1,
+    cmd: '_cart',
+    business: 'lentement@oiedecravan.com',
+    item_name: `${data.auteurLivre} - ${data.titre}`,
+    amount,
+    currency_code: currency,
+    lc: 'fr',
+    bn: 'PP-ShopCartBF',
+    charset : 'iso-8859-15',
+    return: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr%expire=true',
+    shopping_url : 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr',
+    no_shipping: 0,
+    no_note: 0,
+  });
+  const href = 'https://www.paypal.com/cgi-bin/webscr?' + query;
+  return <a href={href}>Acheter {href}</a>;
+}
+
+function BuyButtonText({data}) {
+  const [currency] = useCurrency();
+  if (currency === 'unset') return (<>
+    {data.prixCAD}&nbsp;$
+    <span css={{ paddingLeft: '10px', paddingRight: '10px' }}>/</span>
+    {data.prixEuro}&nbsp;€
+  </>);
+  if (currency==='CAD') return (<>{data.prixCAD}</>);
+  if (currency==='USD') return (<>{data.prixUSD}</>);
+  if (currency==='EUR') return (<>{data.prixEUR}</>);
+}
+
+function BuyButton({data}) {
   const theme = useTheme();
-  if (!data.prixCAD) epuise = true;
-  if (!data.prixEuro) epuise = true;
-  const color = epuise ? 'muted' : 'accent';
-  return (
-    <>
-      <Flex color={color} {...theme.styles.button}>
-        {data.prixCAD && data.prixEuro && (
-          <Box p='10px' borderWidth='1px' borderStyle='solid'>
-            {data.prixCAD}&nbsp;$
-            <span css={{ paddingLeft: '10px', paddingRight: '10px' }}>/</span>
-            {data.prixEuro}&nbsp;€
-          </Box>
-        )}
-      </Flex>
-      {epuise && noticeRetour && <Body2>{noticeRetour}</Body2>}
+  return <>
+    <Flex color='accent' {...theme.styles.button}>
+      <Box p='10px' borderWidth='1px' borderStyle='solid'>
+        <BuyButtonText data={data} />
+      </Box>
+    </Flex>
+    <AddToCart data={data} />
     </>
-  );
+}
+
+function Epuise() {
+  const theme = useTheme();
+  return <Flex color='muted' {...theme.styles.button}>
+    <Box p='10px' borderWidth='1px' borderStyle='solid'>Épuisé</Box>
+  </Flex>
+}
+
+function Buy({ data, epuise}) {
+  const disponible = !epuise && data.prixCAD && data.prixEuro && data.prixUSD;
+  if (disponible) return <BuyButton data={data}/>;
+  return <Epuise/>;
 }
 
 function Share() {
@@ -105,6 +142,8 @@ const useCycle = (length) => {
         return { ...state, position };
       case 'GO':
         return { ...state, position: action.position };
+      default:
+        throw Error('Unkown action');
     }
   };
 
@@ -291,13 +330,17 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
             )}
           </Body1>
           <Box pb='40px' />
-          <Buy data={data} />
+          { process.env.GATSBY_TRANSACTION==='true' &&  
+            <Buy data={data} />
+          }
           <Box pb='40px' />
           {/*<Share />*/}
         </Box>
       </GridMd>
       <Box pb={['100px', '180px']} />
-      { process.env.GATSBY_AUTOUR_DU_LIVRE && autour.length > 0 && <AutourDuLivre autour={autour} autourDuLivre={data.autourDuLivre} /> }
+      {process.env.GATSBY_AUTOUR_DU_LIVRE==='true' &&  
+        <AutourDuLivre autour={autour} autourDuLivre={data.autourDuLivre} />
+      }
     </>
   );
 };

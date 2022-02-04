@@ -47,11 +47,11 @@ export const query = graphql`
         Largeur__cm_
         ISBN
         Pages__nombre_
-        Prix_site_Web__CAD_
-        Prix_site_Web__EU_
+        Prix_site_web__CAD_
+        Prix_site_web__EUR_
         Publication__date_
         Titre
-        Pr_sentation_et_Bio__fr_
+        Pr_sentation_et_bio__fr_
         Cr_ateurs_secondaires__fr_
         _puis_
       }

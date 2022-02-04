@@ -1,4 +1,4 @@
-const breaks = require('remark-breaks')
+const breaks = require('remark-breaks');
 const visit = require("unist-util-visit");
 
 module.exports = ({ markdownAST }) => {
@@ -8,5 +8,4 @@ module.exports = ({ markdownAST }) => {
   return markdownAST;
 }
 
-// FIXME
-module.exports.setParserPlugins = () => [breaks];
+module.exports.setParserPlugins = () => [breaks] ;
