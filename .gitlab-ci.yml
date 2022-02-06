@@ -1,10 +1,5 @@
 image: node:latest
 
-variables:
-  AIRTABLE_API_KEY: $AIRTABLE_API_KEY
-  AIRTABLE_BASE_CATALOGUE: $AIRTABLE_BASE_CATALOGUE
-  AIRTABLE_BASE_TEXTES_DU_SITE: $AIRTABLE_BASE_TEXTES_DU_SITE
-
 pages:
   script:
     - curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
