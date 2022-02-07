@@ -5,15 +5,11 @@ cache:
   paths:
     - .cache/
     - public/
-    - .pnpm-store
 
 pages:
-  before_script:
-    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
-    - pnpm config set store-dir .pnpm-store
   script:
-    - pnpm install
-    - ./node_modules/.bin/gatsby build
+    - npm install
+    - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:
     paths:
       - public
