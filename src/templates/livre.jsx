@@ -198,8 +198,7 @@ const BookCol = ({ data, ...props }) => {
         )}
         {data.pages && (
           <Box>
-            {data.pages}{' '}
-            <div dangerouslySetInnerHTML={{ __html: unP(textes['pages']) }} />
+            <div dangerouslySetInnerHTML={{ __html: data.pages + ' ' + unP(textes['pages']) }} />
           </Box>
         )}
       </Box>
