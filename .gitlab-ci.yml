@@ -9,7 +9,7 @@ cache:
 pages:
   script:
     - npm install
-    - ./node_modules/.bin/gatsby build
+    - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:
     paths:
       - public

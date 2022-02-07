@@ -5,7 +5,7 @@ require("dotenv").config({
 })
 
 module.exports = {
-  // pathPrefix: `/oie-de-cravan`,
+  pathPrefix: `/oie-de-cravan`,
   siteMetadata: {
     title: "L'Oie de Cravan",
   },
