@@ -13,7 +13,7 @@ pages:
     - pnpm config set store-dir .pnpm-store
   script:
     - pnpm install
-    - ./node_modules/.bin/gatsby build --prefix-paths
+    - ./node_modules/.bin/gatsby build
   artifacts:
     paths:
       - public
