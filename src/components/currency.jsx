@@ -6,17 +6,18 @@ const setCurrencyStorage = (currency) => {
   storage.setItem('time', Date.now());
 };
 
-const expire = 20000;
+// const expire = 20000;
 
 const getCurrencyStorage = () => {
-  const storage = window.localStorage;
-  const timeStr = storage.getItem('time');
-  if (!timeStr) return 'unset';
-  const time = Number.parseInt(timeStr);
-  const now = Date.now();
-  if (now - time > expire) return 'unset';
-  storage.setItem('time', now);
-  return storage.getItem('currency');
+  return 'unset'
+  // const storage = window.localStorage;
+  // const timeStr = storage.getItem('time');
+  // if (!timeStr) return 'unset';
+  // const time = Number.parseInt(timeStr);
+  // const now = Date.now();
+  // if (now - time > expire) return 'unset';
+  // storage.setItem('time', now);
+  // return storage.getItem('currency');
 };
 
 const Context = React.createContext(null);
