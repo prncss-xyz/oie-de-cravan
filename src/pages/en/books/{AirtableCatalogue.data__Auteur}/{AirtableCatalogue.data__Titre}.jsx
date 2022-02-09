@@ -67,9 +67,11 @@ export const query = graphql`
     ) {
       nodes {
         data {
-          Texte__contenu
-          Texte__description
-          Texte__description_extra
+        Texte__contenu
+        Texte__description
+        Texte__description_extra
+        Texte__signature
+        Youtube__URL
         }
       }
     }

@@ -70,9 +70,9 @@ function AddToCart({ data }) {
     currency_code: currency,
     lc: 'fr',
     bn: 'PP-ShopCartBF',
-    charset : 'iso-8859-15',
+    charset: 'iso-8859-15',
     return: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr%expire=true',
-    shopping_url : 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr',
+    shopping_url: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr',
     no_shipping: 0,
     no_note: 0,
   });
@@ -80,41 +80,50 @@ function AddToCart({ data }) {
   return <a href={href}>Acheter {href}</a>;
 }
 
-function BuyButtonText({data}) {
+function BuyButtonText({ data }) {
   const [currency] = useCurrency();
-  if (currency === 'unset') return (<>
-    {data.prixCAD}&nbsp;$
-    <span css={{ paddingLeft: '10px', paddingRight: '10px' }}>/</span>
-    {data.prixEuro}&nbsp;€
-  </>);
-  if (currency==='CAD') return (<>{data.prixCAD}</>);
-  if (currency==='USD') return (<>{data.prixUSD}</>);
-  if (currency==='EUR') return (<>{data.prixEUR}</>);
+  if (currency === 'unset')
+    return (
+      <>
+        {data.prixCAD}&nbsp;$
+        <span css={{ paddingLeft: '10px', paddingRight: '10px' }}>/</span>
+        {data.prixEuro}&nbsp;€
+      </>
+    );
+  if (currency === 'CAD') return <>{data.prixCAD}</>;
+  if (currency === 'USD') return <>{data.prixUSD}</>;
+  if (currency === 'EUR') return <>{data.prixEUR}</>;
 }
 
-function BuyButton({data}) {
+function BuyButton({ data }) {
   const theme = useTheme();
-  return <>
-    <Flex color='accent' {...theme.styles.button}>
-      <Box p='10px' borderWidth='1px' borderStyle='solid'>
-        <BuyButtonText data={data} />
-      </Box>
-    </Flex>
-    <AddToCart data={data} />
+  return (
+    <>
+      <Flex color='accent' {...theme.styles.button}>
+        <Box p='10px' borderWidth='1px' borderStyle='solid'>
+          <BuyButtonText data={data} />
+        </Box>
+      </Flex>
+      <AddToCart data={data} />
     </>
+  );
 }
 
 function Epuise() {
   const theme = useTheme();
-  return <Flex color='muted' {...theme.styles.button}>
-    <Box p='10px' borderWidth='1px' borderStyle='solid'>Épuisé</Box>
-  </Flex>
+  return (
+    <Flex color='muted' {...theme.styles.button}>
+      <Box p='10px' borderWidth='1px' borderStyle='solid'>
+        Épuisé
+      </Box>
+    </Flex>
+  );
 }
 
-function Buy({ data, epuise}) {
+function Buy({ data, epuise }) {
   const disponible = !epuise && data.prixCAD && data.prixEuro && data.prixUSD;
-  if (disponible) return <BuyButton data={data}/>;
-  return <Epuise/>;
+  if (disponible) return <BuyButton data={data} />;
+  return <Epuise />;
 }
 
 function Share() {
@@ -198,7 +207,11 @@ const BookCol = ({ data, ...props }) => {
         )}
         {data.pages && (
           <Box>
-            <div dangerouslySetInnerHTML={{ __html: data.pages + ' ' + unP(textes['pages']) }} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.pages + ' ' + unP(textes['pages']),
+              }}
+            />
           </Box>
         )}
       </Box>
@@ -206,47 +219,49 @@ const BookCol = ({ data, ...props }) => {
   );
 };
 
-const EmbbededText = ({ text, caption }) => {
+const EmbbededText = (data) => {
+  const { Texte__contenu: texte, Texte__signature: signature } = data;
   const theme = useTheme();
+  if (!texte) return null;
+  const description =
+    data['Texte__description_extra'] || data['Texte__description'];
+  const dash = signature && description && ' – ';
   return (
     <TextCard>
       <Box color='accent'>
         <QuoteSmall>
-          <MD lang={lang} contents={text} />
+          <MD lang={lang} contents={texte} />
         </QuoteSmall>
         <Box pt='20px' {...theme.styles.subtitle}>
-          {caption}
+          {signature}{dash}{description}
         </Box>
       </Box>
     </TextCard>
   );
 };
 
-const EmbbededYoutube = ({ id, caption }) => {
-  const theme = useTheme();
+const EmbbededYoutube = (data) => {
+  const id = data['Youtube__URL']?.match(re)?.[1];
+  // const caption = data['Image__l_gende'];
+  // const theme = useTheme();
+  if (!id) return null;
   return (
     <>
       <Box width='100%' height='500px'>
         <Video url={'https://www.youtube.com/embed/' + id} title={'caca'} />
       </Box>
-      <Box pt='20px' {...theme.styles.body2}>
-        <i>{caption}</i>
-      </Box>
+      {/* {caption && <Box pt='20px' {...theme.styles.body2}> */}
+      {/*   <i>{caption}</i> */}
+      {/* </Box>} */}
     </>
   );
 };
 
 const re = /youtube.com\/watch\?v=(.+)/;
 
-const AutourDuLivre = ({ autour }) => {
+const AutourDuLivre0 = ({ autour }) => {
   const { position, cycle, backcycle } = useCycle(autour.length);
-  const {
-    Description: description,
-    Texte: texte,
-    Youtube: youtube,
-  } = autour[position].data;
   const { textes } = useLang();
-  const youtubeId = youtube?.match(re)?.[1];
   return (
     <>
       <H2Icon
@@ -258,21 +273,22 @@ const AutourDuLivre = ({ autour }) => {
         {autour.length > 1 && (
           <Box gcs='3' gce='4' justifyContent='end' alignSelf='center'>
             <Clickable onClick={backcycle}>
-              <ArrowLeft />
+              <Box py='10px'>
+                <ArrowLeft />
+              </Box>
             </Clickable>
           </Box>
         )}
         <Box gcs='4' gce='10'>
-          {youtubeId ? (
-            <EmbbededYoutube id={youtubeId} caption={description} />
-          ) : (
-            <EmbbededText text={texte} caption={description} />
-          )}
+          <EmbbededYoutube {...autour[position].data} />
+          <EmbbededText {...autour[position].data} />
         </Box>
         {autour.length > 1 && (
           <Box gcs='11' gce='12' alignSelf='center'>
             <Clickable onClick={cycle}>
-              <ArrowRight />
+              <Box py='10px'>
+                <ArrowRight />
+              </Box>
             </Clickable>
           </Box>
         )}
@@ -280,6 +296,11 @@ const AutourDuLivre = ({ autour }) => {
       <Box pb={['40px', '60px']} />
     </>
   );
+};
+
+const AutourDuLivre = ({ autour }) => {
+  if (autour.length === 0) return null;
+  return <AutourDuLivre0 autour={autour} />;
 };
 
 const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
@@ -329,17 +350,13 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
             )}
           </Body1>
           <Box pb='40px' />
-          { process.env.GATSBY_TRANSACTION==='true' &&  
-            <Buy data={data} />
-          }
+          {process.env.GATSBY_TRANSACTION === 'true' && <Buy data={data} />}
           <Box pb='40px' />
           {/*<Share />*/}
         </Box>
       </GridMd>
+        <AutourDuLivre autour={autour} />
       <Box pb={['100px', '180px']} />
-      {process.env.GATSBY_AUTOUR_DU_LIVRE==='true' &&  
-        <AutourDuLivre autour={autour} autourDuLivre={data.autourDuLivre} />
-      }
     </>
   );
 };
