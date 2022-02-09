@@ -9,7 +9,6 @@ import {
   H1Tilde,
   Flex,
   Box,
-  ButtonSmall,
   BookCard,
   VSpacerSmall,
   VSpacerLarge,
@@ -98,7 +97,7 @@ function Main({
       filtered = nodes.filter((node) => res.some((id) => id === node.id));
     }
     return filtered.map(node => cleanBook(node));
-  }, [query]);
+  }, [query, indexObj, nodes, store]);
   return (
     <>
       <VSpacerLarge />

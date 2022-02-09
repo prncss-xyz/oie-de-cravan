@@ -223,9 +223,8 @@ const EmbbededText = (data) => {
   const { Texte__contenu: texte, Texte__signature: signature } = data;
   const theme = useTheme();
   if (!texte) return null;
-  const description =
-    data['Texte__description_extra'] || data['Texte__description'];
-  const dash = signature && description && ' – ';
+  const description = data['Texte__description'];
+  const separator = signature && description && ', ';
   return (
     <TextCard>
       <Box color='accent'>
@@ -233,7 +232,7 @@ const EmbbededText = (data) => {
           <MD lang={lang} contents={texte} />
         </QuoteSmall>
         <Box pt='20px' {...theme.styles.subtitle}>
-          {signature}{dash}{description}
+          {signature}{separator}{description}.
         </Box>
       </Box>
     </TextCard>
