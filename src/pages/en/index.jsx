@@ -38,6 +38,7 @@ export const queryStr = graphql`
       }
     }
     allAirtableCatalogue(
+      filter: {data: {Pr_sentation_et_bio__en_: {glob: "*"}}} 
       sort: { fields: data___Publication__date_, order: DESC }
     ) {
       nodes {

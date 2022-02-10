@@ -20,11 +20,6 @@ export const queryStr = graphql`
               html
             }
           }
-          en {
-            childMarkdownRemark {
-              html
-            }
-          }
           Name
         }
       }
@@ -37,16 +32,12 @@ export const queryStr = graphql`
               html
             }
           }
-          en {
-            childMarkdownRemark {
-              html
-            }
-          }
           Name
         }
       }
     }
     allAirtableCatalogue(
+      filter: {data: {Pr_sentation_et_bio__fr_: {glob: "*"}}} 
       sort: { fields: data___Publication__date_, order: DESC }
     ) {
       nodes {

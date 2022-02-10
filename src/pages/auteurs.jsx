@@ -17,11 +17,6 @@ export const query = graphql`
               html
             }
           }
-          en {
-            childMarkdownRemark {
-              html
-            }
-          }
           Name
         }
       }
@@ -30,11 +25,6 @@ export const query = graphql`
       nodes {
         data {
           fr {
-            childMarkdownRemark {
-              html
-            }
-          }
-          en {
             childMarkdownRemark {
               html
             }
