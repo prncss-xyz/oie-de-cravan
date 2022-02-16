@@ -1,7 +1,8 @@
 const accents = require('remove-accents');
 
 const typo_ajust = (str) => {
-  return str.replace("'", '’');
+  if (typeof str === 'string') return str.replace(/'/g, '’');
+  return str;
 };
 
 const normalize = (str) => {

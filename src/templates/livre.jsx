@@ -60,6 +60,7 @@ function BackLink() {
 }
 
 function AddToCart({ data }) {
+  const { lang } = useLang();
   const currency = 'CAD'; // EURO
   const amount = currency === 'CAD' ? data.prixCAD : data.prixEuro;
   const query = new URLSearchParams({
@@ -69,11 +70,11 @@ function AddToCart({ data }) {
     item_name: `${data.auteurLivre} - ${data.titre}`,
     amount,
     currency_code: currency,
-    lc: 'fr',
+    lc: lang,
     bn: 'PP-ShopCartBF',
     charset: 'iso-8859-15',
-    return: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr%expire=true',
-    shopping_url: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr',
+    return: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr%expire=true', // FIXME:
+    shopping_url: 'http://www.oiedecravan.com/cat/catalogue.php?lang=fr', // FIXME:
     no_shipping: 0,
     no_note: 0,
   });
@@ -312,6 +313,7 @@ const AutourDuLivre = ({ autour }) => {
 };
 
 const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
+  const { lang } = useLang();
   const data = cleanBook(airtableCatalogue);
   const autour = allAirtableAutourDuLivre.nodes;
   return (
@@ -357,7 +359,7 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
               dangerouslySetInnerHTML={{
                 __html:
                   airtableCatalogue.data['Presentation_et_bio_' + lang]
-                    .childMarkdownRemark.html,
+                    ?.childMarkdownRemark.html,
               }}
             />
           </Body1>

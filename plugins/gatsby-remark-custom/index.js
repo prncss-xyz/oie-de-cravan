@@ -3,8 +3,7 @@ const visit = require('unist-util-visit');
 const { typo_ajust } = require('../../util');
 
 module.exports = ({ markdownAST }) => {
-  visit(markdownAST, 'text', (node) => {
-    // node.value = typo_ajust(node.value);
+  visit(markdownAST, (node) => {
     node.value = typo_ajust(node.value);
   });
   return markdownAST;
