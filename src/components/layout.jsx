@@ -112,7 +112,7 @@ const Header = ({ en, fr }) => {
     <>
       <Box display={['inherit', 'none']}>
         {menuOpened && <OverlayMenu closeHandler={() => menuOpen(false)} />}
-        {/* TODO: change for button */}
+        {/* TODO: change for Clickable and align right */}
         <a
           href=''
           onClick={(e) => {
