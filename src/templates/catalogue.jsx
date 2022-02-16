@@ -69,7 +69,6 @@ function Main({
   const { textes } = useLang();
   const searchParams = new URLSearchParams(search);
   const q0 = searchParams.get('q') || '';
-  // console.log(decodeURI(search));
   const [query0, setQuery] = useState(q0);
   const query = processQuery(query0);
   const indexObj = useMemo(() => {
@@ -86,6 +85,9 @@ function Main({
           .query((fn) => {
             fn.term(query);
             fn.term(query, { wildcard: lunr.Query.wildcard.TRAILING });
+            // in French, some words stars by "l'", "s'" or "d'"
+            // lunr does not deal well with it,
+            // so here is a workaround
             for (const cons of 'lsd') {
               fn.term(cons + query);
               fn.term(query, { wildcard: lunr.Query.wildcard.TRAILING });

@@ -25,6 +25,10 @@ module.exports = {
             tableName: 'Catalogue',
             queryName: 'Catalogue',
             separateNodeType: true,
+            mapping: {
+              'Presentation_et_bio_fr': 'text/markdown',
+              'Presentation_et_bio_en': 'text/markdown',
+            },
             defaultValues: {
               Cr_ateurs_secondaires__en_: '',
             },
@@ -35,16 +39,19 @@ module.exports = {
             queryName: 'AutourDuLivre',
             tableLinks: ['Catalogue'],
             separateNodeType: true,
+            mapping: {
+              'Texte_contenu': 'text/markdown',
+            },
           },
           {
             baseId: process.env.AIRTABLE_BASE_TEXTES_DU_SITE,
             tableName: 'Textes du site',
             queryName: 'TextesDuSite',
+            separateNodeType: true,
             mapping: {
               fr: 'text/markdown',
               en: 'text/markdown',
             },
-            separateNodeType: true,
           },
         ],
       },

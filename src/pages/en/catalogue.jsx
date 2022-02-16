@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Catalogue from '/src/templates/catalogue'
+import Catalogue from '/src/templates/catalogue';
 
 export default function Page({ ...props }) {
-  return <Catalogue fr='/catalogue' {...props} />
+  return <Catalogue fr='/catalogue' {...props} />;
 }
 
 export const query = graphql`
@@ -35,8 +35,8 @@ export const query = graphql`
       }
     }
     allAirtableCatalogue(
-      filter: {data: {Pr_sentation_et_bio__en_: {glob: "*"}}} 
-      sort: {fields: data___Publication__date_, order: DESC }
+      filter: { data: { Presentation_et_bio_en: { raw: { glob: "*" } } } }
+      sort: { fields: data___Publication__date_, order: DESC }
     ) {
       nodes {
         id
@@ -47,7 +47,6 @@ export const query = graphql`
           }
           Titre
           Auteur
-          Pr_sentation_et_bio__en_
         }
       }
     }

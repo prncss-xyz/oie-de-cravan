@@ -1,15 +1,12 @@
 import slugify from '@sindresorhus/slugify';
-import fromMarkdown from 'mdast-util-from-markdown';
-// import toHast from 'mdast-util-to-hast';
-// import toHtml from 'hast-util-to-html';
-
-import remarkTypograf from '@mavrin/remark-typograf';
 import breaks from 'remark-breaks';
 import ReactMarkdown from 'react-markdown';
 
 import { normalize as normalize_ } from '../util';
-
 export const normalize = normalize_;
+
+import { typo_ajust as typo_ajust_ } from '../util';
+export const typo_ajust = typo_ajust_;
 
 export const spy = (x) => {
   console.log(x);
@@ -67,10 +64,3 @@ export const rectAuteur = (name) => {
   }
   return name.trim();
 };
-
-export const MD = ({ lang, contents }) => (
-  <ReactMarkdown
-    remarkPlugins={([remarkTypograf, { locale: [lang] }], [breaks])}
-    children={contents}
-  />
-);

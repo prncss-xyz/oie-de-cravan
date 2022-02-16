@@ -51,7 +51,11 @@ export const query = graphql`
         Prix_site_web__EUR_
         Publication__date_
         Titre
-        Pr_sentation_et_bio__fr_
+        Presentation_et_bio_fr {
+          childMarkdownRemark {
+            html
+          }
+        }
         Cr_ateurs_secondaires__fr_
         _puis_
       }
@@ -67,10 +71,14 @@ export const query = graphql`
     ) {
       nodes {
         data {
-        Texte__contenu
-        Texte__description
-        Texte__signature
-        Youtube__URL
+          Texte_contenu {
+            childMarkdownRemark {
+              html
+            }
+          }
+          Texte__description
+          Texte__signature
+          Youtube__URL
         }
       }
     }

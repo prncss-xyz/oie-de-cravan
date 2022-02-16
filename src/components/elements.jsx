@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { typo_ajust } from '../utils';
 import {
   border,
   layout,
@@ -35,9 +36,9 @@ export const BookCard = ({ book, ...props }) => {
     <Link to={book.page} {...props}>
       <Card pix='20px' piy='20px'>
         <H3 color='accent' pb='5px'>
-          {book.titre}
+          {typo_ajust(book.titre)}
         </H3>
-        <Subtitle pb='20px'>{book.auteurLivre}</Subtitle>
+        <Subtitle pb='20px'>{typo_ajust(book.auteurLivre)}</Subtitle>
         <Flex justifyContent='center'>
           {couverture && (
             <Image src={couverture} alt={book.titre} />

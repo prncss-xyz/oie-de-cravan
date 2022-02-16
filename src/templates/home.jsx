@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'gatsby';
-import { cleanBook, unP } from '../utils';
-import { LangProvider, useLang } from '../components/lang';
+import { cleanBook, unP, typo_ajust } from '../utils';
+import { useLang } from '../components/lang';
 import page from '../components/layout';
 import { useTheme } from '@emotion/react';
 import * as Icons from '../components/icons';
@@ -156,7 +156,7 @@ function Main({ data }) {
           <Box textAlign='center' {...theme.styles.body1}>
             {books.slice(0, currentIndex).map((book) => (
               <div key={book.id}>
-                {book.auteur},<i> {book.titre}</i>
+                {book.auteur},<i> {typo_ajust(book.titre)}</i>
               </div>
             ))}
           </Box>

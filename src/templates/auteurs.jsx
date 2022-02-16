@@ -9,6 +9,7 @@ import {
 import { Link } from 'gatsby';
 import removeAccents from 'remove-accents';
 import { useLang } from '../components/lang';
+import { typo_ajust } from '../../util';
 
 const rectAuteur = (name) => {
   let m;
@@ -42,7 +43,7 @@ const Authors = ({ auteurs }) => {
       <ul css={{ listStyle: 'none' }}>
         {auteurs.map((auteur) => (
           <Link key={auteur} to={`/catalogue?q=${rectAuteur(auteur)}`}>
-            <li>{rectAuteur(auteur)}</li>
+            <li>{typo_ajust(rectAuteur(auteur))}</li>
           </Link>
         ))}
       </ul>

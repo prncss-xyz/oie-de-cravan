@@ -25,6 +25,7 @@ import {
 import nuage from '../icons/nuage.svg';
 import { ArrowLeft, ArrowRight } from '../components/icons';
 import { cleanBook, MD, unP } from '../utils';
+import { typo_ajust } from '../../util';
 
 const lang = 'fr';
 
@@ -220,7 +221,12 @@ const BookCol = ({ data, ...props }) => {
 };
 
 const EmbbededText = (data) => {
-  const { Texte__contenu: texte, Texte__signature: signature } = data;
+  const {
+    Texte_contenu: {
+      childMarkdownRemark: { html: texte },
+    },
+    Texte__signature: signature,
+  } = data;
   const theme = useTheme();
   if (!texte) return null;
   const description = data['Texte__description'];
@@ -228,11 +234,14 @@ const EmbbededText = (data) => {
   return (
     <TextCard>
       <Box color='accent'>
-        <QuoteSmall>
-          <MD lang={lang} contents={texte} />
-        </QuoteSmall>
+        <Box
+          {...theme.styles.quoteSmall}
+          dangerouslySetInnerHTML={{ __html: texte }}
+        />
         <Box pt='20px' {...theme.styles.subtitle}>
-          {signature}{separator}{description}.
+          {signature}
+          {separator}
+          {typo_ajust(description)}.
         </Box>
       </Box>
     </TextCard>
@@ -317,21 +326,21 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
           <BookCol data={data} />
         </Box>
         <Box gcs='6' gce='12'>
-          <H2 color='accent'>{data.titre}</H2>
+          <H2 color='accent'>{typo_ajust(data.titre)}</H2>
           <Box color='accent'>
             <Tilde />
           </Box>
-          <Link to={`/catalogue?q=${data.auteur}`}>
+          <Link to={`/catalogue?q=${(data.auteur)}`}>
             <H3 color='accent' textTransform='uppercase'>
-              {data.auteurLivre}
+              {typo_ajust(data.auteurLivre)}
             </H3>
           </Link>
           {data.createursSecondaires && (
-            <Subtitle>{data.createursSecondaires}</Subtitle>
+            <Subtitle>{typo_ajust(data.createursSecondaires)}</Subtitle>
           )}
           <Box pb='40px' />
           <Flex color='accent' alignItems='baseline'>
-            {data.genre && <Subtitle>{data.genre}</Subtitle>}
+            {data.genre && <Subtitle>{typo_ajust(data.genre)}</Subtitle>}
             {data.genre && data.collection && (
               <Box px='10px'>
                 <Nuage />
@@ -344,9 +353,13 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
             <BookCol data={data} />
           </Box>
           <Body1>
-            {data.presentation.length > 0 && (
-              <MD lang={lang} contents={data.presentation} />
-            )}
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  airtableCatalogue.data['Presentation_et_bio_' + lang]
+                    .childMarkdownRemark.html,
+              }}
+            />
           </Body1>
           <Box pb='40px' />
           {process.env.GATSBY_TRANSACTION === 'true' && <Buy data={data} />}
@@ -354,7 +367,7 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
           {/*<Share />*/}
         </Box>
       </GridMd>
-        <AutourDuLivre autour={autour} />
+      <AutourDuLivre autour={autour} />
       <Box pb={['100px', '180px']} />
     </>
   );

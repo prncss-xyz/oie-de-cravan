@@ -6,7 +6,6 @@ specifiers:
   '@emotion/styled': ^11.6.0
   '@fontsource/arimo': ^4.5.0
   '@fontsource/spectral': ^4.5.0
-  '@mavrin/remark-typograf': ^2.2.0
   '@sindresorhus/slugify': ^1.1.2
   '@types/react': ^17.0.37
   '@types/react-helmet': ^6.1.4
@@ -35,7 +34,6 @@ specifiers:
   lodash: ^4.17.21
   lunr: ^2.3.9
   masonic: ^3.6.1
-  mdast-util-from-markdown: ^0.8.5
   modern-css-reset: ^1.4.0
   react: ^17.0.2
   react-dom: ^17.0.2
@@ -54,7 +52,6 @@ dependencies:
   '@emotion/styled': 11.6.0_972360c6fb1a99a79d517e1157925c9a
   '@fontsource/arimo': 4.5.0
   '@fontsource/spectral': 4.5.0
-  '@mavrin/remark-typograf': 2.2.0
   '@sindresorhus/slugify': 1.1.2
   '@types/react': 17.0.37
   '@types/react-helmet': 6.1.4
@@ -81,7 +78,6 @@ dependencies:
   lodash: 4.17.21
   lunr: 2.3.9
   masonic: 3.6.1_react@17.0.2
-  mdast-util-from-markdown: 0.8.5
   modern-css-reset: 1.4.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -1844,14 +1840,6 @@ packages:
 
   /@iarna/toml/2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
-    dev: false
-
-  /@mavrin/remark-typograf/2.2.0:
-    resolution: {integrity: sha512-YzIIzPCIbycuzQn75zVslpK1uUC60qVxG+NlmtWMB1G2hsRGJu6JZhlldo32e8DiaAALr+dnndXLWv0sH1tSCw==}
-    dependencies:
-      lodash.escaperegexp: 4.1.2
-      typograf: 6.14.0
-      unist-util-visit: 2.0.3
     dev: false
 
   /@microsoft/fetch-event-source/2.0.1:
@@ -7283,10 +7271,6 @@ packages:
     resolution: {integrity: sha1-3bG7s+8HRYwBd7oH3hRCLLAz/5s=}
     dev: false
 
-  /lodash.escaperegexp/4.1.2:
-    resolution: {integrity: sha1-ZHYsSGGAglGKw99Mz11YhtriA0c=}
-    dev: false
-
   /lodash.every/4.6.0:
     resolution: {integrity: sha1-64mYS+vENkJ5uzrvu9HKGb+mxqc=}
     dev: false
@@ -10954,11 +10938,6 @@ packages:
     resolution: {integrity: sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: false
-
-  /typograf/6.14.0:
-    resolution: {integrity: sha512-KEtACy76LEEmt5qxHZ4/Pr7BHPATJbKU5R3igbRfmA+9aOQTCZa/JjybKYKqTVxihszQoX6bSJ4ZyXBeoOf5Dg==}
-    engines: {node: '>= 4'}
     dev: false
 
   /unbox-primitive/1.0.1:
