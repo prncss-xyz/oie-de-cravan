@@ -66,7 +66,7 @@ function Main({
   },
 }) {
   const theme = useTheme();
-  const { textes } = useLang();
+  const { lang, textes } = useLang();
   const searchParams = new URLSearchParams(search);
   const q0 = searchParams.get('q') || '';
   const [query0, setQuery] = useState(q0);
@@ -98,8 +98,8 @@ function Main({
       const res = intersect(res0);
       filtered = nodes.filter((node) => res.some((id) => id === node.id));
     }
-    return filtered.map(node => cleanBook(node));
-  }, [query, indexObj, nodes, store]);
+    return filtered.map((node) => cleanBook(lang, node));
+  }, [query, indexObj, nodes, store, lang]);
   return (
     <>
       <VSpacerLarge />
@@ -116,7 +116,7 @@ function Main({
           <Critaria />
         </Flex>
         <Box pb='20px' />
-        <Link to='/auteurs'>
+        <Link to={lang === 'fr' ? '/auteurs' : '/en/authors'}>
           <Box
             color='accent'
             textAlign='right'
@@ -138,6 +138,5 @@ function Main({
     </>
   );
 }
-
 
 export default page(Main);

@@ -1,0 +1,347 @@
+{
+  "path": "/livres/garneau-michel/choix-de-poemes-pas-tres-longs/",
+  "location": {
+    "pathname": "/livres/garneau-michel/choix-de-poemes-pas-tres-longs/",
+    "search": "",
+    "hash": "",
+    "href": "http://localhost:3006/livres/garneau-michel/choix-de-poemes-pas-tres-longs/",
+    "origin": "http://localhost:3006",
+    "protocol": "http:",
+    "host": "localhost:3006",
+    "hostname": "localhost",
+    "port": "3006",
+    "state": null,
+    "key": "initial"
+  },
+  "pageResources": {
+    "json": {
+      "data": {
+        "layout": {
+          "nodes": [
+            {
+              "data": {
+                "fr": { "childMarkdownRemark": { "html": "<p>catalogue</p>" } },
+                "Name": "catalogue"
+              }
+            },
+            {
+              "data": {
+                "fr": { "childMarkdownRemark": { "html": "<p>fermer</p>" } },
+                "Name": "fermer"
+              }
+            },
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": { "html": "<p>L’Oie de Cravan</p>" }
+                },
+                "Name": "titre"
+              }
+            },
+            {
+              "data": {
+                "fr": { "childMarkdownRemark": { "html": "<p>nouvelles</p>" } },
+                "Name": "nouvelles"
+              }
+            },
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": {
+                    "html": "<p>L’Oie de Cravan<br>\n6258 rue De La Roche<br>\nMontréal, Qc<br>\nH2S 2E1<br>\nlentement // oiedecravan.com</p>"
+                  }
+                },
+                "Name": "adresse"
+              }
+            },
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": { "html": "<p>Louis Scutenaire</p>" }
+                },
+                "Name": "signature 0"
+              }
+            },
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": { "html": "<p>nous rejoindre</p>" }
+                },
+                "Name": "nous rejoindre"
+              }
+            },
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": {
+                    "html": "<p>Les Oies de Cravan naissent des mâts pourris des navires perdus au Golfe du Mexique</p>"
+                  }
+                },
+                "Name": "citation 0"
+              }
+            },
+            {
+              "data": {
+                "fr": { "childMarkdownRemark": { "html": "<p>accueil</p>" } },
+                "Name": "accueil"
+              }
+            }
+          ]
+        },
+        "allAirtableTextesDuSite": {
+          "nodes": [
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": { "html": "<p>Autour du livre</p>" }
+                },
+                "Name": "h2 0"
+              }
+            },
+            {
+              "data": {
+                "fr": { "childMarkdownRemark": { "html": "<p>pages</p>" } },
+                "Name": "pages"
+              }
+            },
+            {
+              "data": {
+                "fr": {
+                  "childMarkdownRemark": {
+                    "html": "<p>Retour au catalogue général de la compagnie</p>"
+                  }
+                },
+                "Name": "retour"
+              }
+            }
+          ]
+        },
+        "airtableCatalogue": {
+          "data": {
+            "Auteur": "Garneau, Michel",
+            "Auteur_livre": null,
+            "Collection": null,
+            "Couverture": [
+              {
+                "url": "https://dl.airtable.com/.attachments/5ddf79a9b9ed9762a19a3c0e559c44c1/a2c1f156/Garneau_Choixdepoemespastroplongs_recto.jpeg"
+              },
+              {
+                "url": "https://dl.airtable.com/.attachments/bf77860e427434cb9f0f6cc80b8f1f81/d373c404/Garneau_Choixdepoemespastroplongs_verso.jpeg"
+              }
+            ],
+            "Genre": "Poésie",
+            "Hauteur__cm_": null,
+            "Largeur__cm_": null,
+            "ISBN": "9782924652244",
+            "Pages__nombre_": null,
+            "Prix_site_web__CAD_": null,
+            "Prix_site_web__EUR_": null,
+            "Publication__date_": "2019-10-07",
+            "Titre": "Choix de poèmes (pas très longs)",
+            "Presentation_et_bio_fr": {
+              "childMarkdownRemark": {
+                "html": "<p>Michel Garneau est un de nos très grands écrivains. Poète, traducteur et dramaturge, il publie depuis 1956. Au fil des ans, son oeuvre poétique, d’une remarquable cohérence, a constamment affirmé une vision du monde à la fois hédoniste et douloureuse. En 1988, Guérin éditeur avait publié ses Poésies complètes 1955-1987, maintenant épuisées. Il nous a semblé que la meilleure façon de faire redécouvrir cette oeuvre importante serait de publier un choix, par l’auteur, des poèmes lui semblant les plus marquants dans ses textes publiés mais aussi parmi ses inédits.</p>"
+              }
+            },
+            "Presentation_et_bio_en": null,
+            "Cr_ateurs_secondaires__fr_": null,
+            "_puis_": "Disponible"
+          },
+          "recordId": "rec2SBcqCnLGw9ei9"
+        },
+        "allAirtableAutourDuLivre": {
+          "nodes": [
+            {
+              "data": {
+                "Texte_contenu": null,
+                "Texte__description": null,
+                "Texte__signature": null,
+                "Youtube__URL": "https://www.youtube.com/watch?v=QxVncQMYGdg"
+              }
+            }
+          ]
+        }
+      },
+      "pageContext": {
+        "id": "f8605799-16f2-556a-aaab-8b3818656636",
+        "data__Auteur": "Garneau, Michel",
+        "data__Titre": "Choix de poèmes (pas très longs)",
+        "__params": {
+          "data__Auteur": "garneau-michel",
+          "data__Titre": "choix-de-poemes-pas-tres-longs"
+        }
+      },
+      "serverData": null
+    },
+    "page": {
+      "componentChunkName": "component---src-pages-livres-airtable-catalogue-data-auteur-airtable-catalogue-data-titre-jsx",
+      "path": "/livres/garneau-michel/choix-de-poemes-pas-tres-longs/",
+      "webpackCompilationHash": "a0948ac67087d77da1b4",
+      "staticQueryHashes": []
+    },
+    "staticQueryResults": {},
+    "stale": true
+  },
+  "uri": "/livres/garneau-michel/choix-de-poemes-pas-tres-longs",
+  "data": {
+    "layout": {
+      "nodes": [
+        {
+          "data": {
+            "fr": { "childMarkdownRemark": { "html": "<p>catalogue</p>" } },
+            "Name": "catalogue"
+          }
+        },
+        {
+          "data": {
+            "fr": { "childMarkdownRemark": { "html": "<p>fermer</p>" } },
+            "Name": "fermer"
+          }
+        },
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": { "html": "<p>L’Oie de Cravan</p>" }
+            },
+            "Name": "titre"
+          }
+        },
+        {
+          "data": {
+            "fr": { "childMarkdownRemark": { "html": "<p>nouvelles</p>" } },
+            "Name": "nouvelles"
+          }
+        },
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": {
+                "html": "<p>L’Oie de Cravan<br>\n6258 rue De La Roche<br>\nMontréal, Qc<br>\nH2S 2E1<br>\nlentement // oiedecravan.com</p>"
+              }
+            },
+            "Name": "adresse"
+          }
+        },
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": { "html": "<p>Louis Scutenaire</p>" }
+            },
+            "Name": "signature 0"
+          }
+        },
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": { "html": "<p>nous rejoindre</p>" }
+            },
+            "Name": "nous rejoindre"
+          }
+        },
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": {
+                "html": "<p>Les Oies de Cravan naissent des mâts pourris des navires perdus au Golfe du Mexique</p>"
+              }
+            },
+            "Name": "citation 0"
+          }
+        },
+        {
+          "data": {
+            "fr": { "childMarkdownRemark": { "html": "<p>accueil</p>" } },
+            "Name": "accueil"
+          }
+        }
+      ]
+    },
+    "allAirtableTextesDuSite": {
+      "nodes": [
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": { "html": "<p>Autour du livre</p>" }
+            },
+            "Name": "h2 0"
+          }
+        },
+        {
+          "data": {
+            "fr": { "childMarkdownRemark": { "html": "<p>pages</p>" } },
+            "Name": "pages"
+          }
+        },
+        {
+          "data": {
+            "fr": {
+              "childMarkdownRemark": {
+                "html": "<p>Retour au catalogue général de la compagnie</p>"
+              }
+            },
+            "Name": "retour"
+          }
+        }
+      ]
+    },
+    "airtableCatalogue": {
+      "data": {
+        "Auteur": "Garneau, Michel",
+        "Auteur_livre": null,
+        "Collection": null,
+        "Couverture": [
+          {
+            "url": "https://dl.airtable.com/.attachments/5ddf79a9b9ed9762a19a3c0e559c44c1/a2c1f156/Garneau_Choixdepoemespastroplongs_recto.jpeg"
+          },
+          {
+            "url": "https://dl.airtable.com/.attachments/bf77860e427434cb9f0f6cc80b8f1f81/d373c404/Garneau_Choixdepoemespastroplongs_verso.jpeg"
+          }
+        ],
+        "Genre": "Poésie",
+        "Hauteur__cm_": null,
+        "Largeur__cm_": null,
+        "ISBN": "9782924652244",
+        "Pages__nombre_": null,
+        "Prix_site_web__CAD_": null,
+        "Prix_site_web__EUR_": null,
+        "Publication__date_": "2019-10-07",
+        "Titre": "Choix de poèmes (pas très longs)",
+        "Presentation_et_bio_fr": {
+          "childMarkdownRemark": {
+            "html": "<p>Michel Garneau est un de nos très grands écrivains. Poète, traducteur et dramaturge, il publie depuis 1956. Au fil des ans, son oeuvre poétique, d’une remarquable cohérence, a constamment affirmé une vision du monde à la fois hédoniste et douloureuse. En 1988, Guérin éditeur avait publié ses Poésies complètes 1955-1987, maintenant épuisées. Il nous a semblé que la meilleure façon de faire redécouvrir cette oeuvre importante serait de publier un choix, par l’auteur, des poèmes lui semblant les plus marquants dans ses textes publiés mais aussi parmi ses inédits.</p>"
+          }
+        },
+        "Presentation_et_bio_en": null,
+        "Cr_ateurs_secondaires__fr_": null,
+        "_puis_": "Disponible"
+      },
+      "recordId": "rec2SBcqCnLGw9ei9"
+    },
+    "allAirtableAutourDuLivre": {
+      "nodes": [
+        {
+          "data": {
+            "Texte_contenu": null,
+            "Texte__description": null,
+            "Texte__signature": null,
+            "Youtube__URL": "https://www.youtube.com/watch?v=QxVncQMYGdg"
+          }
+        }
+      ]
+    }
+  },
+  "pageContext": {
+    "id": "f8605799-16f2-556a-aaab-8b3818656636",
+    "data__Auteur": "Garneau, Michel",
+    "data__Titre": "Choix de poèmes (pas très longs)",
+    "__params": {
+      "data__Auteur": "garneau-michel",
+      "data__Titre": "choix-de-poemes-pas-tres-longs"
+    }
+  },
+  "serverData": null,
+  "params": {
+    "data__Auteur": "garneau-michel",
+    "data__Titre": "choix-de-poemes-pas-tres-longs"
+  }
+}

@@ -39,23 +39,21 @@ const Nuage = () => {
 
 function BackLink() {
   const theme = useTheme();
-  const { textes } = useLang();
+  const { lang, textes } = useLang();
   return (
-    <Flex justifyContent='space-between' alignItems='flex-end'>
-      <Link to='/catalogue'>
+    <Link to={lang === 'fr' ? '/catalogue' : '/en/catalogue'}>
+      <Flex justifyContent='space-between' alignItems='flex-end'>
         <Box pr='8px' pb='4px'>
           <ArrowLeft />
         </Box>
-      </Link>
-      <Link to='/catalogue'>
         <Box
           t='20px'
           {...theme.styles.buttonSmall}
           dangerouslySetInnerHTML={{ __html: textes['retour'] }}
         />
-      </Link>
-      <Box flexGrow='1' />
-    </Flex>
+        <Box flexGrow='1' />
+      </Flex>
+    </Link>
   );
 }
 
@@ -310,7 +308,7 @@ const AutourDuLivre = ({ autour }) => {
 
 const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
   const { lang } = useLang();
-  const data = cleanBook(airtableCatalogue);
+  const data = cleanBook(lang, airtableCatalogue);
   const autour = allAirtableAutourDuLivre.nodes;
   return (
     <>
@@ -328,7 +326,9 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
           <Box color='accent'>
             <Tilde />
           </Box>
-          <Link to={`/catalogue?q=${(data.auteur)}`}>
+          <Link
+            to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${data.auteur}`}
+          >
             <H3 color='accent' textTransform='uppercase'>
               {typo_ajust(data.auteurLivre)}
             </H3>

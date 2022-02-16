@@ -3,7 +3,15 @@ import { graphql } from 'gatsby';
 import Main from '/src/templates/livre';
 
 export default function Page({ ...props }) {
-  return <Main fr='/' {...props} />;
+  let fr = '/catalogue';
+  if (
+    props.pageResources.json.data.airtableCatalogue.data.Presentation_et_bio_fr
+  ) {
+    const subPath = props.path.match(/^\/en\/books(.+)/)[1];
+    fr = '/livres' + subPath;
+    // should break the build if not matching
+  }
+  return <Main fr={fr} {...props} />;
 }
 
 export const query = graphql`
@@ -52,6 +60,11 @@ export const query = graphql`
         Publication__date_
         Titre
         Presentation_et_bio_en {
+          childMarkdownRemark {
+            html
+          }
+        }
+        Presentation_et_bio_fr {
           childMarkdownRemark {
             html
           }

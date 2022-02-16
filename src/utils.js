@@ -1,19 +1,12 @@
 import slugify from '@sindresorhus/slugify';
-import breaks from 'remark-breaks';
-import ReactMarkdown from 'react-markdown';
-
 import { normalize as normalize_ } from '../util';
+import { typo_ajust as typo_ajust_ } from '../util';
+
 export const normalize = normalize_;
 
-import { typo_ajust as typo_ajust_ } from '../util';
 export const typo_ajust = typo_ajust_;
 
-export const spy = (x) => {
-  console.log(x);
-  return x;
-};
-
-export const cleanBook = (node) => {
+export const cleanBook = (lang, node) => {
   const linkAuteur = node.data['Auteur'] ?? node.data['Auteur_livre'] ?? '';
   const titre = node.data['Titre'] ?? '';
   return {
@@ -42,7 +35,9 @@ export const cleanBook = (node) => {
       '',
     epuise: !!node.data['_puis_'],
     couvertures: node.data['Couverture']?.map(({ url }) => url) ?? [],
-    page: `/livres/${slugify(linkAuteur)}/${slugify(titre)}`,
+    page: `${lang === 'fr' ? '/livres/' : '/en/books/'}${slugify(
+      linkAuteur,
+    )}/${slugify(titre)}`,
   };
 };
 

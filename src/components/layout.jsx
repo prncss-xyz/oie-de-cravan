@@ -235,13 +235,13 @@ const Footer = () => {
             </Link>
           </Box>
           <Box>
-            <a href='https://oiedecravan.blogspot.com/'>
+            <Link to={links['nouvelles']}>
               <div
                 dangerouslySetInnerHTML={{
                   __html: unP(layoutTextes['nouvelles']),
                 }}
               />
-            </a>
+            </Link>
           </Box>
           <Box>
             <Link to={links['nous rejoindre']}>

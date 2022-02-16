@@ -14,6 +14,7 @@ import {
   system,
 } from 'styled-system';
 import * as Icons from './icons';
+import { useLang } from './lang';
 
 export const Video = ({ url, title, ...props }) => (
   <iframe
@@ -21,14 +22,14 @@ export const Video = ({ url, title, ...props }) => (
     height='100%'
     src={url}
     title={title}
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    frameBorder="0"
-    webkitallowfullscreen="true"
-    mozallowfullscreen="true"
+    allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+    frameBorder='0'
+    webkitallowfullscreen='true'
+    mozallowfullscreen='true'
     allowFullScreen
     {...props}
   />
-)
+);
 
 export const BookCard = ({ book, ...props }) => {
   const couverture = book.couvertures?.[0];
@@ -40,9 +41,7 @@ export const BookCard = ({ book, ...props }) => {
         </H3>
         <Subtitle pb='20px'>{typo_ajust(book.auteurLivre)}</Subtitle>
         <Flex justifyContent='center'>
-          {couverture && (
-            <Image src={couverture} alt={book.titre} />
-          )}
+          {couverture && <Image src={couverture} alt={book.titre} />}
         </Flex>
       </Card>
     </Link>
@@ -80,11 +79,13 @@ export const Grid = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
 });
-export const GridMd = ({ ...props }) => <Box
-  display={['', 'grid']}
-  gridTemplateColumns={['repeat(12, 1fr)']}
-  {...props}
-/>
+export const GridMd = ({ ...props }) => (
+  <Box
+    display={['', 'grid']}
+    gridTemplateColumns={['repeat(12, 1fr)']}
+    {...props}
+  />
+);
 
 export const Navigation = ({ children }) => {
   const theme = useTheme();
@@ -93,9 +94,12 @@ export const Navigation = ({ children }) => {
 
 export const Tilde = ({ ...props }) => {
   const theme = useTheme();
-  return <Box {...theme.styles.h1} {...props}>{'~'}</Box>;
+  return (
+    <Box {...theme.styles.h1} {...props}>
+      {'~'}
+    </Box>
+  );
 };
-
 
 // Create an object of arrays from an array of object,
 // intended for reposive styles
@@ -108,14 +112,14 @@ const respPros = (...propObjs) => {
   }
   const res = {};
   for (const key of Object.keys(keys)) {
-    res[key] = propObjs.map(propObj => propObj[key]);
+    res[key] = propObjs.map((propObj) => propObj[key]);
   }
   return res;
-}
+};
 
 export const H1Tilde = ({ children, dangerouslySetInnerHTML, ...props }) => {
   const theme = useTheme();
-  const styles = respPros(theme.styles.h2, theme.styles.h1)
+  const styles = respPros(theme.styles.h2, theme.styles.h1);
   return (
     <Flex justifyContent='center' color='accent' {...props}>
       <Flex
@@ -125,7 +129,13 @@ export const H1Tilde = ({ children, dangerouslySetInnerHTML, ...props }) => {
         flexDirection={['column', 'row']}
       >
         <Box>~</Box>
-        <Box as='h1' px='18px' textAlign='center' dangerouslySetInnerHTML={dangerouslySetInnerHTML} {...styles}>
+        <Box
+          as='h1'
+          px='18px'
+          textAlign='center'
+          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+          {...styles}
+        >
           {children}
         </Box>
         <Box>~</Box>
@@ -137,7 +147,7 @@ export const H1Tilde = ({ children, dangerouslySetInnerHTML, ...props }) => {
 export const H2 = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Box as='h2' {...theme.styles.h2} {...props} >
+    <Box as='h2' {...theme.styles.h2} {...props}>
       {children}
     </Box>
   );
@@ -146,18 +156,23 @@ export const H2 = ({ children, ...props }) => {
 export const H3 = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Box as='h3' {...theme.styles.h3} {...props} >
+    <Box as='h3' {...theme.styles.h3} {...props}>
       {children}
     </Box>
   );
 };
 
-export const VSpacerLarge = () => <Box pb={['100px', '180px']} />
-export const VSpacerMedium = () => <Box pb={['60px', '100px']} />
-export const VSpacerSmall = () => <Box pb={['40px', '60px']} />
+export const VSpacerLarge = () => <Box pb={['100px', '180px']} />;
+export const VSpacerMedium = () => <Box pb={['60px', '100px']} />;
+export const VSpacerSmall = () => <Box pb={['40px', '60px']} />;
 export const VSpacerXSmall = () => <Box pb='40px' />;
 
-export const H2Icon = ({ Icon, children, dangerouslySetInnerHTML, ...props }) => {
+export const H2Icon = ({
+  Icon,
+  children,
+  dangerouslySetInnerHTML,
+  ...props
+}) => {
   return (
     <Flex justifyContent='center' color='accent' {...props}>
       <Flex
@@ -181,7 +196,12 @@ export const H2Icon = ({ Icon, children, dangerouslySetInnerHTML, ...props }) =>
   );
 };
 
-export const H3Icon = ({ Icon, children, dangerouslySetInnerHTML, ...props }) => {
+export const H3Icon = ({
+  Icon,
+  children,
+  dangerouslySetInnerHTML,
+  ...props
+}) => {
   const theme = useTheme();
   // maxwidth
   return (
@@ -189,7 +209,10 @@ export const H3Icon = ({ Icon, children, dangerouslySetInnerHTML, ...props }) =>
       <Flex justifyContent='center'>
         {Icon && <Icon />}
         <Box pr='16px' />
-        <Box as='h3' {...theme.styles.h3} minWidth='100%'
+        <Box
+          as='h3'
+          {...theme.styles.h3}
+          minWidth='100%'
           dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         >
           {children}
@@ -208,7 +231,11 @@ export function Arrows({ children, dangerouslySetInnerHTML, ...props }) {
       <Icons.ArrowBottom />
       <Flex alignItems='center'>
         <Icons.ArrowRight />
-        <Box px='18px' py='16px' textAlign="center" {...theme.styles.button}
+        <Box
+          px='18px'
+          py='16px'
+          textAlign='center'
+          {...theme.styles.button}
           dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         >
           {children}
@@ -248,10 +275,12 @@ export function Search({ label, handler, value0, ...props }) {
   };
   const noop = (e) => {
     e.preventDefault();
-  }
-  useEffect(() => { ref.current.value = value0 }, [])
+  };
+  useEffect(() => {
+    ref.current.value = value0;
+  }, []);
   return (
-    <Box px={["20px", "0px"]} {...props}>
+    <Box px={['20px', '0px']} {...props}>
       <Flex
         width={['100%', 'max-content']}
         borderWidth='1px'
@@ -276,7 +305,8 @@ export function Search({ label, handler, value0, ...props }) {
             ref={ref}
           />
         </form>
-      </Flex></Box>
+      </Flex>
+    </Box>
   );
 }
 
@@ -449,7 +479,7 @@ export function Body2({ children }) {
 export function Caption({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box {...theme.styles.caption} {...props} >
+    <Box {...theme.styles.caption} {...props}>
       {children}
     </Box>
   );
@@ -458,7 +488,7 @@ export function Caption({ children, ...props }) {
 export function NavigationFooter({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box{...theme.styles.navigationFooter} {...props} >
+    <Box {...theme.styles.navigationFooter} {...props}>
       {children}
     </Box>
   );
@@ -466,18 +496,17 @@ export function NavigationFooter({ children, ...props }) {
 export function Image({ src, alt, ...props }) {
   return (
     <Box {...props}>
-      <img
-        src={src}
-        alt={alt}
-      />
+      <img src={src} alt={alt} />
     </Box>
   );
 }
 
-export const Clickable = ({ onClick, children, ...props }) => (<button
-  css={{ border: '0px', background: 'transparent', padding: '0px' }}
-  onClick={onClick}
-  {...props}
->
-  {children}
-</button>)
+export const Clickable = ({ onClick, children, ...props }) => (
+  <button
+    css={{ border: '0px', background: 'transparent', padding: '0px' }}
+    onClick={onClick}
+    {...props}
+  >
+    {children}
+  </button>
+);

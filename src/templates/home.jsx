@@ -30,6 +30,7 @@ const getCurrentIndex = (books, date) => {
   return currentIndex;
 };
 
+// TODO: FIXME:
 const useWidth = () => {
   const ref = useRef(null);
   const [width, setWidth] = useState(null);
@@ -75,15 +76,15 @@ function Main({ data }) {
     site: { buildTime },
   } = data;
   const build = new Date(buildTime);
-  const books = nodes.map((node) => cleanBook(node));
+  const { lang, textes } = useLang();
+  const books = nodes.map((node) => cleanBook(lang, node));
   const [currentIndex, setCurrentIndex] = useState(
     getCurrentIndex(books, build),
   )
   useEffect(() => {
     const index = getCurrentIndex(books, Date.now());
     setCurrentIndex(index);
-  }, []);
-  const { textes } = useLang();
+  }, [books]);
   const theme = useTheme();
   return (
     <>
