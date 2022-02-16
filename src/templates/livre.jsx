@@ -222,12 +222,8 @@ const BookCol = ({ data, ...props }) => {
 };
 
 const EmbbededText = (data) => {
-  const {
-    Texte_contenu: {
-      childMarkdownRemark: { html: texte },
-    },
-    Texte__signature: signature,
-  } = data;
+  const texte = data.Texte_contenu?.childMarkdownRemark.html;
+  const signature = data.Texte__signature;
   const theme = useTheme();
   if (!texte) return null;
   const description = data['Texte__description'];
