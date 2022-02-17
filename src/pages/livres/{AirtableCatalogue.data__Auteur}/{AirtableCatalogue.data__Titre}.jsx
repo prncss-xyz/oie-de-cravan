@@ -5,12 +5,12 @@ import Main from '/src/templates/livre';
 export default function Page(props) {
   let en = '/en/catalogue';
   if (props.data.airtableCatalogue.data.Presentation_et_bio_en) {
-    const subPath = props.location.pathname;
+    // FIXME: would be more resiliant to start with prefix path
+    // some pathological cases could break this
+    const subPath = props.location.pathname.match(/\/livres(.+)/)?.[1];
     if (subPath) {
-      const last = subPath.match(/\/livres(.+)/)?.[1] || '';
-      en = '/en/books' + last;
+      en = '/en/books' + subPath
     }
-    // should break the build if not matching
   }
   return <Main en={en} {...props} />;
 }
