@@ -33,7 +33,9 @@ export const query = graphql`
         }
       }
     }
-    allAirtableCatalogue {
+    allAirtableCatalogue (
+      filter: {data: {Presentation_et_bio_fr: {raw: {glob: "*"}}}}
+    ) {
       nodes {
         data {
           Auteur

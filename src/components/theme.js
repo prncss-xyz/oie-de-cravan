@@ -1,11 +1,12 @@
+const colors = {
+  background: '#000000',
+  accent: '#ED1F24',
+  highLight: '#D8CECC',
+  primary: '#929292',
+};
 const theme = {
   breakpoints: ['785px'],
-  colors: {
-    background: '#000000',
-    accent: '#ED1F24',
-    highLight: '#D8CECC',
-    primary: '#929292',
-  },
+  colors,
   //fontSizes: [14, 16, 18, 20, 22, 28, 38, 44, 58],
   styles: {
     h1: {
@@ -78,12 +79,12 @@ const theme = {
           marginBottom: 0,
         },
         '& code': {
-          color: '#ED1F24',
+          color: colors.accent,
           fontFamily: 'Spectral',
           fontSize: '22px',
           lineHeight: '32px',
-        }
-      }
+        },
+      },
     },
     body2: {
       fontFamily: 'Spectral',
@@ -107,6 +108,11 @@ const theme = {
       fontStyle: 'italic',
       fontSize: '28px',
       lineHeight: '32px',
+      css: {
+        '& a': {
+          fontWeight: 'bold',
+        },
+      },
     },
     quoteXSmall: {
       fontFamily: 'Spectral',

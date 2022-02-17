@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Main from '/src/templates/home';
+import Main from '/src/templates/index';
 
 export default function Page({ ...props }) {
   return <Main fr='/' {...props} />;

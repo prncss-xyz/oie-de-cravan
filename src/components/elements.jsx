@@ -14,7 +14,6 @@ import {
   system,
 } from 'styled-system';
 import * as Icons from './icons';
-import { useLang } from './lang';
 
 export const Video = ({ url, title, ...props }) => (
   <iframe
@@ -443,6 +442,13 @@ export function Body1({ children, ...props }) {
     <Box
       {...theme.styles.body1}
       css={{
+        '& h2': {
+          fontFamily: 'Spectral',
+          fontSize: '28px',
+          lineHeight: '32px',
+          fontWeight: 'normal',
+          color: theme.colors.accent,
+        },
         '& p': {
           marginBottom: theme.styles.body1.lineHeight,
         },
