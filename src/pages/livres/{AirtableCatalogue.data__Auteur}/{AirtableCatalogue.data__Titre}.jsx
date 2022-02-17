@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Main from '/src/templates/livre';
 
-export default function Page({ ...props }) {
+export default function Page(props) {
   let en = '/en/catalogue';
   if (
     props.data.airtableCatalogue.data.Presentation_et_bio_en

@@ -306,11 +306,10 @@ const AutourDuLivre = ({ autour }) => {
   return <AutourDuLivre0 autour={autour} />;
 };
 
-const Main = ({ location, data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
+const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
   const { lang } = useLang();
   const data = cleanBook(lang, airtableCatalogue);
   const autour = allAirtableAutourDuLivre.nodes;
-    // const subPath = location.pathname.match(/^\/en\/books(.+)/)[1];
   return (
     <>
       {/* {JSON.stringify(subPath)} */}
