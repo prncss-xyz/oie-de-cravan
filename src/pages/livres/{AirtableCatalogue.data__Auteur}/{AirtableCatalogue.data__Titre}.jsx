@@ -8,7 +8,8 @@ export default function Page(props) {
     props.data.airtableCatalogue.data.Presentation_et_bio_en
   ) {
     const subPath = props.location.pathname.match(/^\/livres(.+)/)[1];
-    en = '/en/books' + subPath;
+    const last = subPath.match(/^\/livres(.+)/)[1];
+    en = '/en/books' + last;
     // should break the build if not matching
   }
   return <Main en={en} {...props} />;
