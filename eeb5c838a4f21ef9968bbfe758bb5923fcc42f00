@@ -1,0 +1,5 @@
+[ver:1,total:420]
+src/templates/livre.jsx:299,1645117200:195,1645120800:104,m
+src/pages/livres/{AirtableCatalogue.data__Auteur}/{AirtableCatalogue.data__Titre}.jsx:59,1645117200:15,1645120800:44,m
+.git/COMMIT_EDITMSG:35,1645117200:15,1645120800:20,r
+src/pages/en/books/{AirtableCatalogue.data__Auteur}/{AirtableCatalogue.data__Titre}.jsx:27,1645117200:15,1645120800:12,m
