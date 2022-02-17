@@ -7,7 +7,7 @@ export default function Page(props) {
   if (props.data.airtableCatalogue.data.Presentation_et_bio_en) {
     const subPath = props.location.pathname;
     if (subPath) {
-      const last = subPath.match(/^\/livres(.+)/)?.[1] || '';
+      const last = subPath.match(/\/livres(.+)/)?.[1] || '';
       en = '/en/books' + last;
     }
     // should break the build if not matching
