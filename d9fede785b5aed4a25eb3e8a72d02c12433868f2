@@ -1,0 +1,4 @@
+[ver:1,total:240]
+src/pages/en/books/{AirtableCatalogue.data__Auteur}/{AirtableCatalogue.data__Titre}.jsx:120,1645128000:120,m
+src/pages/livres/{AirtableCatalogue.data__Auteur}/{AirtableCatalogue.data__Titre}.jsx:105,1645128000:105,m
+.gitlab-ci.yml:15,1645128000:15,r
