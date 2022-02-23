@@ -80,7 +80,7 @@ function Main({ data }) {
   const books = nodes.map((node) => cleanBook(lang, node));
   const [currentIndex, setCurrentIndex] = useState(
     getCurrentIndex(books, build),
-  );
+  )
   useEffect(() => {
     const index = getCurrentIndex(books, Date.now());
     setCurrentIndex(index);
@@ -143,7 +143,7 @@ function Main({ data }) {
       <VSpacerSmall />
       <Books books={books} startIndex={currentIndex} />
       <VSpacerSmall />
-      <Link to={lang === 'fr' ? '/catalogue' : '/en/catalogue'}>
+      <Link to='/catalogue'>
         <Arrows dangerouslySetInnerHTML={{ __html: textes['action 0'] }} />
       </Link>
       <VSpacerLarge />
@@ -168,4 +168,4 @@ function Main({ data }) {
   );
 }
 
-export default page(Main);
+export default page(Main)

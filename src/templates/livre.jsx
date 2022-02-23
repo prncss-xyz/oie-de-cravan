@@ -15,7 +15,6 @@ import {
   Box,
   Body1,
   Flex,
-  QuoteSmall,
   Grid,
   GridMd,
   Tilde,
@@ -24,7 +23,7 @@ import {
 } from '../components/elements';
 import nuage from '../icons/nuage.svg';
 import { ArrowLeft, ArrowRight } from '../components/icons';
-import { cleanBook, MD, unP } from '../utils';
+import { cleanBook, unP } from '../utils';
 import { typo_ajust } from '../../util';
 
 const lang = 'fr';
@@ -221,11 +220,13 @@ const BookCol = ({ data, ...props }) => {
 
 const EmbbededText = (data) => {
   const texte = data.Texte_contenu?.childMarkdownRemark.html;
-  const signature = data.Texte__signature;
   const theme = useTheme();
   if (!texte) return null;
-  const description = data['Texte__description'];
-  const separator = signature && description && ', ';
+  const signature = typo_ajust(data.Texte__signature)?.trim();
+  const description_italiques = typo_ajust(
+    data['Texte__description_italiques']?.trim(),
+  );
+  const description_romain = typo_ajust(data['Texte__description_romain'])?.trim();
   return (
     <TextCard>
       <Box color='accent'>
@@ -235,8 +236,10 @@ const EmbbededText = (data) => {
         />
         <Box pt='20px' {...theme.styles.subtitle}>
           {signature}
-          {separator}
-          {typo_ajust(description)}.
+          {signature && (description_romain || description_italiques) && ', '}
+          <i>{description_italiques}</i>
+          {description_italiques && description_romain && ' – '}
+          {description_romain}
         </Box>
       </Box>
     </TextCard>

@@ -90,8 +90,9 @@ export const query = graphql`
               html
             }
           }
-          Texte__description
           Texte__signature
+          Texte__description_italiques
+          Texte__description_romain
           Youtube__URL
         }
       }
