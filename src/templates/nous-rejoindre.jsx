@@ -23,7 +23,7 @@ function Main() {
   return (
     <>
       <VSpacerLarge />
-      <StaticImage src='../images/NousRejoindre.png' alt='Nous rejoindre' />
+      <StaticImage placeholder='none' src='../images/NousRejoindre.png' alt='Nous rejoindre' />
       <VSpacerLarge />
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
       <VSpacerMedium />
@@ -59,6 +59,7 @@ function Main() {
       <GridMd alignItems='end'>
         <Box gcs='2' gce='7'>
           <StaticImage
+            placeholder='none' 
             src='../images/CartePostaleBureauOie.png'
             alt='carte postale du bureau Oie'
           />

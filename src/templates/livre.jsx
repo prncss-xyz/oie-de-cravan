@@ -26,8 +26,6 @@ import { ArrowLeft, ArrowRight } from '../components/icons';
 import { cleanBook, unP } from '../utils';
 import { typo_ajust } from '../../util';
 
-const lang = 'fr';
-
 const Nuage = () => {
   return (
     <Box px='10px' pb='2px'>

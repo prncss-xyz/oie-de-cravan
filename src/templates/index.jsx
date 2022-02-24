@@ -89,7 +89,7 @@ function Main({ data }) {
     <>
       <Box pb={['80px', '100px']} />
       <Box width={['160px', '320px']} margin='auto'>
-        <StaticImage src='../images/Oiseau_Home.svg' alt='oie de Cravan' />
+        <StaticImage placeholder='none' src='../images/Oiseau_Home.svg' alt='oie de Cravan' />
       </Box>
       <Box pb={['80px', '180px']} />
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
@@ -123,6 +123,7 @@ function Main({ data }) {
           alignItems='center'
         >
           <StaticImage
+            placeholder='none' 
             src='../images/stonegoose1_BasseResolution-Remplacer.png'
             alt='oie de Cravan'
           />

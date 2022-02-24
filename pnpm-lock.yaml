@@ -4,8 +4,6 @@ specifiers:
   '@babel/core': ^7.16.0
   '@emotion/react': ^11.7.0
   '@emotion/styled': ^11.6.0
-  '@fontsource/arimo': ^4.5.0
-  '@fontsource/spectral': ^4.5.0
   '@sindresorhus/slugify': ^1.1.2
   '@types/react': ^17.0.37
   '@types/react-helmet': ^6.1.4
@@ -25,6 +23,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.0.8
   gatsby: ^4.3.0
   gatsby-plugin-emotion: ^7.3.0
+  gatsby-plugin-google-fonts: ^1.0.1
   gatsby-plugin-image: ^2.8.0
   gatsby-plugin-local-search: ^2.0.1
   gatsby-plugin-pnpm: ^1.2.9
@@ -51,8 +50,6 @@ dependencies:
   '@babel/core': 7.16.0
   '@emotion/react': 11.7.0_e71557cadea3156a1191812ec2caaaff
   '@emotion/styled': 11.6.0_972360c6fb1a99a79d517e1157925c9a
-  '@fontsource/arimo': 4.5.0
-  '@fontsource/spectral': 4.5.0
   '@sindresorhus/slugify': 1.1.2
   '@types/react': 17.0.37
   '@types/react-helmet': 6.1.4
@@ -71,6 +68,7 @@ dependencies:
   eslint-plugin-react-hooks: 4.3.0_eslint@7.32.0
   gatsby: 4.3.0_02d8256d1f8d714d1b4256030b46e48c
   gatsby-plugin-emotion: 7.3.0_a2e5b33a3b7418e634b356cde7dd200a
+  gatsby-plugin-google-fonts: 1.0.1
   gatsby-plugin-image: 2.8.0_e7c64682a3f66d853a0331a3d9c17c0a
   gatsby-plugin-local-search: 2.0.1_gatsby@4.3.0
   gatsby-plugin-pnpm: 1.2.9_gatsby@4.3.0
@@ -1621,14 +1619,6 @@ packages:
     resolution: {integrity: sha512-lKZPhKScNFnR1MBnk4+sxshk46fpvdN+Uh1LlKWFO5g1ocuz4EcknNIL7tm/rsCAs/+xMWiBTwbDUvm+pDNlXw==}
     dependencies:
       '@essentials/raf': 1.2.0
-    dev: false
-
-  /@fontsource/arimo/4.5.0:
-    resolution: {integrity: sha512-BsboqJKUlImdTtenGQuUGWNj5G1cEztU4auA6PoLgMiVsRERqGhVDD5n/CVkyVFR4bi28S7QsKS937J4ras9IQ==}
-    dev: false
-
-  /@fontsource/spectral/4.5.0:
-    resolution: {integrity: sha512-YCZy0hn4QGmi9nxQ26kWWlX1ZQy2YEhUUvsHFBUQEVV7YdbcdG1kPWw00SQUfL6lMHaQxrnXlEICCPhMVqQzzw==}
     dev: false
 
   /@gatsbyjs/reach-router/1.3.6_react-dom@17.0.2+react@17.0.2:
@@ -5949,6 +5939,10 @@ packages:
       '@emotion/babel-preset-css-prop': 11.2.0_@babel+core@7.16.0
       '@emotion/react': 11.7.0_e71557cadea3156a1191812ec2caaaff
       gatsby: 4.3.0_02d8256d1f8d714d1b4256030b46e48c
+    dev: false
+
+  /gatsby-plugin-google-fonts/1.0.1:
+    resolution: {integrity: sha512-p1NVkn27GUnDA5qHM+Z4cCcLCJIardzZXMon3640sT4xuL/AZJbsx3HEt2KY/5oZu0UXIkytkxzV2Da4rQeUIg==}
     dev: false
 
   /gatsby-plugin-image/2.8.0_e7c64682a3f66d853a0331a3d9c17c0a:
