@@ -1,8 +1,8 @@
 const { normalize } = require('./util');
 
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   pathPrefix: `/oie-de-cravan`,
@@ -15,6 +15,9 @@ module.exports = {
       resolve: `gatsby-plugin-pnpm`,
     },
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-airtable`,
       options: {
@@ -26,10 +29,11 @@ module.exports = {
             queryName: 'Catalogue',
             separateNodeType: true,
             mapping: {
-              'Presentation_et_bio_fr': 'text/markdown',
-              'Presentation_et_bio_en': 'text/markdown',
+              Presentation_et_bio_fr: 'text/markdown',
+              Presentation_et_bio_en: 'text/markdown',
             },
             defaultValues: {
+              Cr_ateurs_secondaires__fr_: '',
               Cr_ateurs_secondaires__en_: '',
             },
           },
@@ -40,7 +44,7 @@ module.exports = {
             tableLinks: ['Catalogue'],
             separateNodeType: true,
             mapping: {
-              'Texte_contenu': 'text/markdown',
+              Texte_contenu: 'text/markdown',
             },
           },
           {

@@ -6,18 +6,16 @@ import {
   H2Icon,
   Box,
   GridMd,
-  Image,
   VSpacerMedium,
   VSpacerLarge,
   VSpacerSmall,
   TextCard,
   TextCardMd,
 } from '../components/elements';
-import nousRejoindre from '../images/NousRejoindre.png';
-import cartePostaleDuBureauOie from '../images/CartePostaleBureauOie.png';
 import { useTheme } from '@emotion/react';
 import { unP } from '../utils'
 import { useLang } from '../components/lang'
+import { StaticImage } from 'gatsby-plugin-image';
 
 function Main() {
   const { textes } = useLang();
@@ -25,7 +23,7 @@ function Main() {
   return (
     <>
       <VSpacerLarge />
-      <Image src={nousRejoindre} alt='Nous rejoindre' />
+      <StaticImage src='../images/NousRejoindre.png' alt='Nous rejoindre' />
       <VSpacerLarge />
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
       <VSpacerMedium />
@@ -60,8 +58,8 @@ function Main() {
       <VSpacerLarge />
       <GridMd alignItems='end'>
         <Box gcs='2' gce='7'>
-          <Image
-            src={cartePostaleDuBureauOie}
+          <StaticImage
+            src='../images/CartePostaleBureauOie.png'
             alt='carte postale du bureau Oie'
           />
           <Box {...theme.styles.caption} textAlign='center' pt='20px' px={['0px', '20px']} pb='40px' dangerouslySetInnerHTML={{

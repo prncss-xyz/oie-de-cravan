@@ -40,7 +40,7 @@ export const BookCard = ({ book, ...props }) => {
         </H3>
         <Subtitle pb='20px'>{typo_ajust(book.auteurLivre)}</Subtitle>
         <Flex justifyContent='center'>
-          {couverture && <Image src={couverture} alt={book.titre} />}
+          {couverture && <img src={couverture} alt={book.titre} />}
         </Flex>
       </Card>
     </Link>
@@ -496,13 +496,6 @@ export function NavigationFooter({ children, ...props }) {
   return (
     <Box {...theme.styles.navigationFooter} {...props}>
       {children}
-    </Box>
-  );
-}
-export function Image({ src, alt, ...props }) {
-  return (
-    <Box {...props}>
-      <img src={src} alt={alt} />
     </Box>
   );
 }

@@ -18,8 +18,7 @@ import {
   Flex,
   TextCardMd,
 } from '../components/elements';
-import oiseauHome from '../images/Oiseau_Home.svg';
-import stoneGoose from '../images/stonegoose1_BasseResolution-Remplacer.png';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const getCurrentIndex = (books, date) => {
   let currentIndex = 0;
@@ -80,7 +79,7 @@ function Main({ data }) {
   const books = nodes.map((node) => cleanBook(lang, node));
   const [currentIndex, setCurrentIndex] = useState(
     getCurrentIndex(books, build),
-  )
+  );
   useEffect(() => {
     const index = getCurrentIndex(books, Date.now());
     setCurrentIndex(index);
@@ -90,7 +89,7 @@ function Main({ data }) {
     <>
       <Box pb={['80px', '100px']} />
       <Box width={['160px', '320px']} margin='auto'>
-        <img src={oiseauHome} alt='oie de Cravan' />
+        <StaticImage src='../images/Oiseau_Home.svg' alt='oie de Cravan' />
       </Box>
       <Box pb={['80px', '180px']} />
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
@@ -123,7 +122,10 @@ function Main({ data }) {
           flexDirection='column'
           alignItems='center'
         >
-          <img src={stoneGoose} alt='oie de Cravan' />
+          <StaticImage
+            src='../images/stonegoose1_BasseResolution-Remplacer.png'
+            alt='oie de Cravan'
+          />
           <Box
             textAlign='center'
             px={['0px', '40px']}
@@ -168,4 +170,4 @@ function Main({ data }) {
   );
 }
 
-export default page(Main)
+export default page(Main);
