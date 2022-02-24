@@ -11,13 +11,6 @@ import logoOie_footer from '../images/LogoOie_Footer.png';
 import { ArrowLeftBlack, ArrowRightBlack } from './icons';
 import { CurrencyProvider } from '../components/currency';
 import { Flex, Box } from './elements';
-import 'modern-css-reset/dist/reset.min.css';
-import '@fontsource/arimo';
-import '@fontsource/arimo/400.css';
-import '@fontsource/arimo/700.css';
-import '@fontsource/spectral/400-italic.css';
-import '@fontsource/spectral';
-import '@fontsource/spectral/400.css';
 
 const name = "L'Oie de Cravan";
 
