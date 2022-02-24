@@ -226,7 +226,9 @@ const EmbbededText = (data) => {
   const description_italiques = typo_ajust(
     data['Texte__description_italiques']?.trim(),
   );
-  const description_romain = typo_ajust(data['Texte__description_romain'])?.trim();
+  const description_romain = typo_ajust(
+    data['Texte__description_romain'],
+  )?.trim();
   return (
     <TextCard>
       <Box color='accent'>
@@ -315,7 +317,6 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
   const autour = allAirtableAutourDuLivre.nodes;
   return (
     <>
-      {/* {JSON.stringify(subPath)} */}
       <Box pb={['40px', '60px']} />
       <GridMd>
         <Box gcs='2' gce='12' display={['none', 'inherit']}>
@@ -342,13 +343,29 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
           )}
           <Box pb='40px' />
           <Flex color='accent' alignItems='baseline'>
-            {data.genre && <Subtitle>{typo_ajust(data.genre)}</Subtitle>}
+            {data.genre && (
+              <Link
+                to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${
+                  data.genre
+                }`}
+              >
+                <Subtitle>{typo_ajust(data.genre)}</Subtitle>
+              </Link>
+            )}
             {data.genre && data.collection && (
               <Box px='10px'>
                 <Nuage />
               </Box>
             )}
-            {data.collection && <Subtitle>{data.collection}</Subtitle>}
+            {data.collection && (
+              <Link
+                to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${
+                  data.collection
+                }`}
+              >
+                <Subtitle>{data.collection}</Subtitle>
+              </Link>
+            )}
           </Flex>
           <Box pb='40px' />
           <Box display={['inherit', 'none']}>

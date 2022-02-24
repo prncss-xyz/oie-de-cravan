@@ -6,7 +6,7 @@ const typo_ajust = (str) => {
 };
 
 const normalize = (str) => {
-  return str ? accents.remove(str).replace(/[()-]/g, ' ') : '';
+  return str ? accents.remove(str).replace(/[()-.]/g, ' ') : '';
 };
 
 module.exports = {

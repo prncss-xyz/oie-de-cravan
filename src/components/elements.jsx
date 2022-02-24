@@ -509,7 +509,7 @@ export function Image({ src, alt, ...props }) {
 
 export const Clickable = ({ onClick, children, ...props }) => (
   <button
-    css={{ border: '0px', background: 'transparent', padding: '0px' }}
+    css={{ border: '0px', background: 'transparent', padding: '0px', width:'100%' }}
     onClick={onClick}
     {...props}
   >

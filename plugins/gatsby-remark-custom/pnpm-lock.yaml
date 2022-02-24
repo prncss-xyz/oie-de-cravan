@@ -1,11 +1,11 @@
 lockfileVersion: 5.3
 
 specifiers:
-  remark-breaks: ^2.0.2
+  remark-breaks: ^1.0.5
   unist-util-visit: ^2
 
 dependencies:
-  remark-breaks: 2.0.2
+  remark-breaks: 1.0.5
   unist-util-visit: 2.0.3
 
 packages:
@@ -14,10 +14,8 @@ packages:
     resolution: {integrity: sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==}
     dev: false
 
-  /remark-breaks/2.0.2:
-    resolution: {integrity: sha512-LsQnPPQ7Fzp9RTjj4IwdEmjPOr9bxe9zYKWhs9ZQOg9hMg8rOfeeqQ410cvVdIK87Famqza1CKRxNkepp2EvUA==}
-    dependencies:
-      unist-util-visit: 2.0.3
+  /remark-breaks/1.0.5:
+    resolution: {integrity: sha512-lr8+TlJI273NjEqL27eUthPYPTCgXEj4NaLbnazS3bQaQL2FySlsbtgo52gE36fE1gWeQgkn1VdmWsoT+uA7FA==}
     dev: false
 
   /unist-util-is/4.1.0:

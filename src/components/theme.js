@@ -155,7 +155,7 @@ const theme = {
       fontFamily: 'Arimo',
       fontSize: '14px',
       letterSpacing: 0.75,
-      letterSpacing: 1,
+      // letterSpacing: 1,
       lineHeight: '20px',
     },
     navigationFooter: {

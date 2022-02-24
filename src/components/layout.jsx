@@ -21,11 +21,38 @@ import '@fontsource/spectral/400.css';
 
 const name = "L'Oie de Cravan";
 
-function OverlayMenu({ closeHandler }) {
-  const { lang, layoutTextes, links } = useLang();
+function Lang({ short, en, fr }) {
+  const { lang } = useLang();
+  if (lang === 'fr') {
+    const label = short ? 'en' : 'English';
+    if (en) {
+      return (
+        <Box>
+          <Link to={en}>{label}</Link>
+        </Box>
+      );
+    }
+    return <Box>{label}</Box>;
+  }
+  if (lang === 'en') {
+    const label = short ? 'fr' : 'Français';
+    if (fr) {
+      return (
+        <Box>
+          <Link to={fr}>{label}</Link>
+        </Box>
+      );
+    }
+    return <Box>{label}</Box>;
+  }
+}
+
+function OverlayMenu({ en, fr, closeHandler }) {
+  const { layoutTextes, links } = useLang();
   const theme = useTheme();
   return (
-    <Box
+    <Flex
+      flexDirection='column'
       bg='accent'
       color='background'
       css={{
@@ -49,9 +76,8 @@ function OverlayMenu({ closeHandler }) {
         </Clickable>
       </Flex>
       <Flex
-        height='100%'
+        flexGrow={1}
         flexDirection='column'
-        onClick={closeHandler}
         justifyContent='center'
         textAlign='center'
         {...theme.styles.overlay}
@@ -80,27 +106,24 @@ function OverlayMenu({ closeHandler }) {
           />
         </Link>
       </Flex>
-    </Box>
+      <Flex
+        pb='40px'
+        justifyContent='center'
+        flexDirection='column'
+        {...theme.styles.body1}
+      >
+        <Lang short={false} en={en} fr={fr} />
+        <Link>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: unP(layoutTextes['panier']),
+            }}
+          />
+        </Link>
+      </Flex>
+    </Flex>
   );
 }
-
-const En = ({ en }) =>
-  en ? (
-    <Box color={theme.colors.accent}>
-      <Link to={en}>en</Link>
-    </Box>
-  ) : (
-    <Box>en</Box>
-  );
-
-const Fr = ({ fr }) =>
-  fr ? (
-    <Box color={theme.colors.accent}>
-      <Link to={fr}>fr</Link>
-    </Box>
-  ) : (
-    <Box>fr</Box>
-  );
 
 const Header = ({ en, fr }) => {
   const theme = useTheme();
@@ -110,25 +133,28 @@ const Header = ({ en, fr }) => {
   const [menuOpened, menuOpen] = useState(false);
   return (
     <>
-      <Box display={['inherit', 'none']}>
-        {menuOpened && <OverlayMenu closeHandler={() => menuOpen(false)} />}
-        {/* TODO: change for Clickable and align right */}
-        <a
-          href=''
-          onClick={(e) => {
-            e.preventDefault();
-            menuOpen(true);
-          }}
-        >
-          <Flex color='accent' justifyContent='space-between'>
-            <Box
-              {...theme.styles.h3}
-              dangerouslySetInnerHTML={{ __html: unP(layoutTextes['titre']) }}
-            />
-            <FaBars size={theme.styles.h3.fontSize} />
-          </Flex>
-        </a>
-      </Box>
+      <Flex>
+        <Clickable onClick={() => !menuOpened && menuOpen(true)}>
+          <Box display={['inherit', 'none']}>
+            {menuOpened && (
+              <OverlayMenu
+                en={en}
+                fr={fr}
+                closeHandler={() => menuOpen(false)}
+              />
+            )}
+            <Flex color='accent' justifyContent='space-between'>
+              <Box
+                {...theme.styles.h3}
+                dangerouslySetInnerHTML={{ __html: unP(layoutTextes['titre']) }}
+              />
+              <Box color='accent'>
+                <FaBars size={theme.styles.h3.fontSize} />
+              </Box>
+            </Flex>
+          </Box>
+        </Clickable>
+      </Flex>
       <Box
         display={['none', 'inherit']}
         margin='auto'
@@ -173,7 +199,9 @@ const Header = ({ en, fr }) => {
           </Flex>
           <Flex alignItems='baseline' {...theme.styles.navigation}>
             <Box pl='20px' />
-            {lang === 'fr' ? <En en={en} /> : <Fr fr={fr} />}
+            <Box color='accent'>
+              <Lang short={true} en={en} fr={fr} />
+            </Box>
           </Flex>
         </Flex>
       </Box>
@@ -183,7 +211,7 @@ const Header = ({ en, fr }) => {
 
 const Footer = () => {
   const theme = useTheme();
-  const { lang, layoutTextes, links } = useLang();
+  const { layoutTextes, links } = useLang();
   return (
     <>
       <Box color='accent' borderTopStyle='solid' borderWidth='1px' />
