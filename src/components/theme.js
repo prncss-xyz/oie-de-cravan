@@ -136,8 +136,10 @@ const theme = {
         },
 
         '& a': {
-          // fontWeight: 'bold',
-          textDecoration: 'underline',
+          fontWeight: 'bold',
+          fontStyle: 'normal',
+          // textTransform: 'uppercase',
+          // textDecoration: 'underline',
         },
       },
     },
