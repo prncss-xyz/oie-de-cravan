@@ -15,6 +15,7 @@ module.exports = {
       resolve: `gatsby-plugin-pnpm`,
     },
     `gatsby-plugin-emotion`,
+    //` placeholder=none` causes memory leak; see https://github.com/gatsbyjs/gatsby/issues/34795
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -22,8 +23,9 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `spectral`,
-          `arimo`
+          `Spectral:400`,
+          `Spectral:ital,400`,
+          `Arimo:400,700`,
         ],
         display: 'block'
       }
