@@ -166,8 +166,8 @@ const Header = ({ en, fr }) => {
           <Flex flexGrow='1' />
           <Flex
             alignItems='baseline'
-            css={{ columnGap: '20px' }}
             {...theme.styles.navigation}
+            css={{ columnGap: '20px' }}
           >
             <Link to={links['catalogue']}>
               <div

@@ -383,17 +383,6 @@ export const QuoteSmall = ({ children, ...props }) => {
     <Box
       color='accent'
       {...theme.styles.quoteSmall}
-      css={{
-        '& p': {
-          marginBottom: theme.styles.quoteSmall.lineHeight,
-        },
-        '& p:last-child': {
-          marginBottom: 0,
-        },
-        '& em': {
-          fontStyle: 'normal',
-        },
-      }}
       {...props}
     >
       {children}
@@ -441,21 +430,6 @@ export function Body1({ children, ...props }) {
   return (
     <Box
       {...theme.styles.body1}
-      css={{
-        '& h2': {
-          fontFamily: 'Spectral',
-          fontSize: '28px',
-          lineHeight: '32px',
-          fontWeight: 'normal',
-          color: theme.colors.accent,
-        },
-        '& p': {
-          marginBottom: theme.styles.body1.lineHeight,
-        },
-        '& p:last-child': {
-          marginBottom: 0,
-        },
-      }}
       {...props}
     >
       {children}
@@ -468,14 +442,6 @@ export function Body2({ children }) {
   return (
     <Box
       {...theme.styles.body2}
-      css={{
-        '& p': {
-          marginBottom: theme.styles.body2.lineHeight,
-        },
-        '& p:last-child': {
-          marginBottom: 0,
-        },
-      }}
     >
       {children}
     </Box>

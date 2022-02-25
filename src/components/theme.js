@@ -73,7 +73,7 @@ const theme = {
       lineHeight: '32px',
       css: {
         '& p': {
-          marginBottom: '24px',
+          marginBottom: '32px',
         },
         '& p:last-child': {
           marginBottom: 0,
@@ -84,12 +84,28 @@ const theme = {
           fontSize: '22px',
           lineHeight: '32px',
         },
+        '& h2': {
+          // color: colors.accent,
+          fontFamily: 'Spectral',
+          fontSize: '22px',
+          lineHeight: '32px',
+          fontWeight: 'bold',
+          // marginBottom: '16px',
+        },
       },
     },
     body2: {
       fontFamily: 'Spectral',
       fontSize: '18px',
       lineHeight: '24px',
+      css: {
+        '& p': {
+          marginBottom: '24px',
+        },
+        '& p:last-child': {
+          marginBottom: 0,
+        },
+      },
     },
     caption: {
       fontFamily: 'Spectral',
@@ -109,8 +125,19 @@ const theme = {
       fontSize: '28px',
       lineHeight: '32px',
       css: {
+        '& p': {
+          marginBottom: '32p',
+        },
+        '& p:last-child': {
+          marginBottom: 0,
+        },
+        '& em': {
+          fontStyle: 'normal',
+        },
+
         '& a': {
-          fontWeight: 'bold',
+          // fontWeight: 'bold',
+          textDecoration: 'underline',
         },
       },
     },

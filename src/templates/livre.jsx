@@ -229,7 +229,9 @@ const EmbbededText = (data) => {
   )?.trim();
   return (
     <TextCard>
-      <Box color='accent'>
+      <Box color='accent' 
+        // css={{'& a': {color: 'primary'}}}
+      >
         <Box
           {...theme.styles.quoteSmall}
           dangerouslySetInnerHTML={{ __html: texte }}
