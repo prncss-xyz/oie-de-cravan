@@ -16,7 +16,6 @@ function Main() {
         {...theme.styles.body1}
         dangerouslySetInnerHTML={{ __html: textes['aide'] }}
       />
-      <VSpacerMedium />
     </>
   );
 }

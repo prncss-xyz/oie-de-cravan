@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { FaExternalLinkAlt, IconContext } from 'react-icons/fa';
 import { useCurrency } from '../components/currency';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
@@ -15,7 +16,6 @@ import {
   Box,
   Body1,
   Flex,
-  Grid,
   GridMd,
   Tilde,
   Subtitle,
@@ -178,13 +178,17 @@ const BookCol = ({ data, ...props }) => {
       pb='15px'
     >
       {data.couvertures.length > 0 && (
-        <Clickable onClick={cycle}>
-          <img src={data.couvertures[position]} alt='couverture' />
+        <>
+          <Clickable onClick={cycle}>
+            <Flex flexDirection='colum' justifyContent='center'>
+              <img src={data.couvertures[position]} alt='couverture' />
+            </Flex>
+          </Clickable>
           <Box pb='15px' />
-        </Clickable>
+        </>
       )}
       {data.couvertures.length > 1 && (
-        <Flex pb='20px' justifyContent='center'>
+        <Flex justifyContent='center'>
           {data.couvertures.map((_, index) => (
             <Disk
               key={index}
@@ -194,6 +198,7 @@ const BookCol = ({ data, ...props }) => {
           ))}
         </Flex>
       )}
+      <Box pb='20px' />
       <Box py={['20px', '0px']}>
         {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
         {data.annee && <Box>{data.annee}</Box>}
@@ -216,10 +221,7 @@ const BookCol = ({ data, ...props }) => {
   );
 };
 
-const EmbbededText = (data) => {
-  const texte = data.Texte_contenu?.childMarkdownRemark.html;
-  const theme = useTheme();
-  if (!texte) return null;
+function SignatureText(data) {
   const signature = typo_ajust(data.Texte__signature)?.trim();
   const description_italiques = typo_ajust(
     data['Texte__description_italiques']?.trim(),
@@ -228,8 +230,36 @@ const EmbbededText = (data) => {
     data['Texte__description_romain'],
   )?.trim();
   return (
+    <>
+      {signature}
+      {signature && (description_romain || description_italiques) && ', '}
+      <i>{description_italiques}</i>
+      {description_italiques && description_romain && ' – '}
+      {description_romain}
+    </>
+  );
+}
+
+function SignatureLink({ children, ...data }) {
+  const href = data['Texte__hyperlien'];
+  if (href) {
+    return (
+      <Link href={href}>
+          {children}<FaExternalLinkAlt css={{marginLeft: 10}} size={14}/>
+      </Link>
+    );
+  }
+  return children;
+}
+
+const EmbbededText = (data) => {
+  const texte = data.Texte_contenu?.childMarkdownRemark.html;
+  const theme = useTheme();
+  if (!texte) return null;
+  return (
     <TextCard>
-      <Box color='accent' 
+      <Box
+        color='accent'
         // css={{'& a': {color: 'primary'}}}
       >
         <Box
@@ -237,11 +267,9 @@ const EmbbededText = (data) => {
           dangerouslySetInnerHTML={{ __html: texte }}
         />
         <Box pt='20px' {...theme.styles.subtitle}>
-          {signature}
-          {signature && (description_romain || description_italiques) && ', '}
-          <i>{description_italiques}</i>
-          {description_italiques && description_romain && ' – '}
-          {description_romain}
+          <SignatureLink {...data}>
+            <SignatureText {...data} />
+          </SignatureLink>
         </Box>
       </Box>
     </TextCard>
@@ -277,9 +305,9 @@ const AutourDuLivre0 = ({ autour }) => {
         dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }}
       />
       <Box pb={['40px', '60px']} />
-      <Grid>
+      <GridMd>
         {autour.length > 1 && (
-          <Box gcs='3' gce='4' justifyContent='end' alignSelf='center'>
+          <Box gcs={3} gce={4} justifyContent='end' alignSelf='center'>
             <Clickable onClick={backcycle}>
               <Box py='10px'>
                 <ArrowLeft />
@@ -287,12 +315,12 @@ const AutourDuLivre0 = ({ autour }) => {
             </Clickable>
           </Box>
         )}
-        <Box gcs='4' gce='10'>
+        <Box gcs={4} gce={10}>
           <EmbbededYoutube {...autour[position].data} />
           <EmbbededText {...autour[position].data} />
         </Box>
         {autour.length > 1 && (
-          <Box gcs='11' gce='12' alignSelf='center'>
+          <Box gcs={11} gce={12} alignSelf='center'>
             <Clickable onClick={cycle}>
               <Box py='10px'>
                 <ArrowRight />
@@ -300,7 +328,7 @@ const AutourDuLivre0 = ({ autour }) => {
             </Clickable>
           </Box>
         )}
-      </Grid>
+      </GridMd>
       <Box pb={['40px', '60px']} />
     </>
   );
@@ -319,14 +347,14 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
     <>
       <Box pb={['40px', '60px']} />
       <GridMd>
-        <Box gcs='2' gce='12' display={['none', 'inherit']}>
+        <Box gcs={2} gce={12} display={['none', 'none', 'inherit']}>
           <BackLink />
           <Box pb={['40px', '60px']} />
         </Box>
-        <Box gcs='2' gce='5' display={['none', 'inherit']}>
+        <Box gcs={2} gce={5} display={['none', 'none', 'inherit']}>
           <BookCol data={data} />
         </Box>
-        <Box gcs='6' gce='12'>
+        <Box gcs={[0, 2, 6]} gce={[13, 12, 12]}>
           <H2 color='accent'>{typo_ajust(data.titre)}</H2>
           <Box color='accent'>
             <Tilde />
@@ -345,9 +373,7 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
           <Flex color='accent' alignItems='baseline'>
             {data.genre && (
               <Link
-                to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${
-                  data.genre
-                }`}
+                to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${data.genre}`}
               >
                 <Subtitle>{typo_ajust(data.genre)}</Subtitle>
               </Link>
@@ -368,7 +394,7 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
             )}
           </Flex>
           <Box pb='40px' />
-          <Box display={['inherit', 'none']}>
+          <Box display={['inherit', 'inherit', 'none']}>
             <BookCol data={data} />
           </Box>
           <Body1>
@@ -387,7 +413,6 @@ const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
         </Box>
       </GridMd>
       <AutourDuLivre autour={autour} />
-      <Box pb={['100px', '180px']} />
     </>
   );
 };

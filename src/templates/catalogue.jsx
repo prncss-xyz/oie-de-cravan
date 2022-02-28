@@ -134,7 +134,6 @@ function Main({
         columnWidth={280}
         columnGutter={36}
       />
-      <VSpacerLarge />
     </>
   );
 }

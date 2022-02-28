@@ -5,7 +5,7 @@ const colors = {
   primary: '#929292',
 };
 const theme = {
-  breakpoints: ['785px'],
+  breakpoints: ['785px', '965px'],
   colors,
   //fontSizes: [14, 16, 18, 20, 22, 28, 38, 44, 58],
   styles: {
@@ -140,7 +140,7 @@ const theme = {
           fontWeight: 'bold',
           fontStyle: 'normal',
           // textTransform: 'uppercase',
-          textDecoration: 'underline',
+          // textDecoration: 'underline',
         },
       },
     },

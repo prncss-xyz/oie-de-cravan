@@ -87,22 +87,26 @@ function Main({ data }) {
   const theme = useTheme();
   return (
     <>
-      <Box pb={['80px', '100px']} />
+      <VSpacerLarge />
       <Box width={['160px', '320px']} margin='auto'>
-        <StaticImage placeholder='none' src='../images/Oiseau_Home.svg' alt='oie de Cravan' />
+        <StaticImage
+          placeholder='none'
+          src='../images/Oiseau_Home.svg'
+          alt='oie de Cravan'
+        />
       </Box>
-      <Box pb={['80px', '180px']} />
+      <VSpacerLarge />
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
-      <Box pb={['60px', '100px']} />
+      <VSpacerMedium />
       <TextCardMd>
         <Box
           {...theme.styles.body1}
           dangerouslySetInnerHTML={{ __html: textes['encadré 0'] }}
         />
       </TextCardMd>
-      <Box pb={['80px', '180px']} />
+      <VSpacerLarge/>
       <GridMd alignItems='end'>
-        <Box color='accent' gcs='2' gce='7'>
+        <Box color='accent' gcs={2} gce={7}>
           <Box
             {...theme.styles.quote}
             dangerouslySetInnerHTML={{ __html: textes['citation 0'] }}
@@ -113,17 +117,17 @@ function Main({ data }) {
             dangerouslySetInnerHTML={{ __html: textes['signature 0'] }}
           />
         </Box>
-        <Box pb={['80px', '180px']} />
+        <VSpacerLarge/>
         <Box
-          gcs='8'
-          gce='13'
+          gcs={8}
+          gce={13}
           pt={['40px', '0px']}
           display='flex'
           flexDirection='column'
           alignItems='center'
         >
           <StaticImage
-            placeholder='none' 
+            placeholder='none'
             src='../images/stonegoose1_BasseResolution-Remplacer.png'
             alt='oie de Cravan'
           />
@@ -138,20 +142,20 @@ function Main({ data }) {
           <VSpacerMedium />
         </Box>
       </GridMd>
-      <Box pb={['80px', '180px']} />
+      <VSpacerLarge/>
       <H2Icon
         Icon={Icons.Soleil}
         dangerouslySetInnerHTML={{ __html: textes['h2 0'] }}
       />
       <VSpacerSmall />
       <Books books={books} startIndex={currentIndex} />
-      <VSpacerSmall />
+      <VSpacerMedium />
       <Link to='/catalogue'>
         <Arrows dangerouslySetInnerHTML={{ __html: textes['action 0'] }} />
       </Link>
-      <VSpacerLarge />
       {currentIndex > 0 && (
         <>
+          <VSpacerMedium />
           <H2Icon
             Icon={Icons.Avion}
             dangerouslySetInnerHTML={{ __html: textes['h2 1'] }}
@@ -164,7 +168,6 @@ function Main({ data }) {
               </div>
             ))}
           </Box>
-          <VSpacerLarge />
         </>
       )}
     </>

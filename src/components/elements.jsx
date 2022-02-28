@@ -81,7 +81,7 @@ export const Grid = styled(Box)({
 export const GridMd = ({ ...props }) => (
   <Box
     display={['', 'grid']}
-    gridTemplateColumns={['repeat(12, 1fr)']}
+    gridTemplateColumns={'repeat(12, 1fr)'}
     {...props}
   />
 );
@@ -161,7 +161,7 @@ export const H3 = ({ children, ...props }) => {
   );
 };
 
-export const VSpacerLarge = () => <Box pb={['100px', '180px']} />;
+export const VSpacerLarge = () => <Box pb={['80px', '180px']} />;
 export const VSpacerMedium = () => <Box pb={['60px', '100px']} />;
 export const VSpacerSmall = () => <Box pb={['40px', '60px']} />;
 export const VSpacerXSmall = () => <Box pb='40px' />;
@@ -223,7 +223,7 @@ export const H3Icon = ({
   );
 };
 
-export function Arrows({ children, dangerouslySetInnerHTML, ...props }) {
+export function Arrows({ children, dangerouslySetInnerHTML }) {
   const theme = useTheme();
   return (
     <Flex flexDirection='column' alignItems='center' color='accent'>

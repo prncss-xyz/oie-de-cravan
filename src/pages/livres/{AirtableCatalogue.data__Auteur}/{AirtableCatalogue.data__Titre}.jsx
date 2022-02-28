@@ -93,6 +93,7 @@ export const query = graphql`
           Texte__signature
           Texte__description_italiques
           Texte__description_romain
+          Texte__hyperlien
           Youtube__URL
         }
       }

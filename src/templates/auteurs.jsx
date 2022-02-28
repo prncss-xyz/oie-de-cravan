@@ -1,7 +1,7 @@
 import React from 'react';
 import page from '../components/layout';
 import { useTheme } from '@emotion/react';
-import { H1Tilde, Box, VSpacerMedium } from '../components/elements';
+import { H1Tilde, Flex, VSpacerMedium } from '../components/elements';
 import { Link } from 'gatsby';
 import removeAccents from 'remove-accents';
 import { useLang } from '../components/lang';
@@ -32,26 +32,25 @@ const cmp = (a, b) => {
   return 0;
 };
 
-// TODO: list only authors with publications in active language
-
 const Authors = ({ auteurs }) => {
   const theme = useTheme();
   const { lang } = useLang();
   return (
-    <Box color='accent' textAlign='center' {...theme.styles.authors}>
-      <ul css={{ listStyle: 'none' }}>
-        {auteurs.map((auteur) => (
-          <Link
-            key={auteur}
-            to={`${lang === 'fr' ? '' : '/en'}/catalogue?q=${rectAuteur(
-              auteur,
-            )}`}
-          >
-            <li>{typo_ajust(rectAuteur(auteur))}</li>
-          </Link>
-        ))}
-      </ul>
-    </Box>
+    <Flex
+      color='accent'
+      textAlign='center'
+      {...theme.styles.authors}
+      flexDirection='column'
+    >
+      {auteurs.map((auteur) => (
+        <Link
+          key={auteur}
+          to={`${lang === 'fr' ? '' : '/en'}/catalogue?q=${rectAuteur(auteur)}`}
+        >
+          {typo_ajust(rectAuteur(auteur))}
+        </Link>
+      ))}
+    </Flex>
   );
 };
 

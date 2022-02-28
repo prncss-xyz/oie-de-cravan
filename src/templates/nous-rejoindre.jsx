@@ -28,13 +28,13 @@ function Main() {
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
       <VSpacerMedium />
       <GridMd>
-        <TextCardMd gcs='4' gce='10'>
+        <TextCardMd gcs={4} gce={10}>
           <Box {...theme.styles.body1} dangerouslySetInnerHTML={{ __html: textes['encadré 0'] }} />
         </TextCardMd>
       </GridMd>
       <Box pb={['40px', '0px']} />
       <GridMd>
-        <TextCardMd gcs='7' gce='11' css={{ position: 'relative', bottom: '17px' }}>
+        <TextCardMd gcs={7} gce={11} css={{ position: 'relative', bottom: '17px' }}>
           <Box {...theme.styles.body2} dangerouslySetInnerHTML={{ __html: textes['encadré 1'] }} />
         </TextCardMd>
       </GridMd>
@@ -43,13 +43,13 @@ function Main() {
       <VSpacerSmall />
       <Box {...theme.styles.body1} >
         <GridMd gridGap="36px">
-          <Box gcs='2' gce='7' dangerouslySetInnerHTML={{ __html: textes['colonne 0'] }} />
-          <Box gcs='7' gce='12' dangerouslySetInnerHTML={{ __html: textes['colonne 1'] }} />
+          <Box gcs={2} gce={7} dangerouslySetInnerHTML={{ __html: textes['colonne 0'] }} />
+          <Box gcs={7} gce={12} dangerouslySetInnerHTML={{ __html: textes['colonne 1'] }} />
         </GridMd>
       </Box>
       <VSpacerMedium />
       <GridMd>
-        <Box gcs='4' gce='10'>
+        <Box gcs={4} gce={10}>
           <TextCard>
             <Box {...theme.styles.body1} dangerouslySetInnerHTML={{ __html: textes['encadré 2'] }} />
           </TextCard>
@@ -57,7 +57,7 @@ function Main() {
       </GridMd>
       <VSpacerLarge />
       <GridMd alignItems='end'>
-        <Box gcs='2' gce='7'>
+        <Box gcs={2} gce={7}>
           <StaticImage
             placeholder='none' 
             src='../images/CartePostaleBureauOie.png'
@@ -73,7 +73,6 @@ function Main() {
           <Box pt="26px" {...theme.styles.subtitle} dangerouslySetInnerHTML={{ __html: textes['signature 0'] }} />
         </Box>
       </GridMd>
-      <VSpacerLarge />
       {/*
       <H2Icon Icon={Icons.Coeur}>Mécénat express</H2Icon>
       <VSpacerSmall />
@@ -89,7 +88,6 @@ function Main() {
       </Grid>
       <VSpacerSmall />
       <Arrows href='#'>Envoyer un don à L'Oie</Arrows>
-      <VSpacerLarge />
       */}
     </>
   );
