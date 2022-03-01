@@ -13,8 +13,8 @@ import {
   TextCardMd,
 } from '../components/elements';
 import { useTheme } from '@emotion/react';
-import { unP } from '../utils'
-import { useLang } from '../components/lang'
+import { unP } from '../utils';
+import { useLang } from '../components/lang';
 import { StaticImage } from 'gatsby-plugin-image';
 
 function Main() {
@@ -23,35 +23,65 @@ function Main() {
   return (
     <>
       <VSpacerLarge />
-      <StaticImage placeholder='none' src='../images/NousRejoindre.png' alt='Nous rejoindre' />
+      <StaticImage
+        placeholder='none'
+        src='../images/NousRejoindre.png'
+        alt='Nous rejoindre'
+      />
       <VSpacerLarge />
       <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
       <VSpacerMedium />
       <GridMd>
-        <TextCardMd gcs={4} gce={10}>
-          <Box {...theme.styles.body1} dangerouslySetInnerHTML={{ __html: textes['encadré 0'] }} />
-        </TextCardMd>
+        <Box gcs={4} gce={10}>
+          <TextCard>
+            <Box
+              {...theme.styles.body1}
+              dangerouslySetInnerHTML={{ __html: textes['encadré 0'] }}
+            />
+          </TextCard>
+        </Box>
       </GridMd>
       <Box pb={['40px', '0px']} />
       <GridMd>
-        <TextCardMd gcs={7} gce={11} css={{ position: 'relative', bottom: '17px' }}>
-          <Box {...theme.styles.body2} dangerouslySetInnerHTML={{ __html: textes['encadré 1'] }} />
+        <TextCardMd
+          gcs={7}
+          gce={11}
+          css={{ position: 'relative', bottom: '17px' }}
+        >
+          <Box
+            {...theme.styles.body2}
+            dangerouslySetInnerHTML={{ __html: textes['encadré 1'] }}
+          />
         </TextCardMd>
       </GridMd>
       <VSpacerLarge />
-      <H2Icon Icon={Icons.Nuage} dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }} />
+      <H2Icon
+        Icon={Icons.Nuage}
+        dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }}
+      />
       <VSpacerSmall />
-      <Box {...theme.styles.body1} >
-        <GridMd gridGap="36px">
-          <Box gcs={2} gce={7} dangerouslySetInnerHTML={{ __html: textes['colonne 0'] }} />
-          <Box gcs={7} gce={12} dangerouslySetInnerHTML={{ __html: textes['colonne 1'] }} />
+      <Box {...theme.styles.body1}>
+        <GridMd gridGap='36px'>
+          <Box
+            gcs={2}
+            gce={7}
+            dangerouslySetInnerHTML={{ __html: textes['colonne 0'] }}
+          />
+          <Box
+            gcs={7}
+            gce={12}
+            dangerouslySetInnerHTML={{ __html: textes['colonne 1'] }}
+          />
         </GridMd>
       </Box>
       <VSpacerMedium />
       <GridMd>
         <Box gcs={4} gce={10}>
           <TextCard>
-            <Box {...theme.styles.body1} dangerouslySetInnerHTML={{ __html: textes['encadré 2'] }} />
+            <Box
+              {...theme.styles.body1}
+              dangerouslySetInnerHTML={{ __html: textes['encadré 2'] }}
+            />
           </TextCard>
         </Box>
       </GridMd>
@@ -59,18 +89,32 @@ function Main() {
       <GridMd alignItems='end'>
         <Box gcs={2} gce={7}>
           <StaticImage
-            placeholder='none' 
+            placeholder='none'
             src='../images/CartePostaleBureauOie.png'
             alt='carte postale du bureau Oie'
           />
-          <Box {...theme.styles.caption} textAlign='center' pt='20px' px={['0px', '20px']} pb='40px' dangerouslySetInnerHTML={{
-            __html: textes['légende 0']
-          }} />
-          < VSpacerMedium />
+          <Box
+            {...theme.styles.caption}
+            textAlign='center'
+            pt='20px'
+            px={['0px', '20px']}
+            pb='40px'
+            dangerouslySetInnerHTML={{
+              __html: textes['légende 0'],
+            }}
+          />
+          <VSpacerMedium />
         </Box>
         <Box gcs='8' gce='12' color='accent'>
-          <Box {...theme.styles.quote} dangerouslySetInnerHTML={{ __html: textes['citation 0'] }} />
-          <Box pt="26px" {...theme.styles.subtitle} dangerouslySetInnerHTML={{ __html: textes['signature 0'] }} />
+          <Box
+            {...theme.styles.quote}
+            dangerouslySetInnerHTML={{ __html: textes['citation 0'] }}
+          />
+          <Box
+            pt='26px'
+            {...theme.styles.subtitle}
+            dangerouslySetInnerHTML={{ __html: textes['signature 0'] }}
+          />
         </Box>
       </GridMd>
       {/*

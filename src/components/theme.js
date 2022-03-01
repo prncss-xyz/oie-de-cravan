@@ -5,7 +5,7 @@ const colors = {
   primary: '#929292',
 };
 const theme = {
-  breakpoints: ['785px', '965px'],
+  breakpoints: ['785px', '1000px'],
   colors,
   //fontSizes: [14, 16, 18, 20, 22, 28, 38, 44, 58],
   styles: {

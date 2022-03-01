@@ -80,7 +80,7 @@ export const Grid = styled(Box)({
 });
 export const GridMd = ({ ...props }) => (
   <Box
-    display={['', 'grid']}
+    display={['', '', 'grid']}
     gridTemplateColumns={'repeat(12, 1fr)'}
     {...props}
   />
@@ -277,7 +277,7 @@ export function Search({ label, handler, value0, ...props }) {
   };
   useEffect(() => {
     ref.current.value = value0;
-  }, []);
+  }, [value0]);
   return (
     <Box px={['20px', '0px']} {...props}>
       <Flex
