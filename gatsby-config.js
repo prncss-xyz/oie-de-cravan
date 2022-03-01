@@ -22,12 +22,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `Spectral:ital,400,700`,
-          `Arimo:400,700`,
-        ],
-        display: 'block'
-      }
+        fonts: [`Spectral:ital,400,700`, `Arimo:400,700`],
+        display: 'block',
+      },
     },
     {
       resolve: `gatsby-source-airtable`,
@@ -96,6 +93,7 @@ module.exports = {
                     ISBN
                     Cr_ateurs_secondaires__fr_
                     Cr_ateurs_secondaires__en_
+                    Publication__date_(formatString: "YYYY")
                   }
                 }
               }
@@ -111,6 +109,7 @@ module.exports = {
           'isbn',
           'createursSecondaires_en',
           'createursSecondaires_fr',
+          'annee',
         ],
         normalizer: ({ data }) =>
           data.allAirtableCatalogue.edges.map(({ node }) => {
@@ -127,6 +126,7 @@ module.exports = {
               createursSecondaires_en: normalize(
                 node?.data['Cr_ateurs_secondaires__en_'],
               ),
+              annee: node?.data['Publication__date_'],
             };
           }),
       },

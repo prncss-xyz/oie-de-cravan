@@ -166,7 +166,7 @@ const useCycle = (length) => {
 };
 
 const BookCol = ({ data, ...props }) => {
-  const { textes } = useLang();
+  const { lang, textes } = useLang();
   const theme = useTheme();
   const { position, cycle, go } = useCycle(data.couvertures.length);
   return (
@@ -201,7 +201,7 @@ const BookCol = ({ data, ...props }) => {
       <Box pb='20px' />
       <Box py={['20px', '0px']}>
         {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
-        {data.annee && <Box>{data.annee}</Box>}
+        {data.annee && <Link to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${data.annee}`}>{data.annee}</Link>}
         {data.hauteur && data.largeur && (
           <Box>
             {data.hauteur} x {data.largeur} cm
