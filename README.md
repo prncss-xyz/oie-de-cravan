@@ -2,7 +2,7 @@
 
 L'Oie de Cravan is a poetry editor. This is the new website's source code, build with Gatsby, with Airtable as CMS and deployed on gitlab with CI/CD. (If your reading this from github, this is obiously a clone of the intended repo.)
 
-Pre-launch verion can be seen [here](https://www.lokidesign.net/).
+Pre-launch verion can be seen [here](https://prncss.gitlab.io/oie-de-cravan/).
 
 Graphism is provides by [LOKI design](https://www.lokidesign.net/). Translated as reusable components. Layout is responsive.
 
