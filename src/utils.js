@@ -26,12 +26,12 @@ export const cleanBook = (lang, node) => {
     prixEuro: node.data['Prix_site_web__EUR_'],
     pages: node.data['Pages__nombre_'],
     presentation:
-      node.data[`Pr_sentation_et_bio__fr_`]?.trim() ??
-      node.data[`Pr_sentation_et_bio__en_`]?.trim() ??
+      (lang === 'fr' && node.data[`Pr_sentation_et_bio__fr_`]?.trim()) ??
+      (lang === 'en' && node.data[`Pr_sentation_et_bio__en_`]?.trim()) ??
       '',
     createursSecondaires:
-      node.data[`Cr_ateurs_secondaires__fr_`]?.trim() ??
-      node.data[`Cr_ateurs_secondaires__en_`]?.trim() ??
+      (lang === 'fr' && node.data[`Createurs_secondaires_fr`]?.trim()) ??
+      (lang === 'en' && node.data[`Createurs_secondaires_en`]?.trim()) ??
       '',
     epuise: !!node.data['_puis_'],
     couvertures: node.data['Couverture']?.map(({ url }) => url) ?? [],

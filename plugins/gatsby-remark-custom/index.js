@@ -1,4 +1,5 @@
 const visit = require('unist-util-visit');
+
 const { typo_ajust } = require('../../util');
 
 const find = /[\t ]*(?:\r?\n|\r)/g;

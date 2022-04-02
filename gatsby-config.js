@@ -41,8 +41,8 @@ module.exports = {
               Presentation_et_bio_en: 'text/markdown',
             },
             defaultValues: {
-              Cr_ateurs_secondaires__fr_: '',
-              Cr_ateurs_secondaires__en_: '',
+              Createurs_secondaires_fr: '',
+              Createurs_secondaires_en: '',
             },
           },
           {
@@ -91,8 +91,8 @@ module.exports = {
                     Collection
                     Genre
                     ISBN
-                    Cr_ateurs_secondaires__fr_
-                    Cr_ateurs_secondaires__en_
+                    Createurs_secondaires_fr
+                    Createurs_secondaires_en
                     Publication__date_(formatString: "YYYY")
                   }
                 }
@@ -121,10 +121,10 @@ module.exports = {
               genre: normalize(node?.data['Genre']),
               isbn: normalize(node?.data['ISBN']),
               createursSecondaires_fr: normalize(
-                node?.data['Cr_ateurs_secondaires__fr_'],
+                node?.data['Createurs_secondaires_fr'],
               ),
               createursSecondaires_en: normalize(
-                node?.data['Cr_ateurs_secondaires__en_'],
+                node?.data['Createurs_secondaires_en'],
               ),
               annee: node?.data['Publication__date_'],
             };

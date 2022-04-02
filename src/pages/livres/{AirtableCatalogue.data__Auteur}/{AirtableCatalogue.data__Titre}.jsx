@@ -70,7 +70,7 @@ export const query = graphql`
             html
           }
         }
-        Cr_ateurs_secondaires__fr_
+        Createurs_secondaires_fr
         _puis_
       }
       recordId
