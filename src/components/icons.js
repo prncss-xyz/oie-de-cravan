@@ -13,7 +13,6 @@ import coeur from '../icons/coeur.svg';
 import nuage from '../icons/nuage.svg';
 import play from '../icons/play.svg';
 import soleil from '../icons/soleil.svg';
-import Box from './elements';
 
 const height = '18px';
 
@@ -35,35 +34,27 @@ export function ArrowTop() {
 export function ArrowBottom() {
   return <img height='24px' src={arrowBottom} alt='arrow bottom' />;
 }
-
 export function Avion() {
   return <img height='22px' src={avion} alt='avion' />;
 }
-
 export function Ecrire() {
   return <img height={height} src={ecrire} alt='écrire' />;
 }
-
 export function Panier() {
   return <img height='20px' src={panier} alt='panier' />;
 }
-
 export function Search() {
   return <img src={search} alt='search' />;
 }
-
 export function Coeur() {
   return <img height={height} src={coeur} alt='coeur' />;
 }
-
 export function Nuage() {
   return <img height={height} src={nuage} alt='nuage' />;
 }
-
 export function Play() {
   return <img src={play} alt='play' />;
 }
-
 export function Soleil() {
   return <img height='22px' src={soleil} alt='soleil' />;
 }
