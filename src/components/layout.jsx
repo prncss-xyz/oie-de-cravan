@@ -10,7 +10,7 @@ import theme from './theme';
 import logoOie_footer from '../images/LogoOie_Footer.png';
 import { ArrowLeftBlack, ArrowRightBlack } from './icons';
 import { CurrencyProvider } from '../components/currency';
-import { Flex, Box, VSpacerMedium, VSpacerLarge } from './elements';
+import { Flex, Box, VSpacerLarge } from './elements';
 import 'modern-css-reset/dist/reset.min.css';
 
 const name = "L'Oie de Cravan";

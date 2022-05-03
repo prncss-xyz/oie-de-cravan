@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "gatsby develop",
-    "test": "jest"
+    "test": "npx jest",
+    "testWatchAll": "npx jest --watchAll"
   },
   "author": "Juliette Lamarche <juliette.lamarche@princesse.xyz> (https://github.com/prncss-xyz/)",
   "license": "ISC",
@@ -54,6 +55,8 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.9.2",
+    "@emotion/jest": "^11.9.1",
     "babel-jest": "^27.5.1",
     "babel-preset-gatsby": "^1.14.0",
     "eslint-config-react-app": "^6.0.0",

@@ -117,22 +117,24 @@ function Main() {
           />
         </Box>
       </GridMd>
-      {/*
-      <H2Icon Icon={Icons.Coeur}>Mécénat express</H2Icon>
-      <VSpacerSmall />
-      <Grid>
-        <Box gcs='4' gce='10'>
-          <TextCard>
-            <Body1>
-              L'Oie de Cravan tient à poursuivre son style de vie poétique et
-              accepte donc les dons.
-            </Body1>
-          </TextCard>
-        </Box>
-      </Grid>
-      <VSpacerSmall />
-      <Arrows href='#'>Envoyer un don à L'Oie</Arrows>
-      */}
+      {/* {false && (
+        <>
+          <H2Icon Icon={Icons.Coeur}>Mécénat express</H2Icon>
+          <VSpacerSmall />
+          <Grid>
+            <Box gcs='4' gce='10'>
+              <TextCard>
+                <Body1>
+                  L'Oie de Cravan tient à poursuivre son style de vie poétique
+                  et accepte donc les dons.
+                </Body1>
+              </TextCard>
+            </Box>
+          </Grid>
+          <VSpacerSmall />
+          <Arrows href='#' dangerouslySetInnerHTML="Envoyer un don à L'Oie" />
+        </>
+      )} */}
     </>
   );
 }

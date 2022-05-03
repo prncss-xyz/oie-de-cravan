@@ -42,6 +42,11 @@ export const cleanBook = (lang, node) => {
 };
 
 const unPre = /^<p>(.*)<\/p>$/;
+
+/**
+ * remove surrounding <p> </p> from html string
+ * @param {any} html html string
+ */
 export const unP = (html) => html.match(unPre)?.[1];
 
 export const rectAuteur = (name) => {

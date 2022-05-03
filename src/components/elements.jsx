@@ -1,8 +1,10 @@
+// TODO: eliminate styles that just adds a prop
+
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { typo_ajust } from '../utils';
+import { typo_ajust, unP } from '../utils';
 import {
   border,
   layout,
@@ -30,31 +32,16 @@ export const Video = ({ url, title, ...props }) => (
   />
 );
 
-export const BookCard = ({ book, ...props }) => {
-  const couverture = book.couvertures?.[0];
-  return (
-    <Link to={book.page} {...props}>
-      <Card pix='20px' piy='20px'>
-        <H3 color='accent' pb='5px'>
-          {typo_ajust(book.titre)}
-        </H3>
-        <Subtitle pb='20px'>{typo_ajust(book.auteurLivre)}</Subtitle>
-        <Flex justifyContent='center'>
-          {couverture && <img src={couverture} alt={book.titre} />}
-        </Flex>
-      </Card>
-    </Link>
-  );
-};
-
 const gcs = system({
   gcs: { property: 'gridColumnStart' },
   gridColumnStart: { property: 'gridColumnStart' },
 });
+
 const gce = system({
   gce: { property: 'gridColumnEnd' },
   gridColumnEnd: { property: 'gridColumnEnd' },
 });
+
 const textTransform = system({ textTransform: true });
 
 export const Box = styled.div(
@@ -78,6 +65,34 @@ export const Grid = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
 });
+
+export const BookCard = ({ book, ...props }) => {
+  const couverture = book.couvertures?.[0];
+  return (
+    <Link to={book.page} {...props}>
+      <Card pix='20px' piy='20px'>
+        <H3 color='accent' pb='5px'>
+          {typo_ajust(book.titre)}
+        </H3>
+        <Subtitle pb='20px'>{typo_ajust(book.auteurLivre)}</Subtitle>
+        <Flex justifyContent='center'>
+          {couverture && <img src={couverture} alt={book.titre} />}
+        </Flex>
+      </Card>
+    </Link>
+  );
+};
+
+export const Navigation = ({ children, props }) => {
+  const theme = useTheme();
+  return (
+    <Box {...theme.styles.navigation} {...props}>
+      {children}
+    </Box>
+  );
+};
+
+
 export const GridMd = ({ ...props }) => (
   <Box
     display={['', '', 'grid']}
@@ -85,11 +100,6 @@ export const GridMd = ({ ...props }) => (
     {...props}
   />
 );
-
-export const Navigation = ({ children }) => {
-  const theme = useTheme();
-  return <Box {...theme.styles.navigation}>{children}</Box>;
-};
 
 export const Tilde = ({ ...props }) => {
   const theme = useTheme();
@@ -116,27 +126,23 @@ const respPros = (...propObjs) => {
   return res;
 };
 
-export const H1Tilde = ({ children, dangerouslySetInnerHTML, ...props }) => {
+export const H1Tilde = ({ dangerouslySetInnerHTML, ...props }) => {
   const theme = useTheme();
   const styles = respPros(theme.styles.h2, theme.styles.h1);
   return (
     <Flex justifyContent='center' color='accent' {...props}>
       <Flex
         maxWidth='800px'
-        {...theme.styles.h1}
+        {...styles}
         alignItems='center'
         flexDirection={['column', 'row']}
       >
         <Box>~</Box>
         <Box
-          as='h1'
           px='18px'
           textAlign='center'
-          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
-          {...styles}
-        >
-          {children}
-        </Box>
+          dangerouslySetInnerHTML={unP(dangerouslySetInnerHTML)}
+        ></Box>
         <Box>~</Box>
       </Flex>
     </Flex>
@@ -151,20 +157,6 @@ export const H2 = ({ children, ...props }) => {
     </Box>
   );
 };
-
-export const H3 = ({ children, ...props }) => {
-  const theme = useTheme();
-  return (
-    <Box as='h3' {...theme.styles.h3} {...props}>
-      {children}
-    </Box>
-  );
-};
-
-export const VSpacerLarge = () => <Box pb={['80px', '180px']} />;
-export const VSpacerMedium = () => <Box pb={['60px', '100px']} />;
-export const VSpacerSmall = () => <Box pb={['40px', '60px']} />;
-export const VSpacerXSmall = () => <Box pb='40px' />;
 
 export const H2Icon = ({
   Icon,
@@ -192,6 +184,15 @@ export const H2Icon = ({
         {<Icon />}
       </Flex>
     </Flex>
+  );
+};
+
+export const H3 = ({ children, ...props }) => {
+  const theme = useTheme();
+  return (
+    <Box as='h3' {...theme.styles.h3} {...props}>
+      {children}
+    </Box>
   );
 };
 
@@ -223,7 +224,12 @@ export const H3Icon = ({
   );
 };
 
-export function Arrows({ children, dangerouslySetInnerHTML }) {
+export const VSpacerLarge = () => <Box pb={['80px', '180px']} />;
+export const VSpacerMedium = () => <Box pb={['60px', '100px']} />;
+export const VSpacerSmall = () => <Box pb={['40px', '60px']} />;
+export const VSpacerXSmall = () => <Box pb='40px' />;
+
+export function Arrows({ dangerouslySetInnerHTML }) {
   const theme = useTheme();
   return (
     <Flex flexDirection='column' alignItems='center' color='accent'>
@@ -237,7 +243,6 @@ export function Arrows({ children, dangerouslySetInnerHTML }) {
           {...theme.styles.button}
           dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         >
-          {children}
         </Box>
         <Icons.ArrowLeft />
       </Flex>
@@ -362,8 +367,8 @@ export function TextCardMd({ children, ...props }) {
     </Box>
   );
 }
-export const TextCard = ({ children }) => (
-  <Card pix='30px' piy='25px'>
+export const TextCard = ({ children, ...props }) => (
+  <Card pix='30px' piy='25px' {...props}>
     {children}
   </Card>
 );
@@ -380,11 +385,7 @@ export const Quote = ({ children, ...props }) => {
 export const QuoteSmall = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Box
-      color='accent'
-      {...theme.styles.quoteSmall}
-      {...props}
-    >
+    <Box color='accent' {...theme.styles.quoteSmall} {...props}>
       {children}
     </Box>
   );
@@ -428,10 +429,7 @@ export function Subtitle({ children, ...props }) {
 export function Body1({ children, ...props }) {
   const theme = useTheme();
   return (
-    <Box
-      {...theme.styles.body1}
-      {...props}
-    >
+    <Box {...theme.styles.body1} {...props}>
       {children}
     </Box>
   );
@@ -439,13 +437,7 @@ export function Body1({ children, ...props }) {
 
 export function Body2({ children }) {
   const theme = useTheme();
-  return (
-    <Box
-      {...theme.styles.body2}
-    >
-      {children}
-    </Box>
-  );
+  return <Box {...theme.styles.body2}>{children}</Box>;
 }
 
 export function Caption({ children, ...props }) {
@@ -468,7 +460,12 @@ export function NavigationFooter({ children, ...props }) {
 
 export const Clickable = ({ onClick, children, ...props }) => (
   <button
-    css={{ border: '0px', background: 'transparent', padding: '0px', width:'100%' }}
+    css={{
+      border: '0px',
+      background: 'transparent',
+      padding: '0px',
+      width: '100%',
+    }}
     onClick={onClick}
     {...props}
   >

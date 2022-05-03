@@ -341,10 +341,8 @@ const AutourDuLivre = ({ autour }) => {
 
 const Main = ({ data: { airtableCatalogue, allAirtableAutourDuLivre } }) => {
   const { lang } = useLang();
-  console.log(airtableCatalogue);
   const data = cleanBook(lang, airtableCatalogue);
   const autour = allAirtableAutourDuLivre.nodes;
-  console.log(data)
   return (
     <>
       <Box pb={['40px', '60px']} />

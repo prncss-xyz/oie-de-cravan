@@ -1,5 +1,785 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  color: blue;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    display: grid;
+  }
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="blue"
+  display={
+    Array [
+      "",
+      "",
+      "grid",
+    ]
+  }
+/>
+`;
+
+exports[`Arrows renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  color: #ED1F24;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+  font-family: Arimo;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="accent"
+>
+  <img
+    alt="arrow bottom"
+    height="24px"
+    src="test-file-stub"
+  />
+  <div
+    className="emotion-2 emotion-1"
+  >
+    <img
+      alt="arrow right"
+      src="test-file-stub"
+      width="22px"
+    />
+    <div
+      className="emotion-4 emotion-5"
+      dangerouslySetInnerHTML="contents"
+      fontFamily="Arimo"
+      fontSize="16px"
+      fontWeight="bold"
+      letterSpacing={1}
+    />
+    <img
+      alt="arrow left"
+      src="test-file-stub"
+      width="22px"
+    />
+  </div>
+  <img
+    alt="arrow top"
+    height="24px"
+    src="test-file-stub"
+  />
+</div>
+`;
+
+exports[`BookCard renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-style: solid;
+  border-color: #929292;
+  border-width: 1px;
+  padding: 8px;
+  background-color: #000000;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-style: solid;
+  border-color: #929292;
+  border-width: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 5px;
+  color: #ED1F24;
+  font-family: Spectral;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: normal;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 20px;
+  font-family: Arimo;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.emotion-8 {
+  box-sizing: border-box;
+  min-width: 0;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<a
+  color="blue"
+  href={200}
+>
+  <div
+    className="emotion-0 emotion-1"
+  >
+    <div
+      className="emotion-2 emotion-1"
+      height="100%"
+      width="100%"
+    >
+      <h3
+        className="emotion-4 emotion-1"
+        color="accent"
+        fontFamily="Spectral"
+        fontSize="28px"
+        fontWeight="normal"
+      >
+        Le titre
+      </h3>
+      <div
+        className="emotion-6 emotion-1"
+        fontFamily="Arimo"
+        fontSize="20px"
+      >
+        Prénom Nom
+      </div>
+      <div
+        className="emotion-8 emotion-9"
+      />
+    </div>
+  </div>
+</a>
+`;
+
+exports[`Box renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+<div
+  className="emotion-0 emotion-1"
+>
+  contenu
+</div>
+`;
+
+exports[`Card renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-style: solid;
+  border-color: #929292;
+  border-width: 1px;
+  padding: 8px;
+  background-color: #000000;
+  color: blue;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-style: solid;
+  border-color: #929292;
+  border-width: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="blue"
+>
+  <div
+    className="emotion-2 emotion-1"
+    height="100%"
+    width="100%"
+  >
+    contents
+  </div>
+</div>
+`;
+
+exports[`Disk renders correctly 1`] = `
+.emotion-0 {
+  height: 10px;
+  padding-right: 10px;
+}
+
+.emotion-0:last-child {
+  padding-right: 0px;
+}
+
+<svg
+  className="emotion-0"
+  color="blue"
+  fill="#ED1F24"
+  viewBox="0 0 10 10"
+>
+  <circle
+    cx="5"
+    cy="5"
+    r="5"
+  />
+</svg>
+`;
+
+exports[`Disk renders correctly 2`] = `
+.emotion-0 {
+  height: 10px;
+  padding-right: 10px;
+}
+
+.emotion-0:last-child {
+  padding-right: 0px;
+}
+
+<svg
+  className="emotion-0"
+  color="blue"
+  fill="#ED1F24"
+  viewBox="0 0 10 10"
+>
+  <circle
+    cx="5"
+    cy="5"
+    r="5"
+  />
+</svg>
+`;
+
+exports[`Flex renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="emotion-0 emotion-1"
+>
+  contenu
+</div>
+`;
+
+exports[`Grid renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+<div
+  className="emotion-0 emotion-1"
+>
+  contenu
+</div>
+`;
+
+exports[`H1Tilde renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  color: blue;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 800px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: Spectral;
+  font-size: 38px;
+  letter-spacing: 1.18px;
+  line-height: 44px;
+  font-weight: normal;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media screen and (min-width: 785px) {
+  .emotion-2 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 785px) {
+  .emotion-2 {
+    font-family: Spectral;
+    font-size: 58px;
+    letter-spacing: 1.18px;
+    line-height: 68px;
+    font-weight: normal;
+  }
+}
+
+@media screen and (min-width: 785px) {
+  .emotion-2 {
+    text-transform: uppercase;
+  }
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-align: center;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="blue"
+>
+  <div
+    className="emotion-2 emotion-1"
+    fontFamily={
+      Array [
+        "Spectral",
+        "Spectral",
+      ]
+    }
+    fontSize={
+      Array [
+        "38px",
+        "58px",
+      ]
+    }
+    fontWeight={
+      Array [
+        "normal",
+        "normal",
+      ]
+    }
+    letterSpacing={
+      Array [
+        1.18,
+        1.18,
+      ]
+    }
+  >
+    <div
+      className="emotion-4 emotion-5"
+    >
+      ~
+    </div>
+    <div
+      className="emotion-6 emotion-5"
+      dangerouslySetInnerHTML="contents"
+    />
+    <div
+      className="emotion-4 emotion-5"
+    >
+      ~
+    </div>
+  </div>
+</div>
+`;
+
+exports[`H2 renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: Spectral;
+  font-size: 38px;
+  letter-spacing: 1.18px;
+  line-height: 44px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+<h2
+  className="emotion-0 emotion-1"
+  fontFamily="Spectral"
+  fontSize="38px"
+  fontWeight="normal"
+  letterSpacing={1.18}
+>
+  content
+</h2>
+`;
+
+exports[`H3 renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: Spectral;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: normal;
+}
+
+<h3
+  className="emotion-0 emotion-1"
+  fontFamily="Spectral"
+  fontSize="28px"
+  fontWeight="normal"
+>
+  content
+</h3>
+`;
+
+exports[`H3Icon renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  color: blue;
+  text-align: left;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-right: 16px;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  min-width: 0;
+  min-width: 100%;
+  font-family: Spectral;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: normal;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="blue"
+>
+  <div
+    className="emotion-2 emotion-3"
+  >
+    <div
+      className="emotion-4 emotion-1"
+    />
+    <h3
+      className="emotion-6 emotion-1"
+      dangerouslySetInnerHTML="<p>contents</p>"
+      fontFamily="Spectral"
+      fontSize="28px"
+      fontWeight="normal"
+    />
+    <div
+      className="emotion-4 emotion-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`Navigation renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: Arimo;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  fontFamily="Arimo"
+  fontSize="16px"
+  letterSpacing={1}
+>
+  content
+</div>
+`;
+
+exports[`TextCard renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-style: solid;
+  border-color: #929292;
+  border-width: 1px;
+  padding: 8px;
+  background-color: #000000;
+  color: blue;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-style: solid;
+  border-color: #929292;
+  border-width: 1px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 100%;
+  height: 100%;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="blue"
+>
+  <div
+    className="emotion-2 emotion-1"
+    height="100%"
+    width="100%"
+  >
+    contents
+  </div>
+</div>
+`;
+
+exports[`TextCardMd renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  border-color: #929292;
+  margin: auto;
+  max-width: 682px;
+  background-color: #000000;
+  color: blue;
+}
+
+@media screen and (min-width: 785px) {
+  .emotion-0 {
+    border-style: solid;
+    border-width: 1px;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    padding: 8px;
+  }
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 785px) {
+  .emotion-2 {
+    border-style: solid;
+    border-color: #929292;
+    border-width: 1px;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-2 {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="blue"
+>
+  <div
+    className="emotion-2 emotion-1"
+    height="100%"
+    width="100%"
+  >
+    contents
+  </div>
+</div>
+`;
+
+exports[`Tilde renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: Spectral;
+  font-size: 58px;
+  letter-spacing: 1.18px;
+  line-height: 68px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  fontFamily="Spectral"
+  fontSize="58px"
+  fontWeight="normal"
+  letterSpacing={1.18}
+>
+  ~
+</div>
+`;
+
+exports[`VSpacerLarge renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 80px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    padding-bottom: 180px;
+  }
+}
+
+<div
+  className="emotion-0 emotion-1"
+/>
+`;
+
+exports[`VSpacerMedium renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 60px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    padding-bottom: 100px;
+  }
+}
+
+<div
+  className="emotion-0 emotion-1"
+/>
+`;
+
+exports[`VSpacerSmall renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    padding-bottom: 60px;
+  }
+}
+
+<div
+  className="emotion-0 emotion-1"
+/>
+`;
+
+exports[`VSpacerXSmall renders correctly 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 40px;
+}
+
+<div
+  className="emotion-0 emotion-1"
+/>
+`;
+
 exports[`Video renders correctly 1`] = `
 <iframe
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
