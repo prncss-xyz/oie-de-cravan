@@ -93,7 +93,11 @@ exports[`Arrows renders correctly 1`] = `
     />
     <div
       className="emotion-4 emotion-5"
-      dangerouslySetInnerHTML="contents"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "contents",
+        }
+      }
       fontFamily="Arimo"
       fontSize="16px"
       fontWeight="bold"
@@ -453,7 +457,11 @@ exports[`H1Tilde renders correctly 1`] = `
     </div>
     <div
       className="emotion-6 emotion-5"
-      dangerouslySetInnerHTML="contents"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
     />
     <div
       className="emotion-4 emotion-5"
@@ -556,7 +564,11 @@ exports[`H3Icon renders correctly 1`] = `
     />
     <h3
       className="emotion-6 emotion-1"
-      dangerouslySetInnerHTML="<p>contents</p>"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "contents",
+        }
+      }
       fontFamily="Spectral"
       fontSize="28px"
       fontWeight="normal"

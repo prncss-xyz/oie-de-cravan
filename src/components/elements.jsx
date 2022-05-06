@@ -141,7 +141,7 @@ export const H1Tilde = ({ dangerouslySetInnerHTML, ...props }) => {
         <Box
           px='18px'
           textAlign='center'
-          dangerouslySetInnerHTML={unP(dangerouslySetInnerHTML)}
+          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         ></Box>
         <Box>~</Box>
       </Flex>

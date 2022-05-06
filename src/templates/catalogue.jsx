@@ -15,6 +15,7 @@ import {
   Search,
 } from '../components/elements';
 import lunr from 'lunr';
+import {unP} from '../utils'
 
 const processQuery = (query) =>
   query.length < 3 ? null : normalize(query).toLocaleLowerCase();
@@ -49,7 +50,7 @@ const Critaria = () => {
   const { textes } = useLang();
   return (
     <Box {...theme.styles.searchCritaria}>
-      <i dangerouslySetInnerHTML={{ __html: textes['critères'] }} />
+      <i dangerouslySetInnerHTML={{ __html: unP(textes['critères']) }} />
     </Box>
   );
 };
@@ -103,7 +104,7 @@ function Main({
   return (
     <>
       <VSpacerLarge />
-      <H1Tilde dangerouslySetInnerHTML={{ __html: textes['h1'] }} />
+      <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
       <VSpacerLarge />
       <Flex
         flexDirection={['column', 'row']}
@@ -122,7 +123,7 @@ function Main({
             textAlign='right'
             {...theme.styles.buttonSmall}
             css={{ textDecoration: 'underline' }}
-            dangerouslySetInnerHTML={{ __html: textes['voir auteurs'] }}
+            dangerouslySetInnerHTML={{ __html: unP(textes['voir auteurs']) }}
           />
         </Link>
       </Flex>

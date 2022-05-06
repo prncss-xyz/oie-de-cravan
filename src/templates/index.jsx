@@ -104,7 +104,7 @@ function Main({ data }) {
           dangerouslySetInnerHTML={{ __html: textes['encadré 0'] }}
         />
       </TextCardMd>
-      <VSpacerLarge/>
+      <VSpacerLarge />
       <GridMd alignItems='end'>
         <Box color='accent' gcs={2} gce={7}>
           <Box
@@ -117,7 +117,7 @@ function Main({ data }) {
             dangerouslySetInnerHTML={{ __html: textes['signature 0'] }}
           />
         </Box>
-        <VSpacerLarge/>
+        <VSpacerLarge />
         <Box
           gcs={8}
           gce={13}
@@ -142,23 +142,23 @@ function Main({ data }) {
           <VSpacerMedium />
         </Box>
       </GridMd>
-      <VSpacerLarge/>
+      <VSpacerLarge />
       <H2Icon
         Icon={Icons.Soleil}
-        dangerouslySetInnerHTML={{ __html: textes['h2 0'] }}
+        dangerouslySetInnerHTML={{ __html: unP(textes['h2 0']) }}
       />
       <VSpacerSmall />
       <Books books={books} startIndex={currentIndex} />
       <VSpacerMedium />
       <Link to='/catalogue'>
-        <Arrows dangerouslySetInnerHTML={{ __html: textes['action 0'] }} />
+        <Arrows dangerouslySetInnerHTML={{ __html: unP(textes['action 0']) }} />
       </Link>
       {currentIndex > 0 && (
         <>
           <VSpacerMedium />
           <H2Icon
             Icon={Icons.Avion}
-            dangerouslySetInnerHTML={{ __html: textes['h2 1'] }}
+            dangerouslySetInnerHTML={{ __html: unP(textes['h2 1']) }}
           />
           <VSpacerSmall />
           <Box textAlign='center' {...theme.styles.body1}>

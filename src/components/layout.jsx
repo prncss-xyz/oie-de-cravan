@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLang, LangProvider } from '/src/components/lang';
 import { Clickable } from '/src/components/elements';
-import { unP } from '/src/utils';
+import { unP } from '../utils';
 import { Global, ThemeProvider, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'gatsby';

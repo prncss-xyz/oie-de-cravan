@@ -201,7 +201,11 @@ const BookCol = ({ data, ...props }) => {
       <Box pb='20px' />
       <Box py={['20px', '0px']}>
         {data.ISBN && <Box>ISBN: {data.ISBN}</Box>}
-        {data.annee && <Link to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${data.annee}`}>{data.annee}</Link>}
+        {data.annee && (
+          <Link to={`${lang === 'fr' ? '/' : '/en/'}catalogue?q=${data.annee}`}>
+            {data.annee}
+          </Link>
+        )}
         {data.hauteur && data.largeur && (
           <Box>
             {data.hauteur} x {data.largeur} cm
@@ -211,7 +215,7 @@ const BookCol = ({ data, ...props }) => {
           <Box>
             <div
               dangerouslySetInnerHTML={{
-                __html: data.pages + ' ' + unP(textes['pages']),
+                __html: data.pages + ' ' + textes['pages'],
               }}
             />
           </Box>
@@ -245,7 +249,8 @@ function SignatureLink({ children, ...data }) {
   if (href) {
     return (
       <Link href={href}>
-          {children}<FaExternalLinkAlt css={{marginLeft: 10}} size={14}/>
+        {children}
+        <FaExternalLinkAlt css={{ marginLeft: 10 }} size={14} />
       </Link>
     );
   }

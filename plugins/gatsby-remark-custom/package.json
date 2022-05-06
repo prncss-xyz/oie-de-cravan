@@ -9,7 +9,6 @@
   "author": "Juliette Lamarche <juliette.lamarche@princesse.xyz> (https://github.com/prncss-xyz/)",
   "license": "MIT",
   "dependencies": {
-    "remark-breaks": "^1.0.5",
-    "unist-util-visit": "^2"
+    "unist-util-visit": "~2.0.3"
   }
 }

@@ -6,6 +6,7 @@ import { Link } from 'gatsby';
 import removeAccents from 'remove-accents';
 import { useLang } from '../components/lang';
 import { typo_ajust } from '../../util';
+import { unP } from '../utils';
 
 const rectAuteur = (name) => {
   let m;
@@ -68,7 +69,7 @@ function Main({ data }) {
   return (
     <>
       <VSpacerMedium />
-      <H1Tilde dangerouslySetInnerHTML={{ __html: textes['h1'] }} />
+      <H1Tilde dangerouslySetInnerHTML={{ __html: unP(textes['h1']) }} />
       <VSpacerMedium />
       <Authors auteurs={auteurs} />
       <VSpacerMedium />

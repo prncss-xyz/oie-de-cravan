@@ -1,11 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-
-
 import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {unP} from '../utils'
 
 import theme from './theme';
 import {
@@ -118,7 +117,7 @@ describe('H1Tilde', () => {
     const tree = renderer
       .create(
         <ThemeProvider theme={theme}>
-          <H1Tilde dangerouslySetInnerHTML='<p>contents</p>' color='blue' />
+          <H1Tilde dangerouslySetInnerHTML={{__html: unP('contents')}} color='blue' />
         </ThemeProvider>,
       )
       .toJSON();
@@ -159,7 +158,7 @@ describe('H3Icon', () => {
         <ThemeProvider theme={theme}>
           <H3Icon
             icon='icon.png'
-            dangerouslySetInnerHTML='<p>contents</p>'
+            dangerouslySetInnerHTML={{__html: unP('<p>contents</p>')}}
             color='blue'
           />
         </ThemeProvider>,
@@ -202,7 +201,7 @@ describe('Arrows', () => {
     const treeActive = renderer
       .create(
         <ThemeProvider theme={theme}>
-          <Arrows dangerouslySetInnerHTML='contents' />
+          <Arrows dangerouslySetInnerHTML={{__html: unP('<p>contents</p>')}} />
         </ThemeProvider>,
       )
       .toJSON();
