@@ -297,8 +297,8 @@ const Footer = () => {
               }}
             />
             <Box
-              {...theme.styles.subtitle}
-              pt='10px'
+              {...theme.styles.navigationSignature}
+              pt='14px'
               dangerouslySetInnerHTML={{
                 __html: unP(layoutTextes['signature 0']),
               }}

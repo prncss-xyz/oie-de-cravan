@@ -195,6 +195,12 @@ const theme = {
       lineHeight: '20px',
       textTransform: 'uppercase',
     },
+    navigationSignature: {
+      fontFamily: 'Arimo',
+      fontSize: '14px',
+      letterSpacing: 1,
+      lineHeight: '20px',
+    }
   },
 };
 
