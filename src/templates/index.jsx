@@ -1,5 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
+import useSize from '@react-hook/size';
 import { cleanBook, unP, typo_ajust } from '../utils';
 import { useLang } from '../components/lang';
 import page from '../components/layout';
@@ -29,21 +30,9 @@ const getCurrentIndex = (books, date) => {
   return currentIndex;
 };
 
-// TODO: FIXME:
-const useWidth = () => {
-  const ref = useRef(null);
-  const [width, setWidth] = useState(null);
-  useEffect(() => {
-    const ro = new ResizeObserver((e) => {
-      setWidth(e[0].contentRect.width);
-    });
-    ro.observe(ref.current);
-  }, [ref.current]);
-  return [ref, width];
-};
-
 const Books = ({ books, startIndex }) => {
-  const [ref, width] = useWidth();
+  const ref = React.useRef(null);
+  const [width] = useSize(ref);
   const n = Math.floor((width + 36) / (280 + 36));
   return (
     <Flex ref={ref} css={{ gap: '36px' }}>

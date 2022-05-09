@@ -6,6 +6,7 @@ specifiers:
   '@emotion/jest': ^11.9.1
   '@emotion/react': ^11.9.0
   '@emotion/styled': ^11.8.1
+  '@react-hook/size': ^2.1.2
   '@sindresorhus/slugify': ^1.1.2
   '@types/react': ^17.0.44
   '@types/react-helmet': ^6.1.5
@@ -55,6 +56,7 @@ dependencies:
   '@babel/core': 7.17.10
   '@emotion/react': 11.9.0_ca4a8ec32d887456a4de02f8cb6532ee
   '@emotion/styled': 11.8.1_5b9eddf49e2d7edbbb84e903dbd4c614
+  '@react-hook/size': 2.1.2_react@17.0.2
   '@sindresorhus/slugify': 1.1.2
   babel-eslint: 10.1.0_eslint@7.32.0
   core-js: 3.22.4
@@ -3011,6 +3013,29 @@ packages:
     peerDependencies:
       react: '>=16.8'
     dependencies:
+      react: 17.0.2
+    dev: false
+
+  /@react-hook/resize-observer/1.2.5_react@17.0.2:
+    resolution: {integrity: sha512-qa0pPvRxq5VbdI8mMK2apPFsZOckhQ6D3Jc9yLuyHMNhui8yEih4qyFCZBDzzK3ymZS6LAltVSVg3l1Dg9vA0w==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@juggle/resize-observer': 3.3.1
+      '@react-hook/latest': 1.0.3_react@17.0.2
+      '@react-hook/passive-layout-effect': 1.2.1_react@17.0.2
+      '@types/raf-schd': 4.0.1
+      raf-schd: 4.0.3
+      react: 17.0.2
+    dev: false
+
+  /@react-hook/size/2.1.2_react@17.0.2:
+    resolution: {integrity: sha512-BmE5asyRDxSuQ9p14FUKJ0iBRgV9cROjqNG9jT/EjCM+xHha1HVqbPoT+14FQg1K7xIydabClCibUY4+1tw/iw==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/passive-layout-effect': 1.2.1_react@17.0.2
+      '@react-hook/resize-observer': 1.2.5_react@17.0.2
       react: 17.0.2
     dev: false
 
