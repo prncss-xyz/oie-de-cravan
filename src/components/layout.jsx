@@ -87,6 +87,16 @@ function OverlayMenu({ en, fr, closeHandler }) {
             dangerouslySetInnerHTML={{ __html: unP(layoutTextes['catalogue']) }}
           />
         </Link>
+        <Link to={links['auteurs']}>
+          <div
+            dangerouslySetInnerHTML={{ __html: unP(layoutTextes['auteurs']) }}
+          />
+        </Link>
+        <Link to={links['auteurs']}>
+          <div
+            dangerouslySetInnerHTML={{ __html: unP(layoutTextes['auteurs']) }}
+          />
+        </Link>
         <Link to={links['nouvelles']}>
           <div
             dangerouslySetInnerHTML={{ __html: unP(layoutTextes['nouvelles']) }}
@@ -176,6 +186,11 @@ const Header = ({ en, fr }) => {
                 }}
               />
             </Link>
+            <Link to={links['auteurs']}>
+              <div
+                dangerouslySetInnerHTML={{ __html: unP(layoutTextes['auteurs']) }}
+                />
+            </Link>
             <Link to={links['nouvelles']}>
               <div
                 dangerouslySetInnerHTML={{
@@ -254,6 +269,13 @@ const Footer = () => {
                   __html: unP(layoutTextes['catalogue']),
                 }}
               />
+            </Link>
+          </Box>
+          <Box>
+            <Link to={links['auteurs']}>
+              <div
+                dangerouslySetInnerHTML={{ __html: unP(layoutTextes['auteurs']) }}
+                />
             </Link>
           </Box>
           <Box>

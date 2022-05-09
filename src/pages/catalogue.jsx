@@ -46,6 +46,7 @@ export const query = graphql`
             url
           }
           Titre
+          titre_url
           Auteur
         }
       }

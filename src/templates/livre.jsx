@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { FaExternalLinkAlt, IconContext } from 'react-icons/fa';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 import { useCurrency } from '../components/currency';
 import { Link } from 'gatsby';
 import { useTheme } from '@emotion/react';

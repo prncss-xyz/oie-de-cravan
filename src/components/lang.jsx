@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 const linksFr = {
   'accueil': '/',
   'catalogue': '/catalogue',
+  'auteurs': '/auteurs',
   'nouvelles': 'https://oiedecravan.blogspot.com/',
   'nous rejoindre': '/nous-rejoindre',
 }
@@ -10,6 +11,7 @@ const linksFr = {
 const linksEn = {
   'accueil': '/en',
   'catalogue': '/en/catalogue',
+  'authors': '/en/authors',
   'nouvelles': 'https://boxinggoose.blogspot.com/',
   'nous rejoindre': '/en/reach-us',
 }

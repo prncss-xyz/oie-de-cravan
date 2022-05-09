@@ -12,11 +12,13 @@ const rectAuteur = (name) => {
   let m;
   m = name.match(/(.*),(.*)\((.*)\)/);
   if (m) {
+    // eslint-disable-next-line no-unused-vars
     const [_, a, b, c] = m;
     return `${b.trim()} ${a.trim()} (${c.trim()})`;
   }
   m = name.match(/(.*),(.*)/);
   if (m) {
+    // eslint-disable-next-line no-unused-vars
     const [_, a, b] = m;
     return `${b.trim()} ${a.trim()}`;
   }

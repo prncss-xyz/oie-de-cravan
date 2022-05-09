@@ -3,7 +3,6 @@ import { Masonry } from 'masonic';
 import { useTheme } from '@emotion/react';
 import React, { useState, useMemo } from 'react';
 import page from '../components/layout';
-import { Link } from 'gatsby';
 import { cleanBook, normalize } from '../utils';
 import {
   H1Tilde,
@@ -66,7 +65,6 @@ function Main({
     localSearchBooks: { store, index },
   },
 }) {
-  const theme = useTheme();
   const { lang, textes } = useLang();
   const searchParams = new URLSearchParams(search);
   const q0 = searchParams.get('q') || '';
@@ -117,15 +115,6 @@ function Main({
           <Critaria />
         </Flex>
         <Box pb='20px' />
-        <Link to={lang === 'fr' ? '/auteurs' : '/en/authors'}>
-          <Box
-            color='accent'
-            textAlign='right'
-            {...theme.styles.buttonSmall}
-            css={{ textDecoration: 'underline' }}
-            dangerouslySetInnerHTML={{ __html: unP(textes['voir auteurs']) }}
-          />
-        </Link>
       </Flex>
       <VSpacerSmall />
       <Masonry
